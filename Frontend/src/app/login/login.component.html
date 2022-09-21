@@ -1,0 +1,32 @@
+<div class="logindiv">
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Login" allign="center">
+        <mat-card class="logincard">
+        <form [formGroup]="loginForm"
+            (ngSubmit)="onSubmit(loginForm)"
+            #formDirective="ngForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName='email'>
+            </mat-form-field>
+            <mat-error class="mat-error"
+              *ngIf="AllControls.email.errors?.['required']&&submitted" >Email required</mat-error>
+            <mat-error *ngIf="AllControls.email.errors?.['email']&&submitted">Invalid Email</mat-error>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" type="password" formControlName='password'>
+                <mat-error *ngIf="AllControls.password.errors?.['required']&&submitted"
+                >Password required</mat-error>
+                <mat-error *ngIf="AllControls.password.errors?.['minlength']&&submitted"
+                >Password aleast 6 characters</mat-error>
+                </mat-form-field>
+                <div style="text-align: center;">
+                <button mat-raised-button color="primary">Login</button> 
+            </div>
+        </form>
+        </mat-card>
+        </mat-tab>
+        </mat-tab-group>
+</div>
+
+

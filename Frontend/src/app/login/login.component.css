@@ -1,0 +1,17 @@
+.logindiv{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 6rem;
+
+}
+.logincard{
+    background:rgba(255,255,255,); 
+    border: 1px solid grey;
+    border-radius: .7rem;
+}
+mat-form-field{
+    width: 100%;
+}

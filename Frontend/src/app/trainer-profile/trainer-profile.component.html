@@ -1,0 +1,23 @@
+<div>
+    <h2>Trainer Profiles</h2>
+    <table class="table-primary">
+        <thead>
+            <tr>
+              <th scope="col">Trainer Image</th>
+              <th scope="col">Trainer Id</th>
+              <th scope="col">Trainer Name</th>
+              <th scope="col">Skills</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead> 
+          <tbody>
+            <tr *ngFor="let i of trainers">
+             <td><img [src]="i.imageurl" alt="image" id="trainer"></td>
+             <td>{{i.trainerid}}</td>
+             <td>{{i.trainername}}</td>
+             <td>{{i.skills}}</td>
+             <td>{{i.email}}</td>
+            </tr>
+
+    </table>
+</div>

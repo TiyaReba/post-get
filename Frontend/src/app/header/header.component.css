@@ -1,0 +1,21 @@
+.navbar-nav{
+    margin-left: 12cm;
+}
+.nav-item{
+    margin-left: 11px;
+    margin-top: 10px;
+    display: flex;
+    font-size: larger;
+    
+}a{
+    color: aliceblue;
+    text-decoration: none;
+}a:hover{
+    color: #000;
+}h1{
+    margin-left: 5px;
+}
+.btn{
+    margin-right: 5px;
+    padding: 1px;
+}

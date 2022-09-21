@@ -1,0 +1,83 @@
+
+<div class="container-fluid">
+    <h3 style="text-align:center">Enrollment Form</h3>
+    <form [formGroup]="registrationForm" (ngSubmit)="onsubmit()">
+    
+    <label>Trainer Name</label>
+    <input type="text" placeholder="Trainer Name" class="form-control" formControlName="trainername" popupHeight='200px' popupWidth = '250px'
+    [ngClass]="{'is-invalid':submit&&f.trainername.errors}">
+      <div *ngIf='submit&&f.trainername.errors' class="invalid-feedback">
+        <div *ngIf='f.trainername.errors'>Trainer Name is required</div>
+      </div>
+
+    <label>Email</label>
+    <input type="email" placeholder="Email" class="form-control"formControlName="email"
+    [ngClass]="{'is-invalid':submit&&f.email.errors}">
+      <div *ngIf='submit&&f.email.errors' class="invalid-feedback">
+        <div *ngIf="f.email.errors?.['required']">Email is required</div>
+        <div *ngIf="f.email.errors?.['email']">Invalid Email</div>
+      </div>
+
+    <label>Phone Number</label>
+    <input type="number" placeholder="phone number" class="form-control"formControlName="phone"
+    [ngClass]="{'is-invalid':submit&&f.phone.errors}">
+      <div *ngIf='submit&&f.phone.errors' class="invalid-feedback">
+        <div *ngIf="f.phone.errors?.['required']">Phone Number is required</div>
+        <div *ngIf="f.phone.errors?.['pattern']">Invalid Phone Number</div>
+      </div>
+
+      <label>Address 1</label>
+    <input type="text" placeholder="Address" class="form-control" formControlName="address" 
+    [ngClass]="{'is-invalid':submit&&f.address.errors}">
+      <div *ngIf='submit&&f.address.errors' class="invalid-feedback">
+        <div *ngIf='f.address.errors'>Address is required</div>
+      </div>
+
+      <label>Address 2</label>
+    <input type="text" placeholder="Address" class="form-control" formControlName="address" >
+      <!-- <div *ngIf='submit&&f.address.errors' class="invalid-feedback"> -->
+        <!-- <div *ngIf='f.address.errors'>Address is required</div> -->
+      <!-- </div> -->
+
+      <label>Highest Qualification</label>
+      <input type="text" placeholder="Highest Qualification" class="form-control" formControlName="qualification" 
+      [ngClass]="{'is-invalid':submit&&f.qualification.errors}">
+        <div *ngIf='submit&&f.qualification.errors' class="invalid-feedback">
+          <div *ngIf='f.qualification.errors'>Address is required</div>
+        </div>
+
+        <label>Skill Set</label>
+      <input type="text" placeholder="Skill Set" class="form-control" formControlName="skills" 
+      [ngClass]="{'is-invalid':submit&&f.skills.errors}">
+        <div *ngIf='submit&&f.skills.errors' class="invalid-feedback">
+          <div *ngIf='f.skills.errors'>Skills are required</div>
+        </div>
+
+        <label>Current Company Name</label>
+      <input type="text" placeholder="Current Company Name" class="form-control" formControlName="currentcompanyname" 
+      [ngClass]="{'is-invalid':submit&&f.currentcompanyname.errors}">
+        <div *ngIf='submit&&f.currentcompanyname.errors' class="invalid-feedback">
+          
+        </div>
+
+        <label> Current Designation</label>
+        <input type="text" placeholder="Current Designation" class="form-control" formControlName="currentdesignation" 
+        [ngClass]="{'is-invalid':submit&&f.currentdesignation.errors}">
+          <div *ngIf='submit&&f.currentdesignation.errors' class="invalid-feedback">
+            <!-- <div *ngIf='f.currentcompanyname.errors'>Current Company N is  required</div> -->
+          </div>
+  
+          <label for="courses">ICTAK Courses Handling</label>
+          <select class="form-control" formControlName="courses" [ngClass]="{'is-invalid':submit&&f.courses.errors}" >
+            <option disabled>Select Courses</option>
+            <option >Choose Course</option>
+            <option *ngFor="let i of courselist">{{i}}</option>
+          </select>
+      <div *ngIf="f.courses.touched&&f.courses.invalid" class="danger">
+        <div *ngIf="f.courses.errors?.['required']">course is required</div>
+      </div>
+
+<br>
+      <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

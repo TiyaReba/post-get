@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <h2 style="text-align:center">Fill the requirements</h2>
+    <form [formGroup]="adminform" (ngSubmit)="onclick()">
+
+        <label>Start Date </label>
+        <input type="date" class="form-control"  formControlName="startdate" popupHeight='200px' popupWidth = '250px'
+        [ngClass]="{'is-invalid':submit&&f.startdate.errors}">
+        <div *ngIf='submit&&f.startdate.errors' class="invalid-feedback">
+            <div *ngIf='f.startdate.errors'>Start date is required</div>
+          </div>
+        <label>End Date </label>
+        <input type="date" class="form-control" popupHeight='200px' popupWidth = '250px'
+        [ngClass]="{'is-invalid':submit&&f.enddate.errors}">
+        <div *ngIf='submit&&f.enddate.errors' class="invalid-feedback">
+            <div *ngIf='f.enddate.errors'>End date is required</div>
+          </div>
+        <label>Start Time </label>
+        <input type="time" class="form-control" popupHeight='200px' popupWidth = '250px'>
+        <div *ngIf='submit&&f.starttime.errors' class="invalid-feedback">
+            <div *ngIf='f.starttime.errors'>Start time is required</div>
+          </div> 
+        <label>End Time </label>
+        <input type="time" class="form-control" popupHeight='200px' popupWidth = '250px'>
+        <div *ngIf='submit&&f.endtime.errors' class="invalid-feedback">
+            <div *ngIf='f.endtime.errors'>End time is required</div>
+          </div> 
+
+          <label for="courses"> Courses Name </label>
+          <select class="form-control" formControlName="courses"  [ngClass]="{'is-invalid':submit&&f.courses.errors}" >
+            <option >Select Courses</option>
+            <option *ngFor="let i of courselist">{{i}}</option>
+          </select>
+      <div *ngIf="f.courses.touched&&f.courses.invalid" class="danger">
+        <div *ngIf="f.courses.errors?.['required']">course is required</div>
+      </div>
+
+      <label for="courses"> Courses ID </label>
+          <select class="form-control" formControlName="courseid" [ngClass]="{'is-invalid':submit&&f.courseid.errors}">
+            <option >Select ID</option>
+            <option *ngFor="let i of Courseid">{{i}}</option>
+          </select>
+      <div *ngIf="f.courseid.touched&&f.courseid.invalid" class="danger">
+        <div *ngIf="f.courseid.errors?.['required']">course id is required</div>
+      </div>
+
+
+      <label for="courses"> Batch ID </label>
+      <select class="form-control" formControlName="batchid" [ngClass]="{'is-invalid':submit&&f.batchid.errors}">
+        <option >Select ID</option>
+        <option *ngFor="let i of Batchid">{{i}}</option>
+      </select>
+  <div *ngIf="f.batchid.touched&&f.batchid.invalid" class="danger">
+    <div *ngIf="f.batchid.errors?.['required']">Batch id is required</div>
+  </div>
+   
+
+  <label>  Meeting Link/Venue </label>
+  <input type="url" class="form-control" placeholder="Link/Venue" formControlName="link" popupHeight='200px' popupWidth = '250px'
+   [ngClass]="{'is-invalid':submit&&f.link.errors}"> 
+  <div *ngIf='submit&&f.link.errors' class="invalid-feedback">
+      <div *ngIf='f.link.errors'>Link/Venue is required</div>
+    </div> 
+<br>
+   <button type="submit" class="btn btn-success">Submit</button>
+</form>
+</div>
