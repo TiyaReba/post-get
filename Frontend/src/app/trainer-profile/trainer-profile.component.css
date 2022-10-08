@@ -1,4 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
 #trainer{
     width: 20%;
     height :20%
 }
+.d-flex {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+
+ p{
+    color: black;
+    font-size: 17px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    background: #d1d5db
+}
+
+.name {
+    color: rgb(41, 13, 151)
+}
+
+.work {
+    font-weight: bold;
+    font-size: 15px
+}
+
+.about span {
+    font-size: 13px
+}
+
+.v-profile {
+    color: blue;
+    cursor: pointer
+}
+
+.box {
+    -webkit-box-shadow: 13px 12px 5px -10px rgba(196, 194, 196, 0.72);
+    -moz-box-shadow: 13px 12px 5px -10px rgba(196, 194, 196, 0.72);
+    box-shadow: 13px 12px 5px -10px rgba(196, 194, 196, 0.72)
+}
+
+.col-md-3 {
+    margin-top: 10px
+}
+
+
+.height {
+    height: 100vh
+}
+
+.form {
+    position: relative
+}
+
+
+.left-pan {
+    padding-left: 7px
+}
+
+.form-control {
+    height: 55px;
+     text-indent: 33px; 
+    border-radius: 10px;
+    padding-right: 10px;
+    padding-left: 0px;
+    border-left: 10PX;
+     border-right: 10px; 
+     margin-left: 70%;
+    
+}
+
+.form-control:focus {
+    box-shadow: rgb(4, 4, 235);
+    border: rgb(9, 1, 15);
+}
+
+button{
+    padding: 12px 20px;
+    background: #718ee4;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    font-size: 16px;
+    text-decoration: none;
+    
+    
+    transition: all .3s ease-in;
+   
+    }
+    button:hover{
+    background: transparent;
+    color: #0804f5;
+    border: 2px solid #cec7cb;
+    }
+/* .form{
+    border-radius: 10px;
+    margin-left: 50%;
+} */

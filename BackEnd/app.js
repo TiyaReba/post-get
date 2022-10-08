@@ -8,9 +8,9 @@ const mongoose = require('mongoose');
 const jwt =require('jsonwebtoken');
 
 const app = new express();
-mongoose.connect('mongodb+srv://soorya:arya@clustertms.kfgrkm3.mongodb.net/TMS?retryWrites=true&w=majority')
+
 // db connection
-//mongoose.connect('mongodb+srv://tiya:post24@cluster0.qh8z9se.mongodb.net/TMSPortal?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://soorya:arya@clustertms.kfgrkm3.mongodb.net/TMS?retryWrites=true&w=majority')
 console.log("Mongo DB connected ...")
 
 app.use(cors());
@@ -112,6 +112,17 @@ try{
 })
 
 
+
+app.get('/trainerlist/search', (req,res)=>{
+  res.header("Access-Control-Allow-Origin",'*');
+    res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
+   FormData.findone()
+      .then(function(trainers){
+         res.send(trainers);
+
+})
+
+})
 
 app.listen(3000);
 console.log("port 3000");

@@ -3,14 +3,16 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Trainermodel } from '../trainer-profile/trainer.model'
 import { TrainerService } from '../trainer.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-enrollmentform',
   templateUrl: './enrollmentform.component.html',
   styleUrls: ['./enrollmentform.component.css']
 })
 export class EnrollmentformComponent implements OnInit {
+  submitted = false;
 
-  constructor(private fb:FormBuilder,private trainerService :TrainerService) { }
+  constructor(private fb:FormBuilder,private trainerService :TrainerService ,private router:Router) { }
   // trainers: Trainermodel[] | any;
   courselist:any=['FSD','DSA','RPA']
   submit=false
@@ -43,6 +45,7 @@ onsubmit(){
   else{
    console.log(this.registrationForm.value);
     alert("Trainer addedd sucessfully")
+    this.router.navigate(['/'])
   }
   console.log("clicked")
   console.log('f', this.f)
