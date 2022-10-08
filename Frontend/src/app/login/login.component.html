@@ -3,8 +3,7 @@
         <mat-tab label="Login" allign="center">
         <mat-card class="logincard">
         <form [formGroup]="loginForm"
-            (ngSubmit)="onSubmit(loginForm)"
-            #formDirective="ngForm">
+            (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
             <input matInput placeholder="Email" formControlName='email'>

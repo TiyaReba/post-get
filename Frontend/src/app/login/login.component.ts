@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validator,Validators } from '@angular/forms';
+import { AuthserviceService } from '../authservice.service';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +11,7 @@ import { FormBuilder,Validator,Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   submitted=false
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder,private authService:AuthserviceService,private router:Router) { }
   loginForm=this.fb.group({
     email:['',[Validators.required,Validators.email]],
     password:['',[Validators.required,Validators.minLength(6)]],
@@ -18,9 +21,28 @@ export class LoginComponent implements OnInit {
   get AllControls(){
     return this.loginForm.controls
   }
-  onSubmit( values:any){
+  onSubmit(){
     this.submitted=true
-    console.log(values);
-
+    console.log(JSON.stringify(this.loginForm.value));
+    var logindata = this.loginForm.value;
+this.authService.loginUser(logindata)
+.subscribe({
+  next: (res) =>   {console.log('sucessfully loggedin');
+  localStorage.setItem('token',res.token);
+ this.router.navigate(['/trainer-profile']);}, 
+  error: (error) => {
+    console.log(error);
+    alert('Incorrect Email Adderess Or Password');
+      
   }
+})
+}
+
+
+
+       
+
+  
+
+  
 }
