@@ -8,7 +8,7 @@
 
 }
 .signupcard{
-    background-color: darkgray;
+    background: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
     border: 1px solid grey;
     border-radius: .7rem;
 }

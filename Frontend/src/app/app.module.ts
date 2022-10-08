@@ -22,6 +22,7 @@ import { TrainerProfileComponent } from './trainer-profile/trainer-profile.compo
 import { AdminComponent } from './admin/admin.component';
 import { TrainerService } from './trainer.service';
 import { FormsModule }   from '@angular/forms';
+import { HomeComponent } from 'src/home/home.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { FormsModule }   from '@angular/forms';
     LoginComponent,
     SignupComponent,
     TrainerProfileComponent,
-    AdminComponent,
+    AdminComponent,HomeComponent
   
   ],
   imports: [
