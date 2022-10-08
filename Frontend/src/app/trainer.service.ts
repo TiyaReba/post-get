@@ -21,4 +21,17 @@ export class TrainerService {
     .subscribe(data =>{console.log(data)})
     
   }
+
+  deleteTrainer(id:any)
+  {
+
+    return this.http.delete("http://localhost:3000/trainerprofiles/delete/"+id)
+
+  }
+
+  get1trainer(search:any){
+    return this.http.put("http://localhost:3000/trainerlist/search",search)
+  }
+
+  
 }

@@ -1,4 +1,25 @@
-.container-fluid{
+/* .container-fluid{
     
     width: 600px;
+} */
+
+.tab{
+    position: relative;
+    color: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 2rem;
+
+}    
+
+.logincard{
+    /* background-color: rgb(80, 51, 249); */
+    border: 1px solid skyblue;
+    border-radius: .5rem;
+    width: 350px !important;
+}
+mat-form-field {
+    width: 100%;
 }

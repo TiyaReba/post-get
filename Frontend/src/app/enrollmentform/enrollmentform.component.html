@@ -1,4 +1,86 @@
 
+<div class="tab">
+  <h1 >Enrollment <Form></Form></h1>
+<mat-tab-group>
+<mat-tab label="" style="text-align: centre;"> 
+  <mat-card class="logincard">
+  <form [formGroup]="registrationForm" (ngSubmit)="onsubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label >Trainer Name</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="trainername">
+      <mat-error *ngIf="f?.['trainername']?.errors?.['required'] && submitted"
+      >Trainer Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label >Email</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="email">
+      <mat-error *ngIf="f?.['email']?.errors?.['email'] && submitted"
+      >Invalid Email</mat-error>
+      <mat-error *ngIf="f?.['email']?.errors?.['required'] && submitted"
+      >Email is required</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label >Phone</mat-label>
+      <input matInput placeholder="Placeholder" type="number" formControlName="phone">
+      <mat-error *ngIf="f?.['phone']?.errors?.['required'] && submitted"
+      >Phone is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label >Address</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="address">
+      <mat-error *ngIf="f?.['address']?.errors?.['required'] && submitted"
+      >Address is required</mat-error>
+    </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label >Qualification</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="qualification">
+        <mat-error *ngIf="f?.['qualification']?.errors?.['required'] && submitted"
+        >Qualification is required</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label >Skills</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="skills">
+        <mat-error *ngIf="f?.['skills']?.errors?.['required'] && submitted"
+        >Skills is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label >Current Company Name</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="currentcompanyname">
+        <!-- <mat-error *ngIf="f?.['currentcompanyname']?.errors?.['required'] && submitted"
+        >Qualification is required</mat-error> -->
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label >Current Designation</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="currentdesignation">
+      
+      </mat-form-field>
+     
+
+
+    
+    <div style="text-align: center;">
+      <button mat-raised-button color="primary">Register</button>
+    </div>
+  
+  
+  </form>
+</mat-card>
+</mat-tab>
+</mat-tab-group>
+
+
+
+
+<!-- 
 <div class="container-fluid">
     <h3 style="text-align:center">Enrollment Form</h3>
     <form [formGroup]="registrationForm" (ngSubmit)="onsubmit()">
@@ -35,9 +117,7 @@
 
       <label>Address 2</label>
     <input type="text" placeholder="Address" class="form-control" formControlName="address" >
-      <!-- <div *ngIf='submit&&f.address.errors' class="invalid-feedback"> -->
-        <!-- <div *ngIf='f.address.errors'>Address is required</div> -->
-      <!-- </div> -->
+      
 
       <label>Highest Qualification</label>
       <input type="text" placeholder="Highest Qualification" class="form-control" formControlName="qualification" 
@@ -64,7 +144,7 @@
         <input type="text" placeholder="Current Designation" class="form-control" formControlName="currentdesignation" 
         [ngClass]="{'is-invalid':submit&&f.currentdesignation.errors}">
           <div *ngIf='submit&&f.currentdesignation.errors' class="invalid-feedback">
-            <!-- <div *ngIf='f.currentcompanyname.errors'>Current Company N is  required</div> -->
+           
           </div>
   
           <label for="courses">ICTAK Courses Handling</label>
@@ -80,4 +160,4 @@
 <br>
       <button type="submit" class="btn btn-success">Submit</button>
   </form>
-</div>
+</div> -->

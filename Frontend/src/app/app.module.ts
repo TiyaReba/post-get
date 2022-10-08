@@ -21,6 +21,8 @@ import { SignupComponent } from './signup/signup.component';
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
 import { AdminComponent } from './admin/admin.component';
 import { TrainerService } from './trainer.service';
+import { FormsModule }   from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,8 @@ import { TrainerService } from './trainer.service';
     MatCardModule,
     MatFormFieldModule,
      MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
  
   ],
   providers: [TrainerService],
