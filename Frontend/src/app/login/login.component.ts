@@ -23,20 +23,26 @@ export class LoginComponent implements OnInit {
   }
   onSubmit(){
     this.submitted=true
-    console.log(JSON.stringify(this.loginForm.value));
-    var logindata = this.loginForm.value;
-this.authService.loginUser(logindata)
-.subscribe({
-  next: (res) =>   {console.log('sucessfully loggedin');
-  localStorage.setItem('token',res.token);
- this.router.navigate(['/trainer-profile']);}, 
-  error: (error) => {
-    console.log(error);
-    alert('Incorrect Email Adderess Or Password');
-      
+    if(!this.loginForm.valid){
+      alert("please fill the form")
+    }
+    else{
+      console.log(JSON.stringify(this.loginForm.value));
+      var logindata = this.loginForm.value;
+  this.authService.loginUser(logindata)
+  .subscribe({
+    next: (res) =>   {console.log('sucessfully loggedin');
+    localStorage.setItem('token',res.token);
+   this.router.navigate(['/']);}, 
+    error: (error) => {
+      console.log(error);
+      alert('Incorrect Email Adderess Or Password');
+        
+    }
+  })
   }
-})
-}
+    }
+  
 
 
 
