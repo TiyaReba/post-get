@@ -74,7 +74,7 @@ app.post('/login',(req,res)=>{
   })
    })
 
-app.get('/trainerlist',verifyToken,function(req,res) {
+app.get('/trainerlist',function(req,res) {
     res.header("Access-Control-Allow-Origin",'*');
     res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
    FormData.find()

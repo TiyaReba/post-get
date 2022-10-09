@@ -1,9 +1,9 @@
-/* .container-fluid{
+.container-fluid{
     
     width: 600px;
-} */
+}
 
-.tab{
+/* .tab{
     position: relative;
     color: blue;
     display: flex;
@@ -15,11 +15,11 @@
 }    
 
 .logincard{
-    /* background-color: rgb(80, 51, 249); */
+   
     border: 1px solid skyblue;
     border-radius: .5rem;
     width: 350px !important;
 }
 mat-form-field {
     width: 100%;
-}
+} */
