@@ -74,6 +74,8 @@ app.post('/login',(req,res)=>{
   })
    })
 
+  //  to get details in trainer list page
+
 app.get('/trainerlist',function(req,res) {
     res.header("Access-Control-Allow-Origin",'*');
     res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
@@ -85,7 +87,7 @@ app.get('/trainerlist',function(req,res) {
 
 // for posting enrollmentform
 
-app.post('/form',verifyToken,function(req,res){
+app.post('/form',function(req,res){
   res.header("Access-Control-Allow-Origin",'*');
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
   console.log('body :'+ req.body)
@@ -112,7 +114,7 @@ try{
 })
 
 
-
+// to find details of a single trainer
 app.get('/trainerlist/search', (req,res)=>{
   res.header("Access-Control-Allow-Origin",'*');
     res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
