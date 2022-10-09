@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Trainermodel } from '../trainer-profile/trainer.model'
 import { TrainerService } from '../trainer.service';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trainer-profile',
@@ -11,7 +12,7 @@ import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/fo
 
 
 export class TrainerProfileComponent implements OnInit {
-  search={
+  find={
     text:''
   }
 
@@ -29,14 +30,20 @@ export class TrainerProfileComponent implements OnInit {
     photo:'',
     ID:''
   }]
-  constructor(private trainerService :TrainerService) { }
-  deleteTrainer(data:any){
+  constructor(private trainerService :TrainerService,private router:Router) { }
+  deleteTrainer(trainer:any){
+    var id = trainer._id;
+    console.log("trainerid",id);
+    this.trainerService.deleteTrainer(trainer._id)
+    .subscribe((res:any)=>{
+      this.trainers = this.trainers.filter((p: any) => p!==trainer)
+    })
 
   }
-  editTrainer(trainer:any){
 
-  }
 allocateTrainer(trainer:any){
+  localStorage.setItem("allocateTrainerId",trainer._id.toString());
+  this.router.navigate(['admin'])
   
 }
   ngOnInit(): void {
@@ -47,7 +54,7 @@ allocateTrainer(trainer:any){
   }
 
   Search(formValue:NgForm){
-    this.trainerService.getTrainers()
+    this.trainerService.findTrainers(this.find)
       .subscribe((trainer)=>{
         this.trainers = trainer;
         // console.log(this.trainers);

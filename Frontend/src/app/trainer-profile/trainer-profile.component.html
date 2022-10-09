@@ -4,7 +4,7 @@
 </div>
     
  <form class="d-flex" #searchForm="ngForm" (ngSubmit)="Search(searchForm)" >
-  <input class="form-control" type="search" [(ngModel)]="search.text" name="text" placeholder="Search" aria-label="Search">
+  <input class="form-control" type="search" [(ngModel)]="find.text" name="text" placeholder="Search" aria-label="Search">
   <button class="btn btn-outline-success" type="submit" >Search</button>
 </form>
 <div class="container mt-3">
@@ -22,8 +22,7 @@
                 <p class="card-text text-muted ">Current Designation: &nbsp;&nbsp;{{trainer.currentdesignation}}</p>
                 <p class="card-text text-muted ">ICTAK Courses Handling: &nbsp;&nbsp;{{trainer.courses}}</p>
                   <button  (click)="deleteTrainer(trainer)" >Delete </button>          &nbsp;&nbsp;
-                    <button (click)="editTrainer(trainer)" >Edit</button>  &nbsp;&nbsp;
-                   <!-- <button (click)="allocateTrainer(trainer)"> Allocate</button> -->
+                  <button (click)="allocateTrainer(trainer)"> Allocate</button>
                   </span>  
           </div>
       </div>

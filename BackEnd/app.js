@@ -126,6 +126,28 @@ app.get('/trainerlist/search', (req,res)=>{
 
 })
 
+// to delete trainerdata by admin
+
+app.delete('/trainerprofiles/delete/:id', (req,res)=>{
+  const id = req.params.id;
+  FormData.findByIdAndDelete({"_id":id})
+  .then(()=>{
+    console.log('trainer deleted');
+    res.send();
+  })
+})
+
+// to search 
+
+app.put('/trainerprofiles/find',(req,res)=>{
+  var regex = new RegExp(req.body.find.text,'i');
+  console.log("regex is",regex);
+  FormData.find({$and:[{$or:[{name:regex},{skillset:regex},{ictakcourses:regex},{employment:regex}]},{"approved":true}]})
+  .then(function(trainers){
+    res.send(trainers);
+  })
+})
+
 app.listen(3000);
 console.log("port 3000");
 
