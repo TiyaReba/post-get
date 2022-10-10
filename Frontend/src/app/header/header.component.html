@@ -1,17 +1,22 @@
 <nav>
 <div class="navbar navbar-expand-lg navbar-light bg-info">
 <img src="assets\images\logo_TMS.png" alt="Logo" style="width:80px; margin-left: 5px;" >
-
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
 <h1>{{title}}</h1>
- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+ <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family:Verdana, Geneva, Tahoma, sans-serif">
    <li> <a routerLink="home" class="nav-item">Home</a></li>
    <li> <a routerLink="enrollmentform" class="nav-item">Enrollment Form</a></li>
-   <li> <a routerLink="trainer-profile" class="nav-item">Trainer-Profile</a></li>
+   <li> <a routerLink="trainer-profile" class="nav-item">Trainers</a></li>
    <li> <a routerLink="admin" class="nav-item">Admin</a></li>
+   <li><a routerLink="trainer-p" class="nav-item">profile</a></li>
 </ul>
 <div>
-  <button class="btn btn-primary" routerLink="signup">Signup</button>
-  <button class="btn btn-primary" routerLink="login"> Login</button>
+  <ul class="nav navbar-right navbar-nav ms-auto" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+
+    <a class="nav-link "  routerLink="/login" (focusin)='getloguser()'><b>Login</b></a>
+    <a class="nav-link "  routerLink="/signup" (focusin)='getloguser()'><b>Sign Up</b></a></ul>
 </div>
 </div>
 </nav>

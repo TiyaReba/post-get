@@ -23,7 +23,9 @@ import { AdminComponent } from './admin/admin.component';
 import { TrainerService } from './trainer.service';
 import { FormsModule }   from '@angular/forms';
 import { HomeComponent } from 'src/home/home.component';
-import { UserComponent } from './user/user.component';
+import { TrainerPComponent } from './trainer-p/trainer-p.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
+
 
 @NgModule({
   declarations: [
@@ -34,9 +36,11 @@ import { UserComponent } from './user/user.component';
     LoginComponent,
     SignupComponent,
     TrainerProfileComponent,
-    AdminComponent,HomeComponent, UserComponent
-  
-  ],
+    AdminComponent,
+    HomeComponent, 
+    TrainerPComponent, 
+    EditprofileComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
