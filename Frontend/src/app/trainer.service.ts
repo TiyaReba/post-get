@@ -33,5 +33,8 @@ export class TrainerService {
     return this.http.put("http://localhost:3000/trainerlist/search",search)
   }
 
+  loadProfile(id:any){
+    return this.http.get<any>("http://localhost:3000/trainerlist/"+id)
+  }
   
 }

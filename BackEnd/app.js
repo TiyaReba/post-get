@@ -83,7 +83,17 @@ app.get('/trainerlist',function(req,res) {
       .then(function(trainers){
          res.send(trainers);
 })
-})
+}) 
+
+// to load profile for loggedin trainer
+app.get('/trainerlist/:id',function(req,res){
+  res.header("Access-Control-Allow-Origin",'*');
+    res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
+   const id=req.params.id;
+    FormData.find({"_id":id})
+      .then(function(profile){
+         res.send(profile);
+});})
 
 // for posting enrollmentform
 
@@ -128,4 +138,3 @@ app.get('/trainerlist/search', (req,res)=>{
 
 app.listen(3000);
 console.log("port 3000");
-

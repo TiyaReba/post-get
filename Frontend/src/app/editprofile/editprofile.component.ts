@@ -30,6 +30,11 @@ export class EditprofileComponent implements OnInit {
     return this.registrationForm.controls;
   };
   ngOnInit(): void {
+    let UserId= localStorage.getItem("profileeditId");
+    this.trainerService.loadProfile("UserId").subscribe((data)=>{
+      this.registrationForm=JSON.parse(JSON.stringify(data));
+    });
+    
   }
   onsubmit(){
 
