@@ -6,13 +6,18 @@ import { SignupComponent } from './signup/signup.component';
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from 'src/home/home.component';
+import { TrainerPComponent } from './trainer-p/trainer-p.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
 
 
 const routes: Routes = [{path:'enrollmentform',component:EnrollmentformComponent},
                         {path:'login',component:LoginComponent},
                         {path:'signup',component:SignupComponent},
                         {path:'trainer-profile',component:TrainerProfileComponent},
-                        {path:'admin',component:AdminComponent},{path:'home',component:HomeComponent}];
+                        {path:'admin',component:AdminComponent},
+                        {path:'home',component:HomeComponent},
+                        {path:'trainer-p',component:TrainerPComponent},
+                        {path:'editprofile',component:EditprofileComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

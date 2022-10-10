@@ -8,10 +8,12 @@
 
 }
 .signupcard{
-    background: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
-    border: 1px solid grey;
+    background: linear-gradient(135deg, #96b3d1 10%, #2482bc 100%);
+    border: 1px solid rgb(5, 35, 61);
     border-radius: .7rem;
-}
+    height: 350px;
+    width: 650px;
+ }
 mat-form-field{
     width: 100%;
 }

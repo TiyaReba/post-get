@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row text-center mt-5 mb-2">
+        <h2>Trainer Profile</h2>
+    </div>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-4" >
+                <div class="bg-white p-3 text-center rounded box"><img class="img-responsive rounded-circle" src="../../assets/img/{{trainer.photo}}" width="90">
+                    <h3 class="mt-3 name">{{trainer.name}}</h3><span class="work d-block">{{trainer.email}}</span><span class="work d-block">ID&nbsp;:&nbsp;{{trainer.ID}} </span>
+                    <div class="mt-4 about">
+                      <span>
+                     <p class="card-text text-muted ">Phone: &nbsp;&nbsp; {{trainer.phone}}</p>
+                      <p class="card-text text-muted ">Highest Qualification:  &nbsp;&nbsp;{{trainer.qualification}}</p>
+                      <p class="card-text text-muted" >Address: &nbsp;&nbsp; {{trainer.address}}</p>
+                      <p class="card-text text-muted ">Skill Set:  &nbsp;&nbsp;{{trainer.skillset}}</p>
+                      <p class="card-text text-muted">Current Company Name:  &nbsp;&nbsp;{{trainer.company}}</p>
+                      <p class="card-text text-muted ">Current Designation: &nbsp;&nbsp;{{trainer.designation}}</p>
+                      <p class="card-text text-muted ">ICTAK Courses Handling: &nbsp;&nbsp;{{trainer.ictakcourses}}</p>
+
+                          <button (click)="editTrainer(trainer)" >Edit</button>  &nbsp;&nbsp;
+                         <!-- <button (click)="allocateTrainer(trainer)"> Allocate</button> -->
+                        </span>  
+                </div>
+            </div>
+        </div>
+      </div>
+</div>
