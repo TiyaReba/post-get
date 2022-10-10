@@ -142,7 +142,7 @@ app.delete('/trainerprofiles/delete/:id', (req,res)=>{
 app.put('/trainerprofiles/find',(req,res)=>{
   var regex = new RegExp(req.body.find.text,'i');
   console.log("regex is",regex);
-  FormData.find({$and:[{$or:[{name:regex},{skillset:regex},{ictakcourses:regex},{employment:regex}]},{"approved":true}]})
+  FormData.find({$and:[{$or:[{name:regex},{skillset:regex},{ictakcourses:regex},]},{"approved":true}]})
   .then(function(trainers){
     res.send(trainers);
   })
