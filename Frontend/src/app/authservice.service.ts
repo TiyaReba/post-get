@@ -8,17 +8,16 @@ import { HttpClient } from '@angular/common/http';
 export class AuthserviceService {
 
   constructor(private http:HttpClient) { }
-  signup(User:any){
-    return this.http.post<any>('http://localhost:3000/signup',User)
-    .subscribe((data)=>{
-      console.log(data);
-    });
+  signup(sdata:any){
+    console.log("service")
+    return this.http.post<any>('http://localhost:3000/signup',sdata)
+    
+   
   }
-  // login(User:any){
-  //   return this.http.get<any>('http://localhost:3000/signup');
-  // }
-  // find the user is logged in same as signin user
+
   loginUser(logindata:any){
+  
+    console.log("service")
     return this.http.post<any>('http://localhost:3000/login',logindata)
   }
   loggedIn(){
@@ -27,4 +26,10 @@ export class AuthserviceService {
   getToken(){
     return localStorage.getItem('token');
    }
+   getCurrentUser()
+   {
+     return localStorage.getItem('currentUser')
+   }
+   
+ 
 }
