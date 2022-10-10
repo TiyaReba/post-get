@@ -6,16 +6,28 @@
     margin-top: 10px;
     display: flex;
     font-size: larger;
+    color: rgb(82, 22, 142);
     
 }a{
-    color: aliceblue;
+    color: rgb(213, 224, 234);
     text-decoration: none;
 }a:hover{
     color: #000;
 }h1{
     margin-left: 5px;
+    margin-top: 12px;
+    font-weight:500 ;
+    
 }
 .btn{
     margin-right: 5px;
     padding: 1px;
+}
+.nav-link{
+    font-size: larger;
+    font-weight: 500;
+    color: #000;
+    
+}a:hover{
+    color: rgb(246, 245, 245);
 }
