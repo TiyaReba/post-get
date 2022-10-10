@@ -11,11 +11,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
   submitted=false
+  logindata: any;
   constructor(private fb:FormBuilder,private authService:AuthserviceService,private router:Router) { }
   loginForm=this.fb.group({
     email:['',[Validators.required,Validators.email]],
     password:['',[Validators.required,Validators.minLength(6)]],
   })
+
   ngOnInit(): void {
   }
   get AllControls(){
@@ -27,20 +29,27 @@ export class LoginComponent implements OnInit {
       alert("please fill the form")
     }
     else{
-      console.log(JSON.stringify(this.loginForm.value));
       var logindata = this.loginForm.value;
+     if(logindata.email=="admin@gmail.com")
+     {
+      this.router.navigate(['/admin'])
+     }
+     else{
   this.authService.loginUser(logindata)
-  .subscribe({
-    next: (res) =>   {console.log('sucessfully loggedin');
-    localStorage.setItem('token',res.token);
-   this.router.navigate(['/']);}, 
-    error: (error) => {
-      console.log(error);
-      alert('Incorrect Email Adderess Or Password');
-        
+  .subscribe(data=>{
+     if(data.error){
+      alert("login failed")
+     ;
+      
     }
+    else{
+     
+      this.router.navigate(['/enrollmentform'])
+    }
+   
   })
   }
+}
     }
   
 
