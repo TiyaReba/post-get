@@ -15,20 +15,41 @@ export class SignupComponent implements OnInit {
     Username:['',[Validators.required]],
     email:['',[Validators.required,Validators.email]],
     password:['',[Validators.required,Validators.minLength(6)]],
-    confirmPassword:['',[Validators.required],],
     })
+    
+SignUpError ={
+  error : false,
+  errorMsg : ''
+};
 
+User={
+  username:'',
+  email:'',
+  password:''
+}
   ngOnInit(): void {
   }
   get AllControlsForSignUp(){
     return this.signupForm.controls
   }
-  onSubmitSignup(values:any){
+  onSubmitSignup(){
     this.Signupsubmitted=true
-    this.authService.signup(this.signupForm.value);
-    console.log('called');
-    alert('Congratulations, Your Account Has Been Successfully Created.');
-    this.router.navigate(['/login']);
+    var sdata=this.signupForm.value
+    console.log(this.signupForm.value)
+    this.authService.signup(sdata)
+ .subscribe (data=>{
+       if(!data.error){
+        alert('User successfully registered');
+        this.router.navigate(['/login'])
+        }
+        else 
+        { if(data.error){
+          alert("not registered");
+        }
+        }
+      
+    })
+  }
+
   }
   
-}

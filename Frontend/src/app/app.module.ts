@@ -26,6 +26,7 @@ import { HomeComponent } from 'src/home/home.component';
 import { TrainerPComponent } from './trainer-p/trainer-p.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,9 +36,11 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
     LoginComponent,
     SignupComponent,
     TrainerProfileComponent,
-    AdminComponent,HomeComponent, TrainerPComponent, EditprofileComponent
-  
-  ],
+    AdminComponent,
+    HomeComponent, 
+    TrainerPComponent, 
+    EditprofileComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

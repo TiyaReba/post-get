@@ -14,7 +14,9 @@ const TrainerForm = new Schema({
     skills:String,
     currentcompanyname:String,
     currentdesignation:String,
-    courses:String
+    courses:String,
+    approved:Boolean,
+    employment:String
 })
 
 // const form = mongoose.model("trainerlist",TrainerForm);
