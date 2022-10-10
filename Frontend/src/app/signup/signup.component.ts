@@ -34,6 +34,9 @@ User={
   }
   onSubmitSignup(){
     this.Signupsubmitted=true
+    if(!this.signupForm.valid){
+      alert("please fill the form")
+    }else{
     var sdata=this.signupForm.value
     console.log(this.signupForm.value)
     this.authService.signup(sdata)
@@ -49,7 +52,7 @@ User={
         }
       
     })
-  }
+  }}
 
   }
   
