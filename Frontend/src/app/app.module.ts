@@ -22,13 +22,14 @@ import { TrainerProfileComponent } from './trainer-profile/trainer-profile.compo
 import { AdminComponent } from './admin/admin.component';
 import { TrainerService } from './trainer.service';
 import { FormsModule }   from '@angular/forms';
+
 import { HomeComponent } from 'src/home/home.component';
-<<<<<<< HEAD
-import { UserComponent } from './user/user.component';
-=======
+
+
 import { TrainerPComponent } from './trainer-p/trainer-p.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
->>>>>>> rwithik1.0
+
+
 
 @NgModule({
   declarations: [
@@ -39,13 +40,12 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
     LoginComponent,
     SignupComponent,
     TrainerProfileComponent,
-<<<<<<< HEAD
-    AdminComponent,HomeComponent, UserComponent
-=======
-    AdminComponent,HomeComponent, TrainerPComponent, EditprofileComponent
->>>>>>> rwithik1.0
-  
-  ],
+    AdminComponent,
+    HomeComponent,
+    TrainerPComponent, 
+    EditprofileComponent
+    ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
