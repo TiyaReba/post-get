@@ -24,16 +24,19 @@ export class TrainerService {
 
   deleteTrainer(id:any)
   {
-
     return this.http.delete("http://localhost:3000/trainerprofiles/delete/"+id)
-
   }
 
  
-  findTrainers(find:any){
+  findTrainers(search:any){
     console.log("inside search service file")
-    return this.http.put<any>("http://localhost:3000/trainerprofiles/find",find);
+    return this.http.get<any>("http://localhost:3000/find",search);
   }
 
+  allocateTrainer(item:any){
+  console.log("inside allocate service file")
+  return this.http.post("http://localhost:3000/allocate",item)
+  .subscribe(data =>{console.log(data)})
+}
   
 }

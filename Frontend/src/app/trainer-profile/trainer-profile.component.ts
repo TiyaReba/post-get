@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Trainermodel } from '../trainer-profile/trainer.model'
 import { TrainerService } from '../trainer.service';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import {  NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,9 +12,10 @@ import { Router } from '@angular/router';
 
 
 export class TrainerProfileComponent implements OnInit {
-  find={
+  search={
     text:''
   }
+  trainervalue:any;
 
   trainers: Trainermodel[] | any;
   trainer=[{
@@ -54,10 +55,10 @@ allocateTrainer(trainer:any){
   }
 
   Search(formValue:NgForm){
-    this.trainerService.findTrainers(this.find)
-      .subscribe((trainer)=>{
-        this.trainers = trainer;
-        // console.log(this.trainers);
+    this.trainerService.findTrainers(this.search)
+      .subscribe((trainers)=>{
+        this.trainervalue = trainers;
+        console.log(this.trainervalue);
    })
   }
 
