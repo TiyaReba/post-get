@@ -7,9 +7,11 @@ const bcrypt = require("bcrypt");
 // db connection
 mongoose.connect('mongodb+srv://soorya:arya@clustertms.kfgrkm3.mongodb.net/TMS?retryWrites=true&w=majority')
 console.log("Mongo DB connected ...")
+
 const TrainerData = require('./src/model/TMSmodel')
 const FormData = require('./src/model/enrollmentmodel')
 const UserData = require('./src/model/UserData');
+const allocationdata = require('./src/model/allocationdata')
 const app = new express()
 app.use(cors());
 app.use(bodyparser.json());
@@ -146,18 +148,6 @@ try{
 })
 
 
-// to find details of a single trainer
-app.get('/trainerlist/search', (req,res)=>{
-  res.header("Access-Control-Allow-Origin",'*');
-    res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
-   FormData.findone()
-      .then(function(trainers){
-         res.send(trainers);
-
-})
-
-})
-
 // to delete trainerdata by admin
 
 app.delete('/trainerprofiles/delete/:id', (req,res)=>{
@@ -168,17 +158,45 @@ app.delete('/trainerprofiles/delete/:id', (req,res)=>{
     res.send();
   })
 })
+// to allocate each trainer
+
+app.post('/allocate',(req,res) =>{
+  res.header("Access-Control-Allow-Origin",'*');
+  res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
+  console.log('body for allocation:'+ req.body)
+  console.log("startdate :"+ req.body.startdate)
+  var allocatedtrainer ={
+    startdate:req.body.startdate,
+    enddate:req.body.enddate,
+    starttime:req.body.starttime,
+    endtime:req.body.endtime,
+    courses:req.body.courses,
+    courseid:req.body.courseid,
+    batchid:req.body.batchid,
+    link:req.body.link 
+}
+
+try{
+    var allocationcollection = new allocationdata(allocatedtrainer)
+    console.log("inside try", allocationcollection)
+    allocationcollection.save();
+    res.json(allocationcollection);
+}catch(err){
+   res.send('Error' + err)
+}
+
+})
 
 // to search 
-
-app.put('/trainerprofiles/find',(req,res)=>{
-  var regex = new RegExp(req.body.find.text,'i');
-  console.log("regex is",regex);
-  FormData.find({$and:[{$or:[{name:regex},{skillset:regex},{ictakcourses:regex},]},{"approved":true}]})
-  .then(function(trainers){
-    res.send(trainers);
-  })
-})
+app.get('/find/:name',function(req,res){
+   var regex = new RegExp(req.params.name,'i');
+   console.log("regexis",regex)
+     FormData.find({name:regex})
+     .then(function(trainers){
+       res.send(trainers);
+    })
+  
+    });  
 
 app.listen(3000);
 console.log("port 3000");

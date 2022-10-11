@@ -6,23 +6,23 @@
         <input type="date" class="form-control"  formControlName="startdate" popupHeight='200px' popupWidth = '250px'
         [ngClass]="{'is-invalid':submit&&f.startdate.errors}">
         <div *ngIf='submit&&f.startdate.errors' class="invalid-feedback">
-            <div *ngIf='f.startdate.errors'>Start date is required</div>
+            <!-- <div *ngIf='f.startdate.errors'>Start date is required</div> -->
           </div>
         <label>End Date </label>
-        <input type="date" class="form-control" popupHeight='200px' popupWidth = '250px'
+        <input type="date" class="form-control" formControlName="enddate"popupHeight='200px' popupWidth = '250px'
         [ngClass]="{'is-invalid':submit&&f.enddate.errors}">
-        <div *ngIf='submit&&f.enddate.errors' class="invalid-feedback">
-            <div *ngIf='f.enddate.errors'>End date is required</div>
+        <div *ngIf='submit &&f.enddate.errors' class="invalid-feedback">
+             <!-- <div *ngIf='f.enddate.errors'>End date is required</div> -->
           </div>
         <label>Start Time </label>
-        <input type="time" class="form-control" popupHeight='200px' popupWidth = '250px'>
+        <input type="time" class="form-control" formControlName="starttime"popupHeight='200px' popupWidth = '250px'>
         <div *ngIf='submit&&f.starttime.errors' class="invalid-feedback">
-            <div *ngIf='f.starttime.errors'>Start time is required</div>
+            <!-- <div *ngIf='f.starttime.errors'>Start time is required</div> -->
           </div> 
         <label>End Time </label>
-        <input type="time" class="form-control" popupHeight='200px' popupWidth = '250px'>
+        <input type="time" class="form-control" formControlName="endtime" popupHeight='200px' popupWidth = '250px'>
         <div *ngIf='submit&&f.endtime.errors' class="invalid-feedback">
-            <div *ngIf='f.endtime.errors'>End time is required</div>
+            <!-- <div *ngIf='f.endtime.errors'>End time is required</div> -->
           </div> 
 
           <label for="courses"> Courses Name </label>

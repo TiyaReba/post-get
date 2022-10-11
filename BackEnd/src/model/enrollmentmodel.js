@@ -16,7 +16,15 @@ const TrainerForm = new Schema({
     currentdesignation:String,
     courses:String,
     approved:Boolean,
-    employment:String
+    employment:String,
+    startdate:Number,
+    enddate:Number,
+    starttime:Number,
+    endtime:Number,
+    courses:String,
+    courseid:String,
+    batchid:String,
+    link:String
 })
 
 // const form = mongoose.model("trainerlist",TrainerForm);

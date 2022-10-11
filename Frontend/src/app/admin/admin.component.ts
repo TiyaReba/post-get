@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TrainerService } from '../trainer.service';
 
 
 @Component({
@@ -9,7 +11,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private af:FormBuilder) { }
+  constructor(private af:FormBuilder,private trainerservice:TrainerService,private router:Router) { }
   courselist:any=['FSD','DSA','RPA']
   Courseid:any =['01_DSA', '02_FSD', '03_RPA']
   Batchid:any =[ 'DSA001', 'DSA002', 'FSD001']
@@ -36,7 +38,18 @@ export class AdminComponent implements OnInit {
   onclick(){
     this.submit = true
   console.log("clicked")
+
   console.log('f', this.f)
+  this.trainerservice.allocateTrainer((this.adminform.value))
+  if(!this.adminform.valid){
+    alert("Please fill all required fields...")
+  }
+
+  else{
+   console.log(this.adminform.value);
+    alert("Trainer allocated sucessfully")
+    this.router.navigate(['home'])
+  }
     
   }
 
