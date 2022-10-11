@@ -191,15 +191,27 @@ try{
 })
 
 // to search 
-app.get('/find/:name',function(req,res){
-   var regex = new RegExp(req.params.name,'i');
-   console.log("regexis",regex)
-     FormData.find({name:regex})
-     .then(function(trainers){
-       res.send(trainers);
-    })
-  
-    });  
+app.get('/find/:name',async function(req,res){
+
+     console.log("search string",req.params.name);
+     try
+     {
+      // if (req.query.field === "trainername")
+      //   var trainers = await FormData.find({trainername : {$regex: req.query.search , $options: 'i'}});
+      // if (req.query.field === "email")
+      //   var trainers = await FormData.find({email : {$regex: req.query.search , $options: 'i'}});        
+      // if (req.query.field === "skills")
+      //   var trainers = await FormData.find({skills : {$regex: req.query.search , $options: 'i'}});   
+      var trainers = await FormData.find({$or :[{trainername:{$regex:req.params.name, $options:'i'}}]})
+     }
+     catch (e)
+     {
+      res.status(500).send();
+     }
+     res.send(trainers);
+    }); 
+
+
 
 
 app.listen(3000);

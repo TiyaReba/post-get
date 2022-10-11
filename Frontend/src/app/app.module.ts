@@ -22,10 +22,7 @@ import { TrainerProfileComponent } from './trainer-profile/trainer-profile.compo
 import { AdminComponent } from './admin/admin.component';
 import { TrainerService } from './trainer.service';
 import { FormsModule }   from '@angular/forms';
-
 import { HomeComponent } from 'src/home/home.component';
-
-
 import { TrainerPComponent } from './trainer-p/trainer-p.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 

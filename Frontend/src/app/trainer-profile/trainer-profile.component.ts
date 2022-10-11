@@ -54,13 +54,12 @@ allocateTrainer(trainer:any){
     })
   }
 
-  Search(formValue:NgForm){
+  Search(searchform:any){
     this.trainerService.findTrainers(this.search)
-      .subscribe((trainers)=>{
-        this.trainervalue = trainers;
+      .subscribe((trainer)=>{
+        this.trainervalue = JSON.parse(JSON.stringify(trainer));
         console.log(this.trainervalue);
-   })
+        })
+  
   }
-
-
 }
