@@ -30,7 +30,8 @@ export class TrainerService {
  
   findTrainers(search:any){
     console.log("inside search service file")
-    return this.http.get<any>("http://localhost:3000/find",search);
+    return this.http.get<any>("http://localhost:3000/find/"+search);
+    
   }
 
   allocateTrainer(item:any){
