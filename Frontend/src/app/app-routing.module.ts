@@ -8,14 +8,15 @@ import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from 'src/home/home.component';
 import { TrainerPComponent } from './trainer-p/trainer-p.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
+import { AuthGuard } from './auth.guard';
 
 
-const routes: Routes = [{path:'enrollmentform',component:EnrollmentformComponent},
+const routes: Routes = [{path:'enrollmentform',canActivate: [AuthGuard],component:EnrollmentformComponent},
                         {path:'login',component:LoginComponent},
                         {path:'signup',component:SignupComponent},
-                        {path:'trainer-profile',component:TrainerProfileComponent},
-                        {path:'admin',component:AdminComponent},
-                        {path:'home',component:HomeComponent},
+                        {path:'trainer-profile',canActivate: [AuthGuard],component:TrainerProfileComponent},
+                        {path:'admin',canActivate:[AuthGuard],component:AdminComponent},
+                        {path:'',component:HomeComponent},
                         {path:'trainer-p',component:TrainerPComponent},
                         {path:'editprofile',component:EditprofileComponent}];
 

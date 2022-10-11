@@ -92,10 +92,13 @@ app.post("/signup", (req, res, next) => {
       }
       fetchedUser=user;
       return bcrypt.compare(req.body.password, user.password);
+     
     }).then(result=>{
       if (result){
-        res.status(200)
-       res.json(result)
+        let payload = {subject: req.body.email+req.body.password}
+                    let token = jwt.sign(payload, 'secretKey')
+        
+        res.status(200).send({tok:token,result})
       console.log("f"+fetchedUser)
       }
       if(!result){
@@ -108,7 +111,7 @@ app.post("/signup", (req, res, next) => {
     
   //  to get details in trainer list page
 
-app.get('/trainerlist',function(req,res) {
+app.get('/trainerlist',verifyToken,function(req,res) {
     res.header("Access-Control-Allow-Origin",'*');
     res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
    FormData.find()
@@ -119,7 +122,7 @@ app.get('/trainerlist',function(req,res) {
 
 // for posting enrollmentform
 
-app.post('/form',function(req,res){
+app.post('/form',verifyToken,function(req,res){
   res.header("Access-Control-Allow-Origin",'*');
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
   console.log('body :'+ req.body)
@@ -160,7 +163,7 @@ app.get('/trainerlist/search', (req,res)=>{
 
 // to delete trainerdata by admin
 
-app.delete('/trainerprofiles/delete/:id', (req,res)=>{
+app.delete('/trainerprofiles/delete/:id',verifyToken, (req,res)=>{
   const id = req.params.id;
   FormData.findByIdAndDelete({"_id":id})
   .then(()=>{
@@ -171,7 +174,7 @@ app.delete('/trainerprofiles/delete/:id', (req,res)=>{
 
 // to search 
 
-app.put('/trainerprofiles/find',(req,res)=>{
+app.put('/trainerprofiles/find',verifyToken,(req,res)=>{
   var regex = new RegExp(req.body.find.text,'i');
   console.log("regex is",regex);
   FormData.find({$and:[{$or:[{name:regex},{skillset:regex},{ictakcourses:regex},]},{"approved":true}]})

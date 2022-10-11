@@ -6,17 +6,18 @@
 </button>
 <h1>{{title}}</h1>
  <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family:Verdana, Geneva, Tahoma, sans-serif">
-   <li> <a routerLink="home" class="nav-item">Home</a></li>
-   <li> <a routerLink="enrollmentform" class="nav-item">Enrollment Form</a></li>
-   <li> <a routerLink="trainer-profile" class="nav-item">Trainers</a></li>
-   <li> <a routerLink="admin" class="nav-item">Admin</a></li>
-   <li><a routerLink="trainer-p" class="nav-item">profile</a></li>
+  <li> <a  class="nav-item"  *ngIf="!auth.loggedIn()" routerLink="/home" >Home</a></li>
+   <li> <a  class="nav-item"*ngIf="auth.loggedIn()&&!getloguser()"  routerLink="/enrollmentform" (focusin)='getloguser()'>Enrollment Form</a></li>
+   <li> <a class="nav-item" *ngIf="auth.loggedIn()&&getloguser()"  routerLink="/trainer-profile" (focusin)='getloguser()'>Trainers</a></li>
+   <li> <a  class="nav-item" *ngIf="auth.loggedIn()&&getloguser()"  routerLink="/admin" (focusin)='getloguser()'>Admin</a></li>
+   <li><a class="nav-item" *ngIf="auth.loggedIn()&&!getloguser()"  routerLink="/trainer-p" (focusin)='getloguser()'>profile</a></li>
 </ul>
 <div>
   <ul class="nav navbar-right navbar-nav ms-auto" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-
-    <a class="nav-link "  routerLink="/login" (focusin)='getloguser()'><b>Login</b></a>
-    <a class="nav-link "  routerLink="/signup" (focusin)='getloguser()'><b>Sign Up</b></a></ul>
+    <a class="nav-link " *ngIf="auth.loggedIn()" (focusin)='getloguser()' ><b> Welcome : {{loggedUser}}</b></a>
+    <a class="nav-link " *ngIf="!auth.loggedIn()" routerLink="/login" (focusin)='getloguser()'>Login</a>
+    <a class="nav-link " *ngIf="!auth.loggedIn()" routerLink="/signup" (focusin)='getloguser()'><b>Sign Up</b></a></ul>
+    <a class="nav-link " *ngIf="auth.loggedIn()"  (click)="logoutUser()" ><b>Logout</b></a>
 </div>
 </div>
 </nav>

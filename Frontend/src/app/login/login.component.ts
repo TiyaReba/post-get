@@ -35,8 +35,12 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/admin'])
      }
      else{
+     
   this.authService.loginUser(logindata)
   .subscribe(data=>{
+    localStorage.setItem('token', data.tok)   
+    //localStorage.setItem('Approvalstatus', data.approval)         
+    //localStorage.setItem('currentUser', this.logindata.email);
      if(data.error){
       alert("login failed")
      ;
