@@ -21,9 +21,14 @@ export class TrainerPComponent implements OnInit {
     photo:'',
     ID:''
   }
-  constructor(private router:Router) { }
+  constructor(private router:Router ,private trainerService:TrainerService) { }
 
   ngOnInit(): void {
+    let trainerEmail=localStorage.getItem('loggedUser');
+    this.trainerService.loadProfile(trainerEmail)
+        .subscribe((trainerprofile)=>{
+          this.trainer=JSON.parse(JSON.stringify(trainerprofile));
+        })
   }
   editTrainer(trainer:any){
      

@@ -220,7 +220,16 @@ app.get('/find/:name',async function(req,res){
      res.send(trainers);
     }); 
 
-
+//to load trainer profile
+app.get("/trainerProfile/:email",verifyToken,(req,res)=>{
+  email=req.params.email;
+  TrainerData.findOne({$and:[{"email":email},{"approved":true}]})
+  .then (function (trainer){
+    res.send(trainer);
+  })
+    
+  
+})
 
 
 app.listen(3000);
