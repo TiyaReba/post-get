@@ -4,6 +4,7 @@ const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const jwt =require('jsonwebtoken');
 const bcrypt = require("bcrypt");
+const nodemailer = require('nodemailer');
 // db connection
 mongoose.connect('mongodb+srv://soorya:arya@clustertms.kfgrkm3.mongodb.net/TMS?retryWrites=true&w=majority')
 console.log("Mongo DB connected ...")
@@ -12,6 +13,14 @@ const TrainerData = require('./src/model/TMSmodel')
 const FormData = require('./src/model/enrollmentmodel')
 const UserData = require('./src/model/UserData');
 const allocationdata = require('./src/model/allocationdata')
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'tmsictak22@gmail.com',
+    pass: 'STR@ictak22'
+  }
+});
 const app = new express()
 app.use(cors());
 app.use(bodyparser.json());
