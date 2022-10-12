@@ -99,17 +99,18 @@ app.post("/signup", (req, res, next) => {
       if (result){
         let payload = {subject: req.body.email+req.body.password}
                     let token = jwt.sign(payload, 'secretKey')
+                    let email= req.body.email;
                     if(req.body.email!="admin@gmail.com"){
                       TrainerData.findOne({email:req.body.email},function(err,trainer) {
                         if(trainer){
                           approved=trainer.approved;
-                          res.status(200).send({tok:token,approval:approved})}
+                          res.status(200).send({tok:token,approval:approved,email})}
                           else{
                             res.status(200).send({tok:token,approval:''})
                           }
                       })}
                       else{
-        res.status(200).send({tok:token,result})
+        res.status(200).send({tok:token,result,email})
       console.log("f"+fetchedUser)}
       }
       if(!result){

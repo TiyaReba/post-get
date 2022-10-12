@@ -30,20 +30,18 @@ export class LoginComponent implements OnInit {
     }
     else{
       var logindata = this.loginForm.value;
-     if(logindata.email=="admin@gmail.com")
-     {
-      this.router.navigate(['/admin'])
-     }
-     else{
-     
-  this.authService.loginUser(logindata)
+      this.authService.loginUser(logindata)
   .subscribe(data=>{
     localStorage.setItem('token', data.tok)   
-    //localStorage.setItem('Approvalstatus', data.approval)         
-    //localStorage.setItem('currentUser', this.logindata.email);
-     if(data.error){
-      alert("login failed")
-     ;
+    localStorage.setItem('Approvalstatus', data.approval)         
+    localStorage.setItem('currentUser', data.email);
+    if(data.email=="admin@gmail.com")
+    {
+     this.router.navigate(['/admin'])
+    }
+     else{
+    if(data.error){
+      alert("login failed");
       
     }
     else{
@@ -51,12 +49,11 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/enrollmentform'])
     }
    
-  })
   }
-}
-    }
   
-
+})}
+  
+  }}
 
 
        
@@ -64,4 +61,3 @@ export class LoginComponent implements OnInit {
   
 
   
-}

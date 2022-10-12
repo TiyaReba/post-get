@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +25,9 @@ import { FormsModule }   from '@angular/forms';
 import { HomeComponent } from 'src/home/home.component';
 import { TrainerPComponent } from './trainer-p/trainer-p.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
-
+import { AuthGuard } from './auth.guard';
+import { AuthserviceService } from './authservice.service';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 
 @NgModule({
@@ -59,7 +61,11 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
     FormsModule
  
   ],
-  providers: [TrainerService],
+  providers: [TrainerService,AuthGuard,AuthserviceService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

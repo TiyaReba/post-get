@@ -17,7 +17,7 @@
     <a class="nav-link " *ngIf="auth.loggedIn()" (focusin)='getloguser()' ><b> Welcome : {{loggedUser}}</b></a>
     <a class="nav-link " *ngIf="!auth.loggedIn()" routerLink="/login" (focusin)='getloguser()'>Login</a>
     <a class="nav-link " *ngIf="!auth.loggedIn()" routerLink="/signup" (focusin)='getloguser()'><b>Sign Up</b></a></ul>
-    <a class="nav-link " *ngIf="auth.loggedIn()"  (click)="logoutUser()" ><b>Logout</b></a>
+    <a class="nav-link " *ngIf="auth.loggedIn()"    (click)="logoutUser()" ><b>Logout</b></a>
 </div>
 </div>
 </nav>
