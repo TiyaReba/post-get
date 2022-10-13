@@ -11,7 +11,8 @@
    <li> <a class="nav-item" *ngIf="auth.loggedIn()&&getloguser()"  routerLink="/trainer-profile" (focusin)='getloguser()'>Trainers</a></li>
    <li> <a  class="nav-item" *ngIf="auth.loggedIn()&&getloguser()"  routerLink="/admin" (focusin)='getloguser()'>Admin</a></li>
    <li><a class="nav-item" *ngIf="auth.loggedIn()&&!getloguser()"  routerLink="/trainer-p" (focusin)='getloguser()'>profile</a></li>
-</ul>
+   <li><a class="nav-item " *ngIf="auth.loggedIn()&&getloguser()"  routerLink="/request" (focusin)='getloguser()'>Request</a>
+  </ul>
 <div>
   <ul class="nav navbar-right navbar-nav ms-auto" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
     <a class="nav-link " *ngIf="auth.loggedIn()" (focusin)='getloguser()' ><b> Welcome : {{loggedUser}}</b></a>

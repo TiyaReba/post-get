@@ -40,7 +40,7 @@ function verifyToken(req,res,next){
     return res.status(401).send('unauthorized request');
   }
 
-  let payload= jwt.verify(token,'secretkey')
+  let payload= jwt.verify(token,'secretKey')
   console.log(payload)
 
   if(!payload){
@@ -109,9 +109,9 @@ app.post("/signup", (req, res, next) => {
                       TrainerData.findOne({email:req.body.email},function(err,trainer) {
                         if(trainer){
                           approved=trainer.approved;
-                          res.status(200).send({tok:token,approval:approved,email})}
+                          res.status(200).send({tok:token,approval:approved})}
                           else{
-                            res.status(200).send({tok:token,approval:''})
+                            res.status(200).send({tok:token,approval:'',email})
                           }
                       })}
                       else{
@@ -131,7 +131,7 @@ app.post("/signup", (req, res, next) => {
 app.get('/trainerlist',function(req,res) {
     res.header("Access-Control-Allow-Origin",'*');
     res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
-   FormData.find()
+   FormData.find({"approved":true})
       .then(function(trainers){
          res.send(trainers);
 })
@@ -235,6 +235,14 @@ app.get("/trainerProfile/:email",verifyToken,(req,res)=>{
     
   
 })
+app.get('/requests',verifyToken,function(req,res){
+  console.log("Request page");
+  TrainerData.find({"approved":false})
+  .then(function(trainers){
+      res.send(trainers);
+    })
+
+});
 
 
 app.listen(3000);

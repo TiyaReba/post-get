@@ -28,6 +28,7 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
 import { AuthGuard } from './auth.guard';
 import { AuthserviceService } from './authservice.service';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { RequestComponent } from './request/request.component';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { TokenInterceptorService } from './token-interceptor.service';
     AdminComponent,
     HomeComponent,
     TrainerPComponent, 
-    EditprofileComponent
+    EditprofileComponent, RequestComponent
     ],
 
   imports: [

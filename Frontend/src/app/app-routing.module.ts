@@ -9,6 +9,7 @@ import { HomeComponent } from 'src/home/home.component';
 import { TrainerPComponent } from './trainer-p/trainer-p.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 import { AuthGuard } from './auth.guard';
+import { RequestComponent } from './request/request.component';
 
 
 const routes: Routes = [{path:'enrollmentform',canActivate: [AuthGuard],component:EnrollmentformComponent},
@@ -18,7 +19,7 @@ const routes: Routes = [{path:'enrollmentform',canActivate: [AuthGuard],componen
                         {path:'admin',canActivate:[AuthGuard],component:AdminComponent},
                         {path:'',component:HomeComponent},
                         {path:'trainer-p',component:TrainerPComponent},
-                        {path:'editprofile',component:EditprofileComponent}];
+                        {path:'editprofile',component:EditprofileComponent},{path:'request',component:RequestComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

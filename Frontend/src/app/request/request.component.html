@@ -1,0 +1,49 @@
+
+<br>
+<!-- <span ><div style ='color: #311B92;  padding:5px;'><h3 style=" text-align: center; font-family : cursive;">{{alertMsg}}</h3></div></span> -->
+<div class="box"  *ngFor ="let trainer of trainersdata">
+    <div class="card mb-3">
+      <div class="row g-0 " >
+        <div class="col-md-4 d-flex flex-column align-items-center">
+          <img
+            src="../../assets/img/{{trainer.photo}}"
+            alt="..."
+            class="img-fluid mt-5 p-2"
+            style="width:100px;"
+          />
+        </div>
+        <div class="col-md-8" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+          <div class="card-body ">
+             <br>
+            <p class="card-title  "         >Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  :&nbsp; {{trainer.name}}</p>
+            <p class="card-text text-muted ">Email &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; {{trainer.email}}</p>
+            <p class="card-text text-muted ">Phone &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp; {{trainer.phone}}</p>
+            <p>
+              <a id="bttn" data-bs-toggle="collapse" href="#collapseExample"  aria-expanded="false" aria-controls="collapseExample">
+                See More
+              </a>
+            </p>
+            <div class="collapse" id="collapseExample">
+              <div>
+            <p class="card-text text-muted" >Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp; {{trainer.address}}</p>
+            <p class="card-text text-muted ">Highest Qualification &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;{{trainer.qualification}}</p>
+            <p class="card-text text-muted ">Skill Set &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; {{trainer.skillset}}</p>
+            <p class="card-text text-muted" >Current Company Name &nbsp;: &nbsp;{{trainer.company}}</p>
+            <p class="card-text text-muted ">Current Designation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;{{trainer.designation}}</p>
+            <p class="card-text text-muted ">ICTAK Courses Handling &nbsp;: &nbsp; {{trainer.ictakcourses}}</p>
+            <p class="card-text text-muted" >ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;{{trainer.ID}}</p>
+            <div class="card-body text-end">
+              <button class="btn btn-success float-right text-center" routerLink="" (click)="acceptTrainer(trainer)" >Accept &nbsp;</button>&nbsp;
+              <button class="btn btn-danger float-right text-center"  (click)="rejectTrainer(trainer)" >&nbsp; Reject &nbsp;</button>&nbsp;
+              </div>
+          </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>    
+    </div>
+   
+  </div>
+
+<br>

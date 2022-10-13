@@ -42,4 +42,12 @@ export class TrainerService {
   loadProfile(email:any){
     return this.http.get("http://localhost:3000/trainerProfile"+email);
   }
+  AcceptTrainer(id:any){
+    console.log("inside allocate service file")
+    return this.http.get("http://localhost:3000/requests/accept/"+id)
+  }
+  RejectTrainer(id:any){
+    console.log("inside allocate service file")
+    return this.http.delete("http://localhost:3000/requests/delete/"+id)
+  }
 }
