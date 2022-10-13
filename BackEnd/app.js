@@ -21,6 +21,7 @@ var transporter = nodemailer.createTransport({
     pass: 'STR@ictak22'
   }
 });
+
 const app = new express()
 app.use(cors());
 app.use(bodyparser.json());
@@ -85,11 +86,6 @@ app.post("/signup", (req, res, next) => {
  
 });
  
-  
-
-    
-
- 
   // login check the informations
 
   app.post("/login", (req, res, next) => {
@@ -132,7 +128,7 @@ app.post("/signup", (req, res, next) => {
     
   //  to get details in trainer list page
 
-app.get('/trainerlist',verifyToken,function(req,res) {
+app.get('/trainerlist',function(req,res) {
     res.header("Access-Control-Allow-Origin",'*');
     res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
    FormData.find()
@@ -197,7 +193,6 @@ app.post('/allocate',(req,res) =>{
     batchid:req.body.batchid,
     link:req.body.link 
 }
-
 try{
     var allocationcollection = new allocationdata(allocatedtrainer)
     console.log("inside try", allocationcollection)
