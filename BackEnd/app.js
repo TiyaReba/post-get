@@ -207,7 +207,7 @@ app.post('/allocate',(req,res) =>{
     link:req.body.link 
 }
 try{
-    var allocationcollection = new Formdata(allocatedtrainer)
+    var allocationcollection = new FormData(allocatedtrainer)
     console.log("inside try", allocationcollection)
     allocationcollection.save();
     res.json(allocationcollection);
