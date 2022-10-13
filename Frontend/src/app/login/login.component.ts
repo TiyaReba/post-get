@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('token', data.tok)   
     localStorage.setItem('Approvalstatus', data.approval)         
     localStorage.setItem('currentUser', data.email);
-    if(data.email=="admin@gmail.com")
+    if(data.email=="admintms@gmail.com")
     {
      this.router.navigate(['/admin'])
     }

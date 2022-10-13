@@ -13,6 +13,8 @@ const TrainerData = require('./src/model/TMSmodel')
 const FormData = require('./src/model/enrollmentmodel')
 const UserData = require('./src/model/UserData');
 const allocationdata = require('./src/model/allocationdata')
+const employee = ['Internal', 'Empanelled','Industry Expert'];
+
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -105,8 +107,8 @@ app.post("/signup", (req, res, next) => {
         let payload = {subject: req.body.email+req.body.password}
                     let token = jwt.sign(payload, 'secretKey')
                     let email= req.body.email;
-                    if(req.body.email!="admin@gmail.com"){
-                      TrainerData.findOne({email:req.body.email},function(err,trainer) {
+                    if(req.body.email!="admintms@gmail.com"){
+                      UserData.findOne({email:req.body.email},function(err,trainer) {
                         if(trainer){
                           approved=trainer.approved;
                           res.status(200).send({tok:token,approval:approved})}
@@ -128,7 +130,7 @@ app.post("/signup", (req, res, next) => {
     
   //  to get details in trainer list page
 
-app.get('/trainerlist',function(req,res) {
+app.get('/trainerlist',verifyToken,function(req,res) {
     res.header("Access-Control-Allow-Origin",'*');
     res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
    FormData.find({"approved":true})
@@ -235,15 +237,46 @@ app.get("/trainerProfile/:email",verifyToken,(req,res)=>{
     
   
 })
-
+//to view requests
 app.get('/requests',verifyToken,function(req,res){
   console.log("Request page");
   TrainerData.find({"approved":false})
   .then(function(trainerss){
       res.send(trainerss);
     })
+  });
+   
+  app.get('/requests/accept/:id',verifyToken,function(req,res){
+        
+    const id = req.params.id;
+    
+       var empdetails=employee[Math.floor(Math.random() * employee.length)];
+        
+      TrainerData.findByIdAndUpdate(id,{$set:{"approved":true,
+      "employment" :employee[Math.floor(Math.random() * employee.length)]} 
+      
+      })
+       .then(function(trainers){
+         var mailOptions = {
+           from: 'tmsictak@gmail.com',
+            to: trainers.email,
+           subject: 'Selected as a Trainer at ICT',
+          
+           html:`<p>'Congratulations!! you have been selected as a trainer at ICT.Please find the details below:<br>
+           Type of employment:${empdetails},Trainer ID:${trainers.id}</p>`
+         };
+         transporter.sendMail(mailOptions, function(error, info){
+           if (error) {
+             console.log(error);
+           } else {
+             console.log('Email sent: ' + info.response);
+           }
+         });
+                res.send(trainers);
+              })
+    
+        });
 
-});
 
 
 app.listen(3000);
