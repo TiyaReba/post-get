@@ -31,14 +31,17 @@ export class AdminComponent implements OnInit {
   get f(){
     return this.adminform.controls;
   }
-
+  details:any;
   ngOnInit(): void {
+    this.details=localStorage.getItem('allocateTrainerId');
+    this.trainerservice.trainerallote(this.details).subscribe((data)=>{
+      this.adminform=JSON.parse(JSON.stringify(data));
+  })
   }
 
   onclick(){
     this.submit = true
   console.log("clicked")
-
   console.log('f', this.f)
   this.trainerservice.allocateTrainer((this.adminform.value))
   if(!this.adminform.valid){

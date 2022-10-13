@@ -176,6 +176,19 @@ app.delete('/trainerprofiles/delete/:id',verifyToken, (req,res)=>{
     res.send();
   })
 })
+
+  // to get id for allocation
+    
+  app.get('/trainer/:id',function(req,res){
+    const id = req.params.id; 
+  Formdata.findOne({_id:id}) 
+    
+   .then(function(trainers){
+    
+       res.send(trainers);
+    })
+  });
+
 // to allocate each trainer
 
 app.post('/allocate',(req,res) =>{
@@ -194,7 +207,7 @@ app.post('/allocate',(req,res) =>{
     link:req.body.link 
 }
 try{
-    var allocationcollection = new allocationdata(allocatedtrainer)
+    var allocationcollection = new Formdata(allocatedtrainer)
     console.log("inside try", allocationcollection)
     allocationcollection.save();
     res.json(allocationcollection);
@@ -248,3 +261,4 @@ app.get('/requests',verifyToken,function(req,res){
 app.listen(3000);
 console.log("port 3000");
 
+  

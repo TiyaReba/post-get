@@ -39,6 +39,9 @@ export class TrainerService {
   return this.http.post("http://localhost:3000/allocate",item)
   .subscribe(data =>{console.log(data)})
 }
+trainerallote(id:any){
+  return this.http.get("http://localhost:3000/trainer/"+id);
+}
   loadProfile(email:any){
     return this.http.get("http://localhost:3000/trainerProfile"+email);
   }
