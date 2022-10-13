@@ -53,4 +53,7 @@ trainerallote(id:any){
     console.log("inside allocate service file")
     return this.http.delete("http://localhost:3000/requests/delete/"+id)
   }
+  getTrainerss(){
+    return this.http.get('http://localhost:3000/requests')
+  };
 }

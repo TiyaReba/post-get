@@ -20,31 +20,31 @@ export class RequestComponent implements OnInit {
   alertMsg : any ='';
 
   trainer={
-    name:'',
-    email:'',
-    phone:'',
-    address:'',
-    qualification:'',
-    skillset:'',
-    company:'',
-    designation:'',
-    ictakcourses:'',
-    photo:'',
-    ID:''
-  }
-
+    trainername:String,
+  email:String,
+  phone:Number,
+  address:String,
+  qualification:String,
+  skills:String,
+  currentcompanyname:String,
+  currentdesignation:String,
+  courses:String,
+  _id:String
+    }
+ 
+  
+ 
   trainers=[{
-    name:'',
-    email:'',
-    phone:'',
-    address:'',
-    qualification:'',
-    skillset:'',
-    company:'',
-    designation:'',
-    ictakcourses:'',
-    photo:'',
-    ID:''
+    trainername:String,
+    email:String,
+    phone:Number,
+    address:String,
+    qualification:String,
+    skills:String,
+    currentcompanyname:String,
+    currentdesignation:String,
+    courses:String,
+    _id:String
   }]
 
   constructor(public trainersObj : TrainerService, private router:Router,private http : HttpClient, public auth :AuthserviceService, ) { }
@@ -54,7 +54,7 @@ export class RequestComponent implements OnInit {
 
     this.alertMsg = localStorage.getItem('trainerAlertMsg');    
     setTimeout(() => {
-    this.trainersObj.getTrainers()
+    this.trainersObj.getTrainerss()
     .subscribe((trainer)=>{
       this.trainersdata=trainer;
       console.log(trainer);
