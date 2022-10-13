@@ -240,11 +240,12 @@ app.get("/trainerProfile/:email",verifyToken,(req,res)=>{
     
   
 })
+
 app.get('/requests',verifyToken,function(req,res){
   console.log("Request page");
   TrainerData.find({"approved":false})
-  .then(function(trainers){
-      res.send(trainers);
+  .then(function(trainerss){
+      res.send(trainerss);
     })
 
 });
