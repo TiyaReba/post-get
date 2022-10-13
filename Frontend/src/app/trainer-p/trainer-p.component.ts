@@ -9,17 +9,17 @@ import { TrainerService } from '../trainer.service';
 })
 export class TrainerPComponent implements OnInit {
   trainer={
-    name:'',
+    trainername:'',
     email:'',
     phone:'',
     address:'',
     qualification:'',
-    skillset:'',
-    company:'',
-    designation:'',
-    ictakcourses:'',
-    photo:'',
-    ID:''
+    skills:'',
+    currentcompanyname:'',
+    currentdesignation:'',
+    courses:'',
+    approved:'',
+    employment:''
   }
   constructor(private router:Router ,private trainerService:TrainerService) { }
 

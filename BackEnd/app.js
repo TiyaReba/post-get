@@ -238,18 +238,20 @@ app.get('/find/:name',async function(req,res){
      res.send(trainers);
     }); 
 
-//to load trainer profile
-app.get("/trainerProfile/:email",(req,res)=>{
-  email=req.params.email;
-  TrainerData.findOne({"email":email})
+//to load invidual trainer profile
+app.get("/trainerProfile/:id",(req,res)=>{
+  const id = req.params.id; 
+  console.log("email in load",id)
+  FormData.findOne({_id:id})
+ 
+ 
   .then (function (trainer){
     res.send(trainer);
   })
-    
   
 })
 
-app.get('/requests',verifyToken,function(req,res){
+app.get('/requests',function(req,res){
   console.log("Request page");
   TrainerData.find({"approved":false})
   .then(function(trainerss){

@@ -43,8 +43,9 @@ export class TrainerService {
 trainerallote(id:any){
   return this.http.get("http://localhost:3000/trainer/"+id);
 }
-  loadProfile(email:any){
-    return this.http.get("http://localhost:3000/trainerProfile"+email);
+  loadProfile(id:any){
+    console.log("inside service file of loadprofile");
+    return this.http.get("http://localhost:3000/trainerProfile/"+id);
   }
   AcceptTrainer(id:any){
     console.log("inside allocate service file")
