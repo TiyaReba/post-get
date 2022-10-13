@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpResponse } from '@angular/common/http';
+import { EmailValidator } from '@angular/forms';
 
 
 @Injectable({

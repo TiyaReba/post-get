@@ -239,9 +239,9 @@ app.get('/find/:name',async function(req,res){
     }); 
 
 //to load trainer profile
-app.get("/trainerProfile/:email",verifyToken,(req,res)=>{
+app.get("/trainerProfile/:email",(req,res)=>{
   email=req.params.email;
-  TrainerData.findOne({$and:[{"email":email},{"approved":true}]})
+  TrainerData.findOne({"email":email})
   .then (function (trainer){
     res.send(trainer);
   })

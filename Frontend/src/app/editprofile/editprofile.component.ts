@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Trainermodel } from '../trainer-profile/trainer.model'
 import { TrainerService } from '../trainer.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-editprofile',
@@ -11,8 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./editprofile.component.css']
 })
 export class EditprofileComponent implements OnInit {
-
-  constructor(private fb:FormBuilder,private trainerService :TrainerService ,private router:Router) { }
+  trainerdata:any;
+  constructor(private fb:FormBuilder,private trainerService :TrainerService ,private router:Router,private http:HttpClient) { }
   courselist:any=['FSD','DSA','RPA']
   submit=false
   registrationForm = this.fb.group({
@@ -30,6 +31,12 @@ export class EditprofileComponent implements OnInit {
     return this.registrationForm.controls;
   };
   ngOnInit(): void {
+    // let trainerId = localStorage.getItem('editTrainerId');
+    // this.trainerService.getTrainerE(trainerId)
+    // .subscribe((trainerdata)=>{
+    //   this.trainer =JSON.parse(JSON.stringify(trainerdata))
+    //   console.log(this.trainer);
+    // });
   }
   onsubmit(){
 
