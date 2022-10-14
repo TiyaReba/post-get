@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const jwt =require('jsonwebtoken');
 const bcrypt = require("bcrypt");
 const nodemailer = require('nodemailer');
+
 // db connection
 mongoose.connect('mongodb+srv://soorya:arya@clustertms.kfgrkm3.mongodb.net/TMS?retryWrites=true&w=majority')
 console.log("Mongo DB connected ...")
@@ -125,16 +126,6 @@ app.post("/signup", (req, res, next) => {
     })
   })
     
-  //  to get details in trainer list page
-
-app.get('/trainerlist',function(req,res) {
-    res.header("Access-Control-Allow-Origin",'*');
-    res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
-   TrainerData.find({"approved":true})
-      .then(function(trainers){
-         res.send(trainers);
-})
-})
 
 // for posting enrollmentform
 
@@ -156,7 +147,7 @@ app.post('/form',verifyToken,function(req,res){
 }
 
 try{
-    var trainercollection = new FormData(newtrainer)
+    var trainercollection = new TrainerData(newtrainer)
     trainercollection.save();
     res.json(trainercollection);
 }catch(err){
@@ -164,6 +155,16 @@ try{
 }
 })
 
+  //  to get details in trainer list page
+
+  app.get('/trainerlist',function(req,res) {
+    res.header("Access-Control-Allow-Origin",'*');
+    res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
+   FormData.find({"approved":true})
+      .then(function(trainers){
+         res.send(trainers);
+})
+})
 
 // to delete trainerdata by admin
 
@@ -250,6 +251,8 @@ app.get("/trainerProfile/:id",(req,res)=>{
   
 })
 
+// to view all the requests
+
 app.get('/requests',function(req,res){
   console.log("Request page");
   TrainerData.find({"approved":false})
@@ -257,15 +260,20 @@ app.get('/requests',function(req,res){
       res.send(trainerss);
     })
   })
+
+  // to accept the request
     app.get('/requests/accept/:id',verifyToken,function(req,res){
         
       const id = req.params.id;
-  TrainerData.findById({_id:id})
+      Trainerdata.findByIdAndUpdate(id,{$set:{"approved":true} 
+      })
          .then(function(trainers){
           console.log("accepted");
           res.send(trainers);
                 })
               });
+
+  // to reject the request
      app.delete('/requests/delete/:id',verifyToken,function(req,res){
     const id = req.params.id;
                   TrainerData.findByIdAndDelete({_id:id}) 
@@ -273,7 +281,6 @@ app.get('/requests',function(req,res){
                     res.send(trainers);
                     console.log("deleted successfully");
   })
-
 });
 
 
