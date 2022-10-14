@@ -9,7 +9,7 @@ export class AuthserviceService {
 
   constructor(private http:HttpClient) { }
   signup(sdata:any){
-    console.log("service")
+    console.log("service in signup auth service")
     return this.http.post<any>('http://localhost:3000/signup',sdata)
     
    
@@ -17,7 +17,7 @@ export class AuthserviceService {
 
   loginUser(logindata:any){
   
-    console.log("service")
+    console.log("service in logincomponent.ts")
     return this.http.post<any>('http://localhost:3000/login',logindata)
   }
   loggedIn(){
