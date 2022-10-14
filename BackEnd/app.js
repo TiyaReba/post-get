@@ -90,7 +90,6 @@ app.post("/signup", (req, res, next) => {
 
   app.post("/login", (req, res, next) => {
     let fetchedUser;
-  
     UserData.findOne({email:req.body.email}).then(user=>{
       if(!user){
         return res.status(401).json({
