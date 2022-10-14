@@ -54,7 +54,7 @@ allocateTrainer(trainer:any){
     })
   }
 
-  Search(searchform:any){
+  Search(searchform:NgForm){
     this.trainerService.findTrainers(this.search)
       .subscribe((trainer)=>{
         this.trainervalue = JSON.parse(JSON.stringify(trainer));

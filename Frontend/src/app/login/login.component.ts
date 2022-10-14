@@ -3,6 +3,7 @@ import { FormBuilder,Validator,Validators } from '@angular/forms';
 import { AuthserviceService } from '../authservice.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -33,11 +34,12 @@ export class LoginComponent implements OnInit {
       this.authService.loginUser(logindata)
   .subscribe(data=>{
     localStorage.setItem('token', data.tok)   
+    console.log("login token",data.tok)
     localStorage.setItem('Approvalstatus', data.approval)         
     localStorage.setItem('currentUser', data.email);
     if(data.email=="admin@gmail.com")
     {
-     this.router.navigate(['/admin'])
+     this.router.navigate(['/trainer-profile'])
     }
      else{
     if(data.error){

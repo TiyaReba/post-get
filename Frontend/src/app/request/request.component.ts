@@ -47,26 +47,29 @@ export class RequestComponent implements OnInit {
     id:String
   }]
 
-  constructor(public trainersObj : TrainerService, private router:Router,private http : HttpClient, public auth :AuthserviceService, ) { }
+  constructor(public trainerservice : TrainerService, private router:Router,private http : HttpClient, public auth :AuthserviceService, ) { }
 
    ngOnInit(): void {
 
-    this.trainersObj.getTrainerss()
+    this.alertMsg = localStorage.getItem('trainerAlertMsg'); 
+    this.trainerservice.getTrainerss()
     .subscribe((trainer)=>{
       this.trainersdata=trainer;
       console.log(trainer);
+      localStorage.removeItem('trainerAlertMsg'); 
      });
-    
+     console.log (`Alert msg : ${this.alertMsg}` );
     }
 
     acceptTrainer(trainer: any)
   {
     
-   this.trainersObj.AcceptTrainer(trainer._id)
+   this.trainerservice.AcceptTrainer(trainer._id)
     .subscribe((trainer)=>{
       this.trainersdata=trainer
       console.log(trainer);
       this.router.navigate(['trainer-profile']);
+      localStorage.removeItem('trainerAlertMsg'); 
       });
    
   
@@ -74,12 +77,13 @@ export class RequestComponent implements OnInit {
 
   rejectTrainer(trainer: any)
   {
-    this.trainersObj.RejectTrainer(trainer._id)
+    this.trainerservice.RejectTrainer(trainer._id)
     .subscribe((data)=>{
       this.trainers= this.trainers.filter(b => b!== trainer);
      
       });
     window.location.reload();
+    localStorage.removeItem('trainerAlertMsg'); 
   };
 
 

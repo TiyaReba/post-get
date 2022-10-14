@@ -32,6 +32,7 @@ export class AdminComponent implements OnInit {
     return this.adminform.controls;
   }
   details:any;
+  
   ngOnInit(): void {
     this.details=localStorage.getItem('allocateTrainerId');
     this.trainerservice.trainerallote(this.details).subscribe((data)=>{
@@ -40,7 +41,7 @@ export class AdminComponent implements OnInit {
   }
 
   onclick(){
-    this.submit = true
+  this.submit = true
   console.log("clicked")
   console.log('f', this.f)
   this.trainerservice.allocateTrainer((this.adminform.value))
@@ -51,7 +52,7 @@ export class AdminComponent implements OnInit {
   else{
    console.log(this.adminform.value);
     alert("Trainer allocated sucessfully")
-    this.router.navigate(['home'])
+    this.router.navigate(['/home'])
   }
     
   }

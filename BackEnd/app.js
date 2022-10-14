@@ -90,6 +90,7 @@ app.post("/signup", (req, res, next) => {
 
   app.post("/login", (req, res, next) => {
     let fetchedUser;
+    console.log("login check",req.body.email)
     UserData.findOne({email:req.body.email}).then(user=>{
       if(!user){
         return res.status(401).json({
@@ -130,13 +131,13 @@ app.post("/signup", (req, res, next) => {
 app.get('/trainerlist',(req,res)=> {
     res.header("Access-Control-Allow-Origin",'*');
     res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
-   TrainerData.find({"approved":true})
+   FormData.find({"approved":true})
       .then(function(trainers){
          res.send(trainers);
 })
 })
 
-// for posting enrollmentform
+// for posting enrollmentform for trainer
 
 app.post('/form',verifyToken,function(req,res){
   res.header("Access-Control-Allow-Origin",'*');
@@ -152,7 +153,8 @@ app.post('/form',verifyToken,function(req,res){
     skills:req.body.skills,
     currentcompanyname:req.body.currentcompanyname,
     currentdesignation:req.body.currentdesignation,
-    courses:req.body.courses
+    courses:req.body.courses,
+    approved:false
 }
 
 try{
@@ -165,7 +167,7 @@ try{
 })
 
 
-// to delete trainerdata by admin
+// to delete trainerdata by admin in trainer profile
 
 app.delete('/trainerprofiles/delete/:id',verifyToken, (req,res)=>{
   const id = req.params.id;
@@ -259,7 +261,7 @@ app.get('/trainerprofile/:email',verifyToken,(req,res)=>{
 
 app.get('/requests',function(req,res){
   console.log("Request page");
-  TrainerData.find({"approved":false})
+  FormData.find({"approved":false})
   .then(function(trainerss){
       res.send(trainerss);
     })
@@ -267,7 +269,7 @@ app.get('/requests',function(req,res){
     app.get('/requests/accept/:id',verifyToken,function(req,res){
         
       const id = req.params.id;
-  TrainerData.findByIdAndUpdate({_id:id},{$set:{"approved":true}})
+  FormData.findByIdAndUpdate({_id:id},{$set:{"approved":true}})
          .then(function(trainers){
           console.log("accepted");
           res.send(trainers);
@@ -275,7 +277,7 @@ app.get('/requests',function(req,res){
               });
      app.delete('/requests/delete/:id',verifyToken,function(req,res){
     const id = req.params.id;
-                  TrainerData.findByIdAndDelete({_id:id}) 
+                  FormData.findByIdAndDelete({_id:id}) 
                   .then(function(trainers){
                     res.send(trainers);
                     console.log("deleted successfully");

@@ -47,6 +47,7 @@ onsubmit(){
     alert("Trainer addedd sucessfully")
     this.router.navigate(['/'])
   }
+  localStorage.setItem('trainerAlertMsg', `The form submitted successfully`);
   console.log("clicked")
   console.log('f', this.f)
 }
