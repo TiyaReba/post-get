@@ -180,9 +180,8 @@ app.delete('/trainerprofiles/delete/:id',verifyToken, (req,res)=>{
     
   app.get('/trainer/:id',function(req,res){
     const id = req.params.id; 
-  FormData.findOne({_id:id}) 
-    
-   .then(function(trainers){
+  TrainerData.findOne({_id:id}) 
+    .then(function(trainers){
     
        res.send(trainers);
     })

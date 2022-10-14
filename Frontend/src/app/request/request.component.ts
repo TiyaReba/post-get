@@ -44,7 +44,7 @@ export class RequestComponent implements OnInit {
     currentcompanyname:String,
     currentdesignation:String,
     courses:String,
-    id:String
+    _id:String
   }]
 
   constructor(public trainersObj : TrainerService, private router:Router,private http : HttpClient, public auth :AuthserviceService, ) { }
