@@ -90,7 +90,6 @@ app.post("/signup", (req, res, next) => {
 
   app.post("/login", (req, res, next) => {
     let fetchedUser;
-  
     UserData.findOne({email:req.body.email}).then(user=>{
       if(!user){
         return res.status(401).json({
@@ -131,7 +130,7 @@ app.post("/signup", (req, res, next) => {
 app.get('/trainerlist',function(req,res) {
     res.header("Access-Control-Allow-Origin",'*');
     res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
-   FormData.find({"approved":true})
+   TrainerData.find({"approved":true})
       .then(function(trainers){
          res.send(trainers);
 })
