@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     console.log("login token",data.tok)
     localStorage.setItem('Approvalstatus', data.approval)         
     localStorage.setItem('currentUser', data.email);
+    console.log("current user in login",data.email)
     if(data.email=="admin@gmail.com")
     {
      this.router.navigate(['/trainer-profile'])

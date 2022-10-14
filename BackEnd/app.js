@@ -88,7 +88,7 @@ app.post("/signup", (req, res, next) => {
  
   // login check the informations
 
-  app.post("/login", (req, res, next) => {
+  app.post("/login", (req, res) => {
     let fetchedUser;
     console.log("login check",req.body.email)
     UserData.findOne({email:req.body.email}).then(user=>{
@@ -98,6 +98,7 @@ app.post("/signup", (req, res, next) => {
         })
       }
       fetchedUser=user;
+      console.log("password in login api", req.body.password)
       return bcrypt.compare(req.body.password, user.password);
      
     }).then(result=>{
@@ -240,10 +241,10 @@ app.get('/find/:name',async function(req,res){
     }); 
 
 //to load invidual trainer profile
-app.get('/trainerprofile/:email',verifyToken,(req,res)=>{
+app.get('/trainerprofile/:email',(req,res)=>{
   const email=req.params.email;
-  
-  TrainerData.findOne({$and:[{"email":email},{"approved":true}]})
+  console.log("email in load",email)
+ FormData.findOne({$and:[{"email":email},{"approved":true}]})
   .then(function(trainer){
     res.send(trainer);
   })

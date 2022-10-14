@@ -6,19 +6,18 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthserviceService {
+  logindata={email:"",
+  password:""}
 
   constructor(private http:HttpClient) { }
   signup(sdata:any){
     console.log("service in signup auth service")
     return this.http.post<any>('http://localhost:3000/signup',sdata)
-    
-   
   }
 
   loginUser(logindata:any){
-  
     console.log("service in logincomponent.ts")
-    return this.http.post<any>('http://localhost:3000/login',logindata)
+    return this.http.post<any>('http://localhost:3000/login',{"logindata":logindata})
   }
   loggedIn(){
     return !!localStorage.getItem('token');

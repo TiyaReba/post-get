@@ -24,10 +24,13 @@ export class TrainerPComponent implements OnInit {
   constructor(private router:Router ,private trainerService:TrainerService) { }
 
   ngOnInit(): void {
-    let trainerEmail=localStorage.getItem('loggedUser');
-    this.trainerService.loadProfile(trainerEmail  )
+    let trainerEmail=localStorage.getItem('currentUser');
+    console.log("trainerEmail is", trainerEmail);
+    this.trainerService.loadProfile(trainerEmail)
+   
         .subscribe((trainerProfile)=>{
           this.trainer=JSON.parse(JSON.stringify(trainerProfile));
+
         })
   }
   editTrainer(trainer:any){
