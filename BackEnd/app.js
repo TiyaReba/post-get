@@ -128,10 +128,10 @@ app.post("/signup", (req, res, next) => {
     
   //  to get details in trainer list page
 
-app.get('/trainerlist',function(req,res) {
+app.get('/trainerlist',(req,res)=> {
     res.header("Access-Control-Allow-Origin",'*');
     res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
-   FormData.find({"approved":true})
+   TrainerData.find({"approved":true})
       .then(function(trainers){
          res.send(trainers);
 })
@@ -239,17 +239,24 @@ app.get('/find/:name',async function(req,res){
     }); 
 
 //to load invidual trainer profile
-app.get("/trainerProfile/:id",(req,res)=>{
-  const id = req.params.id; 
-  console.log("email in load",id)
-  FormData.findOne({_id:id})
- 
- 
-  .then (function (trainer){
+app.get('/trainerprofile/:email',verifyToken,(req,res)=>{
+  const email=req.params.email;
+  
+  TrainerData.findOne({$and:[{"email":email},{"approved":true}]})
+  .then(function(trainer){
     res.send(trainer);
   })
+}
+)
+//app.get("/trainerProfile/:id",verifyToken,(req,res)=>{
+  //const id = req.params.id; 
+  //console.log("email in load",id)
+  //TrainerData.findOne({_id:id},{approved:true})
+//.then (function (trainer){
+  //  res.send(trainer);
+  //})
   
-})
+//})
 
 app.get('/requests',function(req,res){
   console.log("Request page");
@@ -261,7 +268,7 @@ app.get('/requests',function(req,res){
     app.get('/requests/accept/:id',verifyToken,function(req,res){
         
       const id = req.params.id;
-  TrainerData.findById({_id:id})
+  TrainerData.findByIdAndUpdate({_id:id},{$set:{"approved":true}})
          .then(function(trainers){
           console.log("accepted");
           res.send(trainers);
