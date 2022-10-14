@@ -44,40 +44,32 @@ export class RequestComponent implements OnInit {
     currentcompanyname:String,
     currentdesignation:String,
     courses:String,
-    _id:String
+    id:String
   }]
 
   constructor(public trainersObj : TrainerService, private router:Router,private http : HttpClient, public auth :AuthserviceService, ) { }
 
    ngOnInit(): void {
 
-
-    this.alertMsg = localStorage.getItem('trainerAlertMsg');    
-    setTimeout(() => {
     this.trainersObj.getTrainerss()
     .subscribe((trainer)=>{
       this.trainersdata=trainer;
       console.log(trainer);
-      localStorage.removeItem('trainerAlertMsg'); 
-      });
-       }, 50);
-       console.log (`Alert msg : ${this.alertMsg}` );
+     });
+    
     }
 
-    
-
- 
-   
-  acceptTrainer(trainer: any)
+    acceptTrainer(trainer: any)
   {
     
-    //this.router.navigate(['editTrainer']);
-    this.trainersObj.AcceptTrainer(trainer._id)
-    .subscribe((data)=>{console.log(data);
-     
+   this.trainersObj.AcceptTrainer(trainer._id)
+    .subscribe((trainer)=>{
+      this.trainersdata=trainer
+      console.log(trainer);
+      this.router.navigate(['trainer-profile']);
       });
-    this.router.navigate(['trainer-profile']);
-    localStorage.removeItem('trainerAlertMsg'); 
+   
+  
   };
 
   rejectTrainer(trainer: any)
@@ -88,7 +80,6 @@ export class RequestComponent implements OnInit {
      
       });
     window.location.reload();
-    localStorage.removeItem('trainerAlertMsg'); 
   };
 
 

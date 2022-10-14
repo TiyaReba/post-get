@@ -180,7 +180,7 @@ app.delete('/trainerprofiles/delete/:id',verifyToken, (req,res)=>{
     
   app.get('/trainer/:id',function(req,res){
     const id = req.params.id; 
-  Formdata.findOne({_id:id}) 
+  FormData.findOne({_id:id}) 
     
    .then(function(trainers){
     
@@ -256,6 +256,23 @@ app.get('/requests',function(req,res){
   .then(function(trainerss){
       res.send(trainerss);
     })
+  })
+    app.get('/requests/accept/:id',verifyToken,function(req,res){
+        
+      const id = req.params.id;
+  TrainerData.findById({_id:id})
+         .then(function(trainers){
+          console.log("accepted");
+          res.send(trainers);
+                })
+              });
+     app.delete('/requests/delete/:id',verifyToken,function(req,res){
+    const id = req.params.id;
+                  TrainerData.findByIdAndDelete({_id:id}) 
+                  .then(function(trainers){
+                    res.send(trainers);
+                    console.log("deleted successfully");
+  })
 
 });
 
