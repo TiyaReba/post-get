@@ -3,7 +3,7 @@ import { FormBuilder,Validator,Validators } from '@angular/forms';
 import { AuthserviceService } from '../authservice.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Token } from '@angular/compiler';
+// import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +13,7 @@ import { Token } from '@angular/compiler';
 export class LoginComponent implements OnInit {
   submitted=false
   logindata: any;
+  hide = true;
   hide=true;
   constructor(private fb:FormBuilder,private authService:AuthserviceService,private router:Router) { }
   loginForm=this.fb.group({

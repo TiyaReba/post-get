@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,7 +28,7 @@ import { AuthGuard } from './auth.guard';
 import { AuthserviceService } from './authservice.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { RequestComponent } from './request/request.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,8 @@ import { RequestComponent } from './request/request.component';
     AdminComponent,
     HomeComponent,
     TrainerPComponent, 
-    EditprofileComponent, RequestComponent
+    EditprofileComponent, RequestComponent,
+    
     ],
 
   imports: [
@@ -59,7 +59,9 @@ import { RequestComponent } from './request/request.component';
     MatFormFieldModule,
      MatIconModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    
+
  
   ],
   providers: [TrainerService,AuthGuard,AuthserviceService,{

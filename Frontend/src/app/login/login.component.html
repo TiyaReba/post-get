@@ -14,8 +14,10 @@
             <mat-error *ngIf="AllControls.email.errors?.['email']&&submitted">Invalid Email</mat-error>
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput placeholder="password" [type]="hide?'password':'text'" formControlName="password" />
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <input matInput placeholder="Password" [type]="hide? 'password':'text'" formControlName='password'>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
                 <mat-error *ngIf="AllControls.password.errors?.['required']&&submitted"
                 >Password required</mat-error>
                 <mat-error *ngIf="AllControls.password.errors?.['minlength']&&submitted"

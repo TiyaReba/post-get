@@ -223,7 +223,8 @@ res.send();
 
 // to search 
 app.get('/find/:name',async function(req,res){
-
+  res.header("Access-Control-Allow-Origin",'*');
+  res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
      console.log("search string",req.params.name);
      try
      {
@@ -233,7 +234,7 @@ app.get('/find/:name',async function(req,res){
       //   var trainers = await FormData.find({email : {$regex: req.query.search , $options: 'i'}});        
       // if (req.query.field === "skills")
       //   var trainers = await FormData.find({skills : {$regex: req.query.search , $options: 'i'}});   
-      var trainers = await FormData.find({$or :[{trainername:{$regex:req.params.name, $options:'i'}}]})
+      var trainers = await FormData.find({$and :[{trainername:{$regex:req.params.name, $options:'i'}},{approved:true}]})
      }
      catch (e)
      {

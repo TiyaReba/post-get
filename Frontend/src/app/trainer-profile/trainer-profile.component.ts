@@ -19,17 +19,16 @@ export class TrainerProfileComponent implements OnInit {
 
   trainers: Trainermodel[] | any;
   trainer=[{
-    name:'',
+    trainername:'',
     email:'',
     phone:'',
     address:'',
     qualification:'',
-    skillset:'',
-    company:'',
-    designation:'',
-    ictakcourses:'',
-    photo:'',
-    ID:''
+    skills:'',
+    currentcompanyname:'',
+    currentdesignation:'',
+    courses:'',
+
   }]
   constructor(private trainerService :TrainerService,private router:Router) { }
   deleteTrainer(trainer:any){
@@ -39,7 +38,6 @@ export class TrainerProfileComponent implements OnInit {
     .subscribe((res:any)=>{
       this.trainers = this.trainers.filter((p: any) => p!==trainer)
     })
-
   }
 
 allocateTrainer(trainer:any){
@@ -49,16 +47,21 @@ allocateTrainer(trainer:any){
 }
   ngOnInit(): void {
     this.trainerService.getTrainers().subscribe((data) =>{
-      this.trainers = JSON.parse(JSON.stringify(data));
-
+      this.trainers = data;
     })
   }
 
-  Search(searchform:NgForm){
-    this.trainerService.findTrainers(this.search)
+  Search(searchForm:NgForm){
+    let search =this.search.text
+    console.log("this.search value",search)
+    this.trainerService.findTrainers(this.search.text)
       .subscribe((trainer)=>{
-        this.trainervalue = JSON.parse(JSON.stringify(trainer));
-        console.log(this.trainervalue);
+        // this.trainervalue = JSON.parse(JSON.stringify(trainer));
+        // console.log(this.trainervalue);
+        this.trainervalue = trainer;
+        window.location.reload();
+        console.log("trainervalue is:",this.trainervalue)
+
         })
   
   }
