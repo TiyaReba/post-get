@@ -16,26 +16,35 @@ export class AdminComponent implements OnInit {
   Courseid:any =['01_DSA', '02_FSD', '03_RPA']
   Batchid:any =[ 'DSA001', 'DSA002', 'FSD001']
   submit=false
-  adminform = this.af.group({
-    startdate:['',Validators.required],
-    enddate:['',Validators.required],
-    starttime:['',Validators.required],
-    endtime:['',Validators.required],
-    courses:['',Validators.required],
-    courseid:['',Validators.required],
-    batchid:['',Validators.required],
-    link:['',Validators.required]
+  adminform = {
+    trainername:'',
+    email:'',
+    phone:'',
+    address:'',
+    qualification:'',
+    skills:'',
+    currentcompanyname:'',
+    currentdesignation:'',
+    courses:'',
+    startdate:'',
+    enddate:'',
+    starttime:'',
+    endtime:'',
+    coursesname:'',
+    courseid:'',
+    batchid:'',
+    link:''
 
-  })
-
-  get f(){
-    return this.adminform.controls;
   }
+
+  // get f(){
+  //   return this.adminform.controls;
+  // }
   details:any;
   
   ngOnInit(): void {
     this.details=localStorage.getItem('allocateTrainerId');
-    this.trainerservice.trainerallote(this.details).subscribe((data)=>{
+    this.trainerservice.trainerallotebyId(this.details).subscribe((data)=>{
       this.adminform=JSON.parse(JSON.stringify(data));
   })
   }
@@ -43,17 +52,11 @@ export class AdminComponent implements OnInit {
   onclick(){
   this.submit = true
   console.log("clicked")
-  console.log('f', this.f)
-  this.trainerservice.allocateTrainer((this.adminform.value))
-  if(!this.adminform.valid){
-    alert("Please fill all required fields...")
-  }
-
-  else{
-   console.log(this.adminform.value);
+  this.trainerservice.allocateTrainer((this.adminform))
+   console.log(this.adminform);
     alert("Trainer allocated sucessfully")
     this.router.navigate(['/home'])
-  }
+  
     
   }
 

@@ -17,14 +17,15 @@ const TrainerForm = new Schema({
     courses:String,
     approved:Boolean,
     employment:String,
-    startdate:Number,
-    enddate:Number,
-    starttime:Number,
-    endtime:Number,
+    startdate:String,
+    enddate:String,
+    starttime:String,
+    endtime:String,
     courses:String,
     courseid:String,
     batchid:String,
-    link:String
+    link:String,
+    id:String
 })
 
 // const form = mongoose.model("trainerlist",TrainerForm);

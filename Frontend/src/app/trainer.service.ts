@@ -37,10 +37,10 @@ export class TrainerService {
 
   allocateTrainer(item:any){
   console.log("inside allocate service file")
-  return this.http.post("http://localhost:3000/allocate",item)
+  return this.http.put("http://localhost:3000/allocate",item)
   .subscribe(data =>{console.log(data)})
 }
-trainerallote(id:any){
+trainerallotebyId(id:any){
   return this.http.get("http://localhost:3000/trainer/"+id);
 }
   loadProfile(email:any){

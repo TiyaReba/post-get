@@ -182,41 +182,43 @@ app.delete('/trainerprofiles/delete/:id',verifyToken, (req,res)=>{
     
   app.get('/trainer/:id',function(req,res){
     const id = req.params.id; 
-  FormData.findOne({_id:id}) 
-    
+  FormData.findOne({_id:id})  
    .then(function(trainers){
-    
        res.send(trainers);
     })
   });
 
 // to allocate each trainer
 
-app.post('/allocate',(req,res) =>{
+app.put('/allocate',(req,res) =>{
   res.header("Access-Control-Allow-Origin",'*');
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
   console.log('body for allocation:'+ req.body)
   console.log("startdate :"+ req.body.startdate)
-  var allocatedtrainer ={
-    startdate:req.body.startdate,
-    enddate:req.body.enddate,
-    starttime:req.body.starttime,
-    endtime:req.body.endtime,
-    courses:req.body.courses,
-    courseid:req.body.courseid,
-    batchid:req.body.batchid,
-    link:req.body.link 
-}
-try{
-    var allocationcollection = new FormData(allocatedtrainer)
-    console.log("inside try", allocationcollection)
-    allocationcollection.save();
-    res.json(allocationcollection);
-}catch(err){
-   res.send('Error' + err)
-}
-
+  id=req.body._id,
+  console.log("id in update:",id);
+    startdate=req.body.startdate,
+    enddate=req.body.enddate,
+    starttime=req.body.starttime,
+    endtime=req.body.endtime,
+    courses=req.body.courses,
+    courseid=req.body.courseid,
+    batchid=req.body.batchid,
+    link=req.body.link 
+    FormData.findOneAndUpdate({"_id":id}, {$set:{"startdate":startdate,
+    "enddate":enddate,
+    "starttime":starttime,
+    "endtime":endtime,
+    "courses":courses,
+    "courseid":courseid,
+    "batchid":batchid,
+    "link":link
+   }})
+.then(function(){
+res.send();
 })
+})
+
 
 // to search 
 app.get('/find/:name',async function(req,res){
