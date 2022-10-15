@@ -13,6 +13,7 @@ import { Token } from '@angular/compiler';
 export class LoginComponent implements OnInit {
   submitted=false
   logindata: any;
+  hide=true;
   constructor(private fb:FormBuilder,private authService:AuthserviceService,private router:Router) { }
   loginForm=this.fb.group({
     email:['',[Validators.required,Validators.email]],

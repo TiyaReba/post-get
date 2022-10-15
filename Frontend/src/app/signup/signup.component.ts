@@ -9,7 +9,7 @@ import { AuthserviceService } from '../authservice.service';
 })
 export class SignupComponent implements OnInit {
   Signupsubmitted=false
-  hide=true
+  hide: boolean = true;
   constructor(private fb:FormBuilder,private authService:AuthserviceService,private router:Router) { }
   signupForm=this.fb.group({
     Username:['',[Validators.required]],
