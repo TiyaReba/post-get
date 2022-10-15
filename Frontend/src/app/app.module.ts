@@ -28,7 +28,7 @@ import { AuthGuard } from './auth.guard';
 import { AuthserviceService } from './authservice.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { RequestComponent } from './request/request.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+// import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
