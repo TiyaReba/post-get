@@ -59,7 +59,7 @@ allocateTrainer(trainer:any){
         // this.trainervalue = JSON.parse(JSON.stringify(trainer));
         // console.log(this.trainervalue);
         this.trainervalue = trainer;
-        window.location.reload();
+        this.trainers = trainer
         console.log("trainervalue is:",this.trainervalue)
 
         })
