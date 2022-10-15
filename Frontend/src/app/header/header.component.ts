@@ -28,7 +28,7 @@ this.router.navigate(['/'])
 }
 getloguser(){
   this.loggedUser = this.auth.getCurrentUser(); 
-  if(this.loggedUser=="admin@gmail.com"){
+  if(this.loggedUser=="tmsictak22@gmail.com"){
     return true;}
     else{
       return false;
