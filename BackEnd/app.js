@@ -106,7 +106,7 @@ app.post("/signup", (req, res, next) => {
         let payload = {subject: req.body.email+req.body.password}
                     let token = jwt.sign(payload, 'secretKey')
             
-                    if(req.body.email!="admin@gmail.com"){
+                    if(req.body.email!="tmsictak22@gmail.com"){
                       FormData.findOne({email:req.body.email},function(trainer,err) {
                         if(trainer){
                           approved=trainer.approved;
