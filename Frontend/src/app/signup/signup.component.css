@@ -4,16 +4,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: 6rem;
+    top: 1rem;
 
 }
 .signupcard{
-    background: linear-gradient(135deg, #96b3d1 10%, #2482bc 100%);
-    border: 1px solid rgb(5, 35, 61);
+    background: linear-gradient(135deg, #e7e9ec 10%, #31acbc 100%);
+    border: 1px solid rgb(255, 255, 255);
     border-radius: .7rem;
-    height: 350px;
-    width: 650px;
+    height: 400px;
+    width: 500px;
  }
 mat-form-field{
     width: 100%;
+}
+p{
+    align-items: center;
 }

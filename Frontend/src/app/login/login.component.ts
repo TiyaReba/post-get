@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   submitted=false
   logindata: any;
   hide = true;
-  hide=true;
+
   constructor(private fb:FormBuilder,private authService:AuthserviceService,private router:Router) { }
   loginForm=this.fb.group({
     email:['',[Validators.required,Validators.email]],

@@ -11,18 +11,16 @@
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black">
   
-                  <form>
-  
-                    <div class="d-flex align-items-center mb-3 pb-1">
-                      <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                      <span class="h1 fw-bold mb-0">Sign into your account</span>
-                    </div>
 <div class="signupdiv">
  
     <mat-card class="signupcard">
     <form [formGroup]="signupForm"g
     (ngSubmit)="onSubmitSignup()"
     #formDirective="ngForm">
+    <div class="d-flex align-items-center mb-3 pb-1">
+        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+        <span class="h1 fw-bold mb-0">Sign into your account</span>
+      </div>
     <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
         <input matInput placeholder="Username" formControlName='Username'>
@@ -50,9 +48,7 @@
     <div style="text-align: center;">
         <button mat-raised-button color="primary">Register</button>
         </div>
+        <p class="mb-5 pb-lg-2" style="color: #393f81;"> Already registered? <a routerLink="/login"> Log in</a></p>
     </form>
-    <br><br>
-    <h3 allign="center"> Already registered? <a routerLink="/login"> Log in</a></h3>
-  
 </mat-card>
 </div>
