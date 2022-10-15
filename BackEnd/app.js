@@ -178,7 +178,7 @@ app.delete('/trainerprofiles/delete/:id',verifyToken, (req,res)=>{
   })
 })
 
-  // to get id for allocation
+  // to recognize the id in the admin page
     
   app.get('/trainer/:id',function(req,res){
     const id = req.params.id; 
@@ -245,7 +245,7 @@ app.get('/find/:name',async function(req,res){
 app.get('/trainerprofile/:email',verifyToken,(req,res)=>{
   const email=req.params.email;
   
-  TrainerData.findOne({$and:[{"email":email},{"approved":true}]})
+  FormData.findOne({$and:[{"email":email},{"approved":true}]})
   .then(function(trainer){
     res.send(trainer);
   })
