@@ -19,17 +19,23 @@ export class TrainerProfileComponent implements OnInit {
 
   trainers: Trainermodel[] | any;
   trainer=[{
-    name:'',
+    trainername:'',
     email:'',
     phone:'',
     address:'',
     qualification:'',
-    skillset:'',
-    company:'',
-    designation:'',
-    ictakcourses:'',
-    photo:'',
-    ID:''
+    skills:'',
+    currentcompanyname:'',
+    currentdesignation:'',
+    courses:'',
+    startdate:'',
+    enddate:'',
+    starttime:'',
+    endtime:'',
+    coursesname:'',
+    courseid:'',
+    batchid:'',
+    link:''
   }]
   constructor(private trainerService :TrainerService,private router:Router) { }
   deleteTrainer(trainer:any){
@@ -54,11 +60,16 @@ allocateTrainer(trainer:any){
     })
   }
 
-  Search(searchform:NgForm){
-    this.trainerService.findTrainers(this.search)
+  Search(searchForm:NgForm){
+    let search =this.search.text
+    console.log("this.search value",search)
+    this.trainerService.findTrainers(this.search.text)
       .subscribe((trainer)=>{
-        this.trainervalue = JSON.parse(JSON.stringify(trainer));
-        console.log(this.trainervalue);
+        // this.trainervalue = JSON.parse(JSON.stringify(trainer));
+        // console.log(this.trainervalue);
+        this.trainervalue = trainer;
+        console.log("trainervalue is:",this.trainervalue)
+
         })
   
   }

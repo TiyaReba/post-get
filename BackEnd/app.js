@@ -233,7 +233,7 @@ app.get('/find/:name',async function(req,res){
       //   var trainers = await FormData.find({email : {$regex: req.query.search , $options: 'i'}});        
       // if (req.query.field === "skills")
       //   var trainers = await FormData.find({skills : {$regex: req.query.search , $options: 'i'}});   
-      var trainers = await FormData.find({$or :[{trainername:{$regex:req.params.name, $options:'i'}}]})
+      var trainers = await FormData.find({$and :[{trainername:{$regex:req.params.name, $options:'i'}},{approved:true}]})
      }
      catch (e)
      {
