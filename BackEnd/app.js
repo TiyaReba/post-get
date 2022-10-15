@@ -107,7 +107,7 @@ app.post("/signup", (req, res, next) => {
                     let token = jwt.sign(payload, 'secretKey')
             
                     if(req.body.email!="admin@gmail.com"){
-                      TrainerData.findOne({email:req.body.email},function(err,trainer) {
+                      FormData.findOne({email:req.body.email},function(trainer,err) {
                         if(trainer){
                           approved=trainer.approved;
                           res.status(200).send({tok:token,approval:approved})}
@@ -246,21 +246,12 @@ app.get('/find/:name',async function(req,res){
 app.get('/trainerprofile/:email',verifyToken,(req,res)=>{
   const email=req.params.email;
   
-  TrainerData.findOne({$and:[{"email":email},{"approved":true}]})
+  FormData.findOne({$and:[{"email":email},{"approved":true}]})
   .then(function(trainer){
     res.send(trainer);
   })
 }
 )
-//app.get("/trainerProfile/:id",verifyToken,(req,res)=>{
-  //const id = req.params.id; 
-  //console.log("email in load",id)
-  //TrainerData.findOne({_id:id},{approved:true})
-//.then (function (trainer){
-  //  res.send(trainer);
-  //})
-  
-//})
 
 app.get('/requests',function(req,res){
   console.log("Request page");
