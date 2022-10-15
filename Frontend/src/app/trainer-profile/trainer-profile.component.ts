@@ -28,14 +28,7 @@ export class TrainerProfileComponent implements OnInit {
     currentcompanyname:'',
     currentdesignation:'',
     courses:'',
-    startdate:'',
-    enddate:'',
-    starttime:'',
-    endtime:'',
-    coursesname:'',
-    courseid:'',
-    batchid:'',
-    link:''
+
   }]
   constructor(private trainerService :TrainerService,private router:Router) { }
   deleteTrainer(trainer:any){
@@ -45,7 +38,6 @@ export class TrainerProfileComponent implements OnInit {
     .subscribe((res:any)=>{
       this.trainers = this.trainers.filter((p: any) => p!==trainer)
     })
-
   }
 
 allocateTrainer(trainer:any){
@@ -55,8 +47,7 @@ allocateTrainer(trainer:any){
 }
   ngOnInit(): void {
     this.trainerService.getTrainers().subscribe((data) =>{
-      this.trainers = JSON.parse(JSON.stringify(data));
-
+      this.trainers = data;
     })
   }
 
@@ -68,6 +59,7 @@ allocateTrainer(trainer:any){
         // this.trainervalue = JSON.parse(JSON.stringify(trainer));
         // console.log(this.trainervalue);
         this.trainervalue = trainer;
+        window.location.reload();
         console.log("trainervalue is:",this.trainervalue)
 
         })

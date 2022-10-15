@@ -223,7 +223,8 @@ res.send();
 
 // to search 
 app.get('/find/:name',async function(req,res){
-
+  res.header("Access-Control-Allow-Origin",'*');
+  res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
      console.log("search string",req.params.name);
      try
      {
