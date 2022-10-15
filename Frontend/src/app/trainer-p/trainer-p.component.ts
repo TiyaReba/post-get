@@ -24,7 +24,7 @@ export class TrainerPComponent implements OnInit {
   constructor(private router:Router ,private trainerService:TrainerService) { }
 
   ngOnInit(): void {
-    let trainerEmail=localStorage.getItem('loggedUser');
+    let trainerEmail=localStorage.getItem('currentUser');
     this.trainerService.loadProfile(trainerEmail  )
         .subscribe((trainerProfile)=>{
           this.trainer=JSON.parse(JSON.stringify(trainerProfile));

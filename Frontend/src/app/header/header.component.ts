@@ -35,7 +35,7 @@ getloguser(){
     }
   }
   route(){
-    this.router.navigate(['trainer-profile']);
+    this.router.navigate(['trainer-p']);
   }
   isapproved(){
   let apstatus=localStorage.getItem('Approvalstatus');

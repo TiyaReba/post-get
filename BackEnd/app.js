@@ -90,8 +90,9 @@ app.post("/signup", (req, res, next) => {
 
   app.post("/login", (req, res, next) => {
     let fetchedUser;
+    let email= req.body.email;
     console.log("login check",req.body.email)
-    UserData.findOne({email:req.body.email}).then(user=>{
+    UserData.findOne({email:email}).then(user=>{
       if(!user){
         return res.status(401).json({
           message: "Auth failed no such user"
@@ -104,18 +105,18 @@ app.post("/signup", (req, res, next) => {
       if (result){
         let payload = {subject: req.body.email+req.body.password}
                     let token = jwt.sign(payload, 'secretKey')
-                    let email= req.body.email;
+            
                     if(req.body.email!="admin@gmail.com"){
                       TrainerData.findOne({email:req.body.email},function(err,trainer) {
                         if(trainer){
                           approved=trainer.approved;
                           res.status(200).send({tok:token,approval:approved})}
                           else{
-                            res.status(200).send({tok:token,approval:'',email})
+                            res.status(200).send({tok:token,approval:'',email:req.body.email})
                           }
                       })}
                       else{
-        res.status(200).send({tok:token,result,email})
+        res.status(200).send({tok:token,approval:'',email})
       console.log("f"+fetchedUser)}
       }
       if(!result){
