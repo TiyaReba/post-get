@@ -179,7 +179,7 @@ app.delete('/trainerprofiles/delete/:id',verifyToken, (req,res)=>{
   })
 })
 
-  // to get id for allocation
+  // to recognize the id in the admin page
     
   app.get('/trainer/:id',function(req,res){
     const id = req.params.id; 

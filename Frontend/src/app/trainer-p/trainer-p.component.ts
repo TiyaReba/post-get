@@ -32,7 +32,7 @@ export class TrainerPComponent implements OnInit {
   }
   editTrainer(trainer:any){
      
-      // localStorage.setItem("edittrainer", trainer._id.toString());
+       localStorage.setItem("edittrainer", trainer._id.toString());
       this.router.navigate(['editprofile']);
   
     
