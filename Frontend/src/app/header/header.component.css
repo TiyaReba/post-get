@@ -6,10 +6,10 @@
     margin-top: 10px;
     display: flex;
     font-size: larger;
-    font-weight: 500;
+    font-weight: 400;
     color: #000;
 }a{
-    color: rgb(213, 224, 234);
+   
     text-decoration: none;
 }a:hover{
     color: rgb(246, 245, 245);
@@ -27,8 +27,8 @@ h1{
 .nav-link{
     margin-top: 10px;
     display: flex;
-    font-size: larger;
-    font-weight: 500;
+    font-size:large;
+    font-weight: 400;
     color: #000;
     
 }a:hover{

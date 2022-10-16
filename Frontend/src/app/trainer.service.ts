@@ -55,9 +55,9 @@ trainerallotebyId(id:any){
      return this.http.put("http://localhost:3000/trainerProfile/edit/",trainer)
      .subscribe(data=>{console.log(data)})
     }
-  AcceptTrainer(id:any){
+  AcceptTrainer(body:any){
     console.log("inside accept service file")
-    return this.http.put("http://localhost:3000/requests/accept/"+id,{})
+    return this.http.put("http://localhost:3000/requests/accept/",body)
   }
   RejectTrainer(id:any){
     console.log("inside allocate service file")
