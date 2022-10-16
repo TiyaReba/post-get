@@ -298,13 +298,23 @@ app.get("/requests", function (req, res) {
       res.send(trainerss);
     })
   })
-    app.put('/requests/accept/:id',verifyToken,function(req,res){
-         const id = req.params.id;
-         FormData.findByIdAndUpdate({_id:id},{$set:{"approved":true,"ID":id}})
-         .then(function(trainers){
-          console.log("accepted id",ID);
-          res.send(trainers);
-                })
+  app.put("/requests/accept", function (req, res) {
+    const id = req.body.id;
+    var value = Math.floor(Math.random() * 2000);
+    var newid = "TMS" + value.toString();
+    var type = req.body.type;
+    console.log('req.params',req.params);
+    console.log('req.body',req.body);
+    console.log('req.query',req.query);
+    console.log("id",id);
+    console.log("newId",newid);
+    console.log("type",type);
+    FormData.findByIdAndUpdate(
+      { _id: id },
+      { $set: { approved: true, ID: newid, type : type} }
+    ).then(function (trainers) {
+      res.send(trainers);
+    });
               });
      app.delete('/requests/delete/:id',verifyToken,function(req,res){
     const id = req.params.id;
