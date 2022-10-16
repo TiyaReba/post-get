@@ -224,20 +224,15 @@ app.put("/allocate", (req, res) => {
 });
 
 // to search
-app.get("/find/:name", async function (req, res) {
+app.get("/find", async function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
   console.log("search string", req.params.name);
   try {
-    // if (req.query.field === "trainername")
-    //   var trainers = await FormData.find({trainername : {$regex: req.query.search , $options: 'i'}});
-    // if (req.query.field === "email")
-    //   var trainers = await FormData.find({email : {$regex: req.query.search , $options: 'i'}});
-    // if (req.query.field === "skills")
-    //   var trainers = await FormData.find({skills : {$regex: req.query.search , $options: 'i'}});
+ 
     var trainers = await FormData.find({
-      $and: [
-        { trainername: { $regex: req.params.name, $options: "i" } },
+      $and:[
+        { trainername: { $regex: req.params.name, $options: "i" }} ,
         { approved: true },
       ],
     });
