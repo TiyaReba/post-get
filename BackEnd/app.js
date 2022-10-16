@@ -266,6 +266,20 @@ app.get('/requests',function(req,res){
       const id = req.params.id;
   FormData.findByIdAndUpdate({_id:id},{$set:{"approved":true}})
          .then(function(trainers){
+          var mailOptions = {
+            from: 'tmsictak22@gmail.com',
+             to: trainers.email,
+            subject: 'Selected as a Trainer at ICT',
+           
+            text:"Congrats"
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
           console.log("accepted");
           res.send(trainers);
                 })
@@ -274,11 +288,25 @@ app.get('/requests',function(req,res){
     const id = req.params.id;
                   FormData.findByIdAndDelete({_id:id}) 
                   .then(function(trainers){
+                    var mailOptions = {
+                    from: 'tmsictak22@gmail.com',
+                     to: trainers.email,
+                    subject: 'Unfortunately you are not selected',
+                    text: 'We are sorry that we cannot hire you at the moment.'
+                  };
+                  transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                      console.log(error);
+                    } 
+                    else {
+                  console.log('Email sent: ' + info.response);}
+                })
+                });
                     res.send(trainers);
                     console.log("deleted successfully");
   })
 
-});
+
 
 
 app.listen(3000);
