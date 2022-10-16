@@ -6,22 +6,18 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 // db connection
-mongoose.connect(
-  "mongodb+srv://soorya:arya@clustertms.kfgrkm3.mongodb.net/TMS?retryWrites=true&w=majority"
-);
-console.log("Mongo DB connected ...");
-
-const TrainerData = require("./src/model/TMSmodel");
-const FormData = require("./src/model/enrollmentmodel");
-const UserData = require("./src/model/UserData");
-const allocationdata = require("./src/model/allocationdata");
-
+mongoose.connect('mongodb+srv://soorya:arya@clustertms.kfgrkm3.mongodb.net/TMS?retryWrites=true&w=majority')
+console.log("Mongo DB connected ...")
+const TrainerData = require('./src/model/TMSmodel')
+const FormData = require('./src/model/enrollmentmodel')
+const UserData = require('./src/model/UserData');
+const allocationdata = require('./src/model/allocationdata')
 var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "tmsictak22@gmail.com",
-    pass: "STR@ictak22",
-  },
+    user: 'tmsictak22@gmail.com',
+    pass: 'STR@ictak22'
+  }
 });
 var ID = "";
 const app = new express();
@@ -297,35 +293,27 @@ app.put("/trainerProfile/edit", (req, res) => {
 
 app.get("/requests", function (req, res) {
   console.log("Request page");
-  FormData.find({ approved: false }).then(function (trainerss) {
-    res.send(trainerss);
-  });
-});
-app.put("/requests/accept", function (req, res) {
-  const id = req.body.id;
-  var value = Math.floor(Math.random() * 2000);
-  var newid = "TMS" + value.toString();
-  var type = req.body.type;
-  console.log('req.params',req.params);
-  console.log('req.body',req.body);
-  console.log('req.query',req.query);
-  console.log("id",id);
-  console.log("newId",newid);
-  console.log("type",type);
-  FormData.findByIdAndUpdate(
-    { _id: id },
-    { $set: { approved: true, ID: newid, type : type} }
-  ).then(function (trainers) {
-    res.send(trainers);
-  });
-  // res.send('ok');
-});
-app.delete("/requests/delete/:id", verifyToken, function (req, res) {
-  const id = req.params.id;
-  FormData.findByIdAndDelete({ _id: id }).then(function (trainers) {
-    res.send(trainers);
-    console.log("deleted successfully");
-  });
+  FormData.find({"approved":false})
+  .then(function(trainerss){
+      res.send(trainerss);
+    })
+  })
+    app.put('/requests/accept/:id',verifyToken,function(req,res){
+         const id = req.params.id;
+         FormData.findByIdAndUpdate({_id:id},{$set:{"approved":true,"ID":id}})
+         .then(function(trainers){
+          console.log("accepted id",ID);
+          res.send(trainers);
+                })
+              });
+     app.delete('/requests/delete/:id',verifyToken,function(req,res){
+    const id = req.params.id;
+                  FormData.findByIdAndDelete({_id:id}) 
+                  .then(function(trainers){
+                    res.send(trainers);
+                    console.log("deleted successfully");
+  })
+
 });
 
 app.listen(3000);
