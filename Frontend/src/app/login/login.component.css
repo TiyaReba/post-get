@@ -20,3 +20,21 @@ width: 500px;
 mat-form-field{
     width: 100%;
 }
+button{
+    padding: 12px 20px;
+    background: #718ee4;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    font-size: 16px;
+    text-decoration: none;
+    
+    
+    transition: all .3s ease-in;
+   
+    }
+    button:hover{
+    background: transparent;
+    color: #0804f5;
+    border: 2px solid #cec7cb;
+    }

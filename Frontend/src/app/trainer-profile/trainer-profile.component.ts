@@ -28,6 +28,7 @@ export class TrainerProfileComponent implements OnInit {
     currentcompanyname:'',
     currentdesignation:'',
     courses:'',
+    ID:''
 
   }]
   constructor(private trainerService :TrainerService,private router:Router) { }
@@ -38,6 +39,12 @@ export class TrainerProfileComponent implements OnInit {
     .subscribe((res:any)=>{
       this.trainers = this.trainers.filter((p: any) => p!==trainer)
     })
+  }
+
+  EditTrainer(trainer:any){
+    localStorage.setItem("editTrainerId",trainer._id.toString());
+  this.router.navigate(['adminupdate'])
+
   }
 
 allocateTrainer(trainer:any){
@@ -52,17 +59,16 @@ allocateTrainer(trainer:any){
   }
 
   Search(searchForm:NgForm){
-    let search =this.search.text
-    console.log("this.search value",search)
+    console.log("this.search value",this.search.text)
     this.trainerService.findTrainers(this.search.text)
       .subscribe((trainer)=>{
-        // this.trainervalue = JSON.parse(JSON.stringify(trainer));
-        // console.log(this.trainervalue);
-        this.trainervalue = trainer;
         this.trainers = trainer
         console.log("trainervalue is:",this.trainervalue)
-
         })
+
+ 
+
+  
   
   }
 }

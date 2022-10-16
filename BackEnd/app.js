@@ -183,7 +183,7 @@ app.delete('/trainerprofiles/delete/:id',verifyToken, (req,res)=>{
     
   app.get('/trainer/:id',function(req,res){
     const id = req.params.id; 
-  FormData.findOne({_id:id})  
+  FormData.findOne({id:id})  
    .then(function(trainers){
        res.send(trainers);
     })
@@ -246,13 +246,51 @@ app.get('/find/:name',async function(req,res){
 //to load invidual trainer profile
 app.get('/trainerprofile/:email',verifyToken,(req,res)=>{
   const email=req.params.email;
-  
   FormData.findOne({$and:[{"email":email},{"approved":true}]})
   .then(function(trainer){
     res.send(trainer);
   })
-}
-)
+})
+// for profile loading while profile edit
+app.get('/trainerprofile/:id',(req,res)=>{
+  const id=req.params.id;
+  console.log("trainer id for edit in inv profile",id)
+  FormData.findOne({id:id})
+  .then((trainers)=>{
+      res.send(trainers);
+  })
+})
+//for editing profile
+app.put("/trainerProfile/edit",(req,res)=>{
+  res.header("Access-Control-Allow-Origin",'*');
+  res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
+  console.log('body for allocation:'+ req.body)
+  id=req.body._id,
+  console.log("id in update:",id);
+    trainername=req.body.trainername,
+    email=req.body.email,
+    phone=req.body.phone,
+    address=req.body.address,
+    qualification=req.body.qualification,
+    skills=req.body.skills,
+    currentcompanyname=req.body.currentcompanyname,
+    currentdesignation=req.body.currentdesignation,
+    courses=req.body.courses,
+    approved=true
+  FormData.findOneAndUpdate({"_id":id},
+                                {$set:{"trainername":trainername,
+                                        "email":email,
+                                        "phone":phone,
+                                        "address":address,
+                                        "qualification":qualification,
+                                        "skills":skills,
+                                        "currentcompanyname":currentcompanyname,
+                                        "currentdesignation":currentdesignation,
+                                        "courses":courses  }})
+  .then(function(){
+  res.send();
+                                        })                                      
+})
 
 app.get('/requests',function(req,res){
   console.log("Request page");
@@ -261,10 +299,9 @@ app.get('/requests',function(req,res){
       res.send(trainerss);
     })
   })
-    app.get('/requests/accept/:id',verifyToken,function(req,res){
-        
-      const id = req.params.id;
-  FormData.findByIdAndUpdate({_id:id},{$set:{"approved":true}})
+    app.put('/requests/accept/:id',verifyToken,function(req,res){
+         const id = req.params.id;
+         FormData.findByIdAndUpdate({_id:id},{$set:{"approved":true,"ID":id}})
          .then(function(trainers){
           var mailOptions = {
             from: 'tmsictak22@gmail.com',

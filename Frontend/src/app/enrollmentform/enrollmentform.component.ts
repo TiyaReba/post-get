@@ -32,24 +32,19 @@ get f(){
 }
 onsubmit(){
   this.submit = true
-  this.trainerService.addForms((this.registrationForm.value))
-      // console.log(JSON.parse(JSON.stringify(res.body)))
-  
-  //  alert("new employee added")
-
-
   if(!this.registrationForm.valid){
     alert("Please fill all required fields...")
   }
 
   else{
+    this.trainerService.addForms((this.registrationForm.value))
    console.log(this.registrationForm.value);
     alert("Trainer addedd sucessfully")
     this.router.navigate(['/'])
-  }
   localStorage.setItem('trainerAlertMsg', `The form submitted successfully`);
   console.log("clicked")
   console.log('f', this.f)
+  }
 }
 
   ngOnInit(): void {
