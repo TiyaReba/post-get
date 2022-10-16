@@ -27,7 +27,7 @@ export class TrainerProfileComponent implements OnInit {
     skills:'',
     currentcompanyname:'',
     currentdesignation:'',
-    courses:'',
+    courses:''
 
   }]
   constructor(private trainerService :TrainerService,private router:Router) { }
@@ -52,17 +52,16 @@ allocateTrainer(trainer:any){
   }
 
   Search(searchForm:NgForm){
-    let search =this.search.text
-    console.log("this.search value",search)
+    console.log("this.search value",this.search.text)
     this.trainerService.findTrainers(this.search.text)
       .subscribe((trainer)=>{
-        // this.trainervalue = JSON.parse(JSON.stringify(trainer));
-        // console.log(this.trainervalue);
-        this.trainervalue = trainer;
         this.trainers = trainer
         console.log("trainervalue is:",this.trainervalue)
-
         })
+
+ 
+
+  
   
   }
 }

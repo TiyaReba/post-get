@@ -246,23 +246,38 @@ app.get('/find/:name',async function(req,res){
 //to load invidual trainer profile
 app.get('/trainerprofile/:email',verifyToken,(req,res)=>{
   const email=req.params.email;
-  
   FormData.findOne({$and:[{"email":email},{"approved":true}]})
   .then(function(trainer){
     res.send(trainer);
   })
 })
 // for profile loading while profile edit
-app.get('/trainerprofile/:id',verifyToken,(req,res)=>{
+app.get('/trainerprofile/:id',(req,res)=>{
   const id=req.params.id;
-  FormData.findOne({"_id":id})
-  .then((trainer)=>{
-      res.send(trainer);
+  console.log("trainer id for edit in inv profile",id)
+  FormData.findOne({id:id})
+  .then((trainers)=>{
+      res.send(trainers);
   })
 })
 //for editing profile
 app.put("/trainerProfile/edit",(req,res)=>{
-  FormData.findByIdAndUpdate({"_id":id},
+  res.header("Access-Control-Allow-Origin",'*');
+  res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
+  console.log('body for allocation:'+ req.body)
+  id=req.body._id,
+  console.log("id in update:",id);
+    trainername=req.body.trainername,
+    email=req.body.email,
+    phone=req.body.phone,
+    address=req.body.address,
+    qualification=req.body.qualification,
+    skills=req.body.skills,
+    currentcompanyname=req.body.currentcompanyname,
+    currentdesignation=req.body.currentdesignation,
+    courses=req.body.courses,
+    approved=true
+  FormData.findOneAndUpdate({"_id":id},
                                 {$set:{"trainername":trainername,
                                         "email":email,
                                         "phone":phone,

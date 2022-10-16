@@ -48,6 +48,7 @@ trainerallotebyId(id:any){
     return this.http.get("http://localhost:3000/trainerProfile/"+email);
   }
   getTrainerE(id:any){
+    console.log("inside getTrainerE service file")
     return this.http.get("http://localhost:3000/trainerProfile/"+id)
   };
   editProfile(trainer:any){

@@ -31,15 +31,18 @@ export class EditprofileComponent implements OnInit {
     return this.registrationForm.controls;
   };
   ngOnInit(): void {
-    let trainerID = localStorage.getItem('editTrainerId');
+    let trainerID = localStorage.getItem('editTrainer');
     this.trainerService.getTrainerE(trainerID)
     .subscribe((trainerdata)=>{
       this.registrationForm =JSON.parse(JSON.stringify(trainerdata))
       console.log(this.registrationForm);
+      console.log("trainerid in ngonit edit",trainerID)
     });
   }
   onsubmit(){
-        this.trainerService.editProfile(this.registrationForm);
+   let rg=this.registrationForm.value
+   console.log("rg in onsubmit editprofile",rg)
+        this.trainerService.editProfile(rg);
         alert('Profile has been updated!');
         this.router.navigate(['trainer-p']);
   }
