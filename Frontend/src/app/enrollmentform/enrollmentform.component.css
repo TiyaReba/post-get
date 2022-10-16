@@ -1,6 +1,9 @@
 .container-fluid{
     
-    width: 600px;
+    width: 500px;
+}
+.form-control{
+    text-size-adjust: 20px;
 }
 
 /* .tab{
