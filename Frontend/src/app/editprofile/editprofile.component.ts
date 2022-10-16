@@ -31,14 +31,16 @@ export class EditprofileComponent implements OnInit {
     return this.registrationForm.controls;
   };
   ngOnInit(): void {
-    // let trainerId = localStorage.getItem('editTrainerId');
-    // this.trainerService.getTrainerE(trainerId)
-    // .subscribe((trainerdata)=>{
-    //   this.trainer =JSON.parse(JSON.stringify(trainerdata))
-    //   console.log(this.trainer);
-    // });
+    let trainerID = localStorage.getItem('editTrainerId');
+    this.trainerService.getTrainerE(trainerID)
+    .subscribe((trainerdata)=>{
+      this.registrationForm =JSON.parse(JSON.stringify(trainerdata))
+      console.log(this.registrationForm);
+    });
   }
   onsubmit(){
-
+        this.trainerService.editProfile(this.registrationForm);
+        alert('Profile has been updated!');
+        this.router.navigate(['trainer-p']);
   }
 }

@@ -183,7 +183,7 @@ app.delete('/trainerprofiles/delete/:id',verifyToken, (req,res)=>{
     
   app.get('/trainer/:id',function(req,res){
     const id = req.params.id; 
-  FormData.findOne({_id:id})  
+  FormData.findOne({id:id})  
    .then(function(trainers){
        res.send(trainers);
     })
@@ -251,8 +251,31 @@ app.get('/trainerprofile/:email',verifyToken,(req,res)=>{
   .then(function(trainer){
     res.send(trainer);
   })
-}
-)
+})
+// for profile loading while profile edit
+app.get('/trainerprofile/:id',verifyToken,(req,res)=>{
+  const id=req.params.id;
+  FormData.findOne({"_id":id})
+  .then((trainer)=>{
+      res.send(trainer);
+  })
+})
+//for editing profile
+app.put("/trainerProfile/edit",(req,res)=>{
+  FormData.findByIdAndUpdate({"_id":id},
+                                {$set:{"trainername":trainername,
+                                        "email":email,
+                                        "phone":phone,
+                                        "address":address,
+                                        "qualification":qualification,
+                                        "skills":skills,
+                                        "currentcompanyname":currentcompanyname,
+                                        "currentdesignation":currentdesignation,
+                                        "courses":courses  }})
+  .then(function(){
+  res.send();
+                                        })                                      
+})
 
 app.get('/requests',function(req,res){
   console.log("Request page");
