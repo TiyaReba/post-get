@@ -82,7 +82,7 @@
 
 <div class="container-fluid">
     <h3 style="text-align:center">Enrollment Form</h3>
-    <form [formGroup]="registrationForm" (ngSubmit)="onsubmit()">
+    <form [formGroup]="registrationForm" (ngSubmit)="onsubmit()" >
     
     <label>Trainer Name</label>
     <input type="text" placeholder="Trainer Name" class="form-control" formControlName="trainername" popupHeight='200px' popupWidth = '250px'
