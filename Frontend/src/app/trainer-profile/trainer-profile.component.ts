@@ -28,7 +28,8 @@ export class TrainerProfileComponent implements OnInit {
     currentcompanyname:'',
     currentdesignation:'',
     courses:'',
-    ID:''
+    ID:'',
+    type:''
 
   }]
   constructor(private trainerService :TrainerService,private router:Router) { }

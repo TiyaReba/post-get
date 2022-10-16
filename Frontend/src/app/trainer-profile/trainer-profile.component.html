@@ -21,7 +21,8 @@
                 <p class="card-text text-muted">Current Company Name:  &nbsp;&nbsp;{{trainer.currentcompanyname}}</p>
                 <p class="card-text text-muted ">Current Designation: &nbsp;&nbsp;{{trainer.currentdesignation}}</p>
                 <p class="card-text text-muted ">ICTAK Courses Handling: &nbsp;&nbsp;{{trainer.courses}}</p>
-                  <button  (click)="deleteTrainer(trainer)" >Delete </button>          &nbsp;&nbsp;
+                <p class="card-text text-muted ">Type of Employment: &nbsp;&nbsp;{{trainer.type}}</p> 
+                  <button  (click)="deleteTrainer(trainer)" >Delete </button> &nbsp;&nbsp;
                   <button (click)="EditTrainer(trainer)"> Edit</button>&nbsp;&nbsp;
                   <button (click)="allocateTrainer(trainer)"> Allocate</button>
                   </span>  
