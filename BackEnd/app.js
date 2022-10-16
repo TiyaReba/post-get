@@ -299,12 +299,11 @@ app.get('/requests',function(req,res){
       res.send(trainerss);
     })
   })
-    app.get('/requests/accept/:id',verifyToken,function(req,res){
-        
-      const id = req.params.id;
-  FormData.findByIdAndUpdate({_id:id},{$set:{"approved":true}})
+    app.put('/requests/accept/:id',verifyToken,function(req,res){
+         const id = req.params.id;
+         FormData.findByIdAndUpdate({_id:id},{$set:{"approved":true,"ID":id}})
          .then(function(trainers){
-          console.log("accepted");
+          console.log("accepted id",ID);
           res.send(trainers);
                 })
               });

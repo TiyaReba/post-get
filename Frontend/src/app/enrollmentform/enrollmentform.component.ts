@@ -32,12 +32,6 @@ get f(){
 }
 onsubmit(){
   this.submit = true
- 
-      // console.log(JSON.parse(JSON.stringify(res.body)))
-  
-  //  alert("new employee added")
-
-
   if(!this.registrationForm.valid){
     alert("Please fill all required fields...")
   }

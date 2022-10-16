@@ -29,7 +29,7 @@ export class RequestComponent implements OnInit {
   currentcompanyname:String,
   currentdesignation:String,
   courses:String,
-  _id:String
+  ID:String
     }
  
   
@@ -44,7 +44,7 @@ export class RequestComponent implements OnInit {
     currentcompanyname:String,
     currentdesignation:String,
     courses:String,
-    _id:String
+    ID:String
   }]
 
   constructor(public trainerservice : TrainerService, private router:Router,private http : HttpClient, public auth :AuthserviceService, ) { }
@@ -60,7 +60,6 @@ export class RequestComponent implements OnInit {
      });
      console.log (`Alert msg : ${this.alertMsg}` );
     }
-
     acceptTrainer(trainer: any)
   {
     
