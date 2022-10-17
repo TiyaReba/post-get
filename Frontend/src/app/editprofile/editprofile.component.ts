@@ -42,7 +42,7 @@ export class EditprofileComponent implements OnInit {
   //   return this.registrationForm.controls;
   // };
   ngOnInit(): void {
-    let trainerID = localStorage.getItem('edittrainer');
+    let trainerID = localStorage.getItem('editTrainerId');
     this.trainerService.getTrainerE(trainerID)
     .subscribe((trainerdata)=>{
       this.trainer =JSON.parse(JSON.stringify(trainerdata))

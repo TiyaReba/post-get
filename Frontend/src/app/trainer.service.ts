@@ -52,8 +52,9 @@ trainerallotebyId(id:any){
     return this.http.get("http://localhost:3000/trainerProfile/"+id)
   };
   editProfile(trainer:any){
+    console.log("edittrainer")
      return this.http.put("http://localhost:3000/trainerProfile/edit/",trainer)
-     .subscribe(data=>{console.log(data)})
+     
     }
   AcceptTrainer(body:any){
     console.log("inside accept service file")

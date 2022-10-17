@@ -16,7 +16,7 @@ var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: 'tmsictak22@gmail.com',
-    pass: 'STR@ictak22'
+    pass: 'otmqtugvitsptyaj'
   }
 });
 var ID = "";
@@ -186,7 +186,7 @@ app.get("/trainer/:id", function (req, res) {
 
 // to allocate each trainer
 
-app.put("/allocate", (req, res) => {
+app.put("/allocate", verifyToken,(req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
   console.log("body for allocation:" + req.body);
@@ -214,10 +214,29 @@ app.put("/allocate", (req, res) => {
         link: link,
       },
     }
-  ).then(function () {
-    res.send();
+  ).then(function (trainers) {
+    var mailOptions = {
+      from: 'tmsictak22@gmail.com',
+       to: trainers.email,
+      subject: 'Trainer Allocation Details',
+     
+      html:`<p>'Dear sir/mam,<br>We have completed your allocation process.Please find the details below:<br>
+      StartDate:${trainers.startdate},Enddate:${trainers.enddate},Coursename:${trainers.courses},CourseID:${trainers.courseid},BatchID:${trainers.batchid},link:${trainers.link}
+      <br>From,TMS Admin
+      </p>`
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+         
+
+    res.send(trainers);
+  })
   });
-});
 
 // to search
 app.get("/find", async function (req, res) {
@@ -248,7 +267,7 @@ app.get("/trainerprofile/:email", verifyToken, (req, res) => {
   );
 });
 // for profile loading while profile edit
-app.get("/trainerprofile/:id", (req, res) => {
+app.get("/trainerprofile/:id",verifyToken, (req, res) => {
   const id = req.params.id;
   console.log("trainer id for edit in inv profile", id);
   FormData.findOne({ id: id }).then((trainers) => {
@@ -256,7 +275,7 @@ app.get("/trainerprofile/:id", (req, res) => {
   });
 });
 //for editing profile
-app.put("/trainerProfile/edit", (req, res) => {
+app.put("/trainerProfile/edit",verifyToken, (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
   console.log("body for allocation:" + req.body);
@@ -271,7 +290,7 @@ app.put("/trainerProfile/edit", (req, res) => {
     (currentdesignation = req.body.currentdesignation),
     (courses = req.body.courses),
     (approved = true);
-  FormData.findOneAndUpdate(
+  FormData.findByIdAndUpdate(
     { _id: id },
     {
       $set: {
@@ -291,14 +310,15 @@ app.put("/trainerProfile/edit", (req, res) => {
   });
 });
 
-app.get("/requests", function (req, res) {
+app.get("/requests", verifyToken,function (req, res) {
   console.log("Request page");
   FormData.find({"approved":false})
   .then(function(trainerss){
       res.send(trainerss);
     })
   })
-  app.put("/requests/accept", function (req, res) {
+  //to accept requests
+  app.put("/requests/accept", verifyToken,function (req, res) {
     const id = req.body.id;
     var value = Math.floor(Math.random() * 2000);
     var newid = "TMS" + value.toString();
@@ -313,18 +333,52 @@ app.get("/requests", function (req, res) {
       { _id: id },
       { $set: { approved: true, ID: newid, type : type} }
     ).then(function (trainers) {
-      res.send(trainers);
+      var mailOptions = {
+        from: 'tmsictak22@gmail.com',
+         to: trainers.email,
+        subject: 'Selected as a Trainer at ICT',
+       
+        html:`<p>'Thank you for taking the time to apply for the trainer position.We have completed all of our procedures.Congratulations!! you have been selected .Please find the details below:<br>
+        Type of employment:${type},Trainer ID:${trainers.ID}</p>
+        <br>
+        From TMS Admin`
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+             res.send(trainers);
+           })
+ 
+      
     });
-              });
+       //to delete requests and send mail   
      app.delete('/requests/delete/:id',verifyToken,function(req,res){
     const id = req.params.id;
                   FormData.findByIdAndDelete({_id:id}) 
                   .then(function(trainers){
+                    var mailOptions = {
+                      from: 'tmsictak22@gmail.com',
+                       to: trainers.email,
+                      subject: 'Unfortunately you are not selected',
+                      text: 'Thank you for applying for Trainer at ICT. Our hiring team has reviewed your application and decided to proceed with other candidates. We wish you luck on your search for your next career opportunity.<br>From TMS Admin'
+                    };
+                    transporter.sendMail(mailOptions, function(error, info){
+                      if (error) {
+                        console.log(error);
+                      } 
+                      else {
+                    console.log('Email sent: ' + info.response);}
+                  })
+                  });
                     res.send(trainers);
                     console.log("deleted successfully");
   })
 
-});
+
 
 app.listen(3000);
 console.log("port 3000");
