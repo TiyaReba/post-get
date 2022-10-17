@@ -35,13 +35,16 @@ export class TrainerService {
     
   }
 
-  allocateTrainer(item:any){
-  console.log("inside allocate service file")
-  return this.http.put("http://localhost:3000/allocate",item)
-  .subscribe(data =>{console.log(data)})
+  allocateTrainer(body:any){
+  console.log("inside allocate service file id",body._id)
+  return this.http.put<any>("http://localhost:3000/allocate",body)
+  
 }
+
 trainerallotebyId(id:any){
+  console.log('trainerallote id in servicen file',id)
   return this.http.get("http://localhost:3000/trainer/"+id);
+ 
 }
   loadProfile(email:any){
     console.log("inside service file of loadprofile");
