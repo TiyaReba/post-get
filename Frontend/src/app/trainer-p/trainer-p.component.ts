@@ -25,14 +25,14 @@ export class TrainerPComponent implements OnInit {
 
   ngOnInit(): void {
     let trainerEmail=localStorage.getItem('currentUser');
-    this.trainerService.loadProfile(trainerEmail  )
+    this.trainerService.loadProfile(trainerEmail)
         .subscribe((trainerProfile)=>{
           this.trainer=JSON.parse(JSON.stringify(trainerProfile));
         })
   }
   editTrainer(trainer:any){
      
-      localStorage.setItem("edittrainer", trainer._id.toString());
+      // localStorage.setItem("edittrainer", this.trainer.toString());
       this.router.navigate(['editprofile']);
   
     

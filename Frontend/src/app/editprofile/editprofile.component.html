@@ -1,6 +1,61 @@
 <div class="container-fluid">
     <h3 style="text-align:center">To Edit Details</h3>
-    <form [formGroup]="registrationForm" (ngSubmit)="onsubmit()">
+    <form #editprofile="ngForm" (ngSubmit)="editprofile.form.valid && editProfile()">
+    <div>
+      <label class="form-label">Trainer Name</label>
+      <input type="text" class="form-control" name="trainername" [(ngModel)]="trainer.trainername" #trainername="ngModel" required>
+      <small class="text-danger" *ngIf="editprofile.submitted&&trainername.errors?.['required']">*Mandatory Fields </small>
+    </div>
+    <div>
+      <label class="form-label">Trainer Email</label>
+      <input type="email" class="form-control" name="email" [(ngModel)]="trainer.email" #email="ngModel" required>
+      <small class="text-danger" *ngIf="editprofile.submitted&&email.errors?.['required']">*Mandatory Fields </small>
+    </div>
+    <div>
+      <label class="form-label">Phone Number</label>
+      <input type="Number" class="form-control" name="phone" [(ngModel)]="trainer.phone" #phone="ngModel" required>
+      <small class="text-danger" *ngIf="editprofile.submitted&&phone.errors?.['required']">*Mandatory Fields </small>
+    </div>
+    <div>
+      <label class="form-label">Address</label>
+      <input type="text" class="form-control" name="address" [(ngModel)]="trainer.address" #address="ngModel" required>
+      <small class="text-danger" *ngIf="editprofile.submitted&&address.errors?.['required']">*Mandatory Fields </small>
+    </div>
+    <div>
+      <label class="form-label">Highest Qualification</label>
+      <input type="text" class="form-control" name="qualification" [(ngModel)]="trainer.qualification" #qualification="ngModel" required>
+      <small class="text-danger" *ngIf="editprofile.submitted&& qualification.errors?.['required']">*Mandatory Fields </small>
+    </div>
+    <div>
+      <label class="form-label">Skill Set</label>
+      <input type="text" class="form-control" name="skills" [(ngModel)]="trainer.skills" #skills="ngModel" required>
+      <small class="text-danger" *ngIf="editprofile.submitted&&skills.errors?.['required']">*Mandatory Fields </small>
+    </div>
+    <div>
+      <label class="form-label">Current Company Name</label>
+      <input type="text" class="form-control" name="currentcompanyname" [(ngModel)]="trainer.currentcompanyname" #currentcompanyname="ngModel" required>
+      <small class="text-danger" *ngIf="editprofile.submitted&&currentcompanyname.errors?.['required']">*Mandatory Fields </small>
+    </div>
+    <div>
+      <label class="form-label">Current Designation</label>
+      <input type="text" class="form-control" name="currentdesignation" [(ngModel)]="trainer.currentdesignation" #currentdesignation="ngModel" required>
+      <small class="text-danger" *ngIf="editprofile.submitted&&currentdesignation.errors?.['required']">*Mandatory Fields </small>
+    </div>
+    <div>
+      <label class="form-label">ICTAK Courses Handling</label>
+      <select class="form-control" name="course" [(ngModel)]="trainer.courses" #courses="ngModel" required>
+        <option disabled>Select Courses</option>
+        <option >Choose Course</option>
+        <option *ngFor="let i of courselist">{{i}}</option>
+      </select>
+      <small class="text-danger" *ngIf="editprofile.submitted&&courses.errors?.['required']">*Mandatory Fields </small>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+
+
+    <!-- <form [formGroup]="registrationForm" (ngSubmit)="onsubmit()">
     
     <label>Trainer Name</label>
     <input type="text" placeholder="Trainer Name" class="form-control" formControlName="trainername" popupHeight='200px' popupWidth = '250px'
@@ -76,5 +131,5 @@
 
 <br>
       <button type="submit" class="btn btn-success">Submit</button>
-  </form>
+  </form> -->
 </div>
