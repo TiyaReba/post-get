@@ -177,8 +177,9 @@ app.delete("/trainerprofiles/delete/:id", verifyToken, (req, res) => {
 
 // to recognize the id in the admin page
 
-app.get("/trainer/:id", function (req, res) {
+app.get("/trainer/:id",verifyToken, function (req, res) {
   const id = req.params.id;
+  console.log("trainer id is",id);
   FormData.findOne({ _id: id }).then(function (trainers) {
     res.send(trainers);
   });
@@ -186,12 +187,12 @@ app.get("/trainer/:id", function (req, res) {
 
 // to allocate each trainer
 
-app.put("/allocate", verifyToken,(req, res) => {
+app.put("/allocate",(req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
-  console.log("body for allocation:" + req.body);
   console.log("startdate :" + req.body.startdate);
-  (id = req.body._id), console.log("id in update:", id);
+   const id = req.body._id;
+  console.log("id in allocate:",req.body._id);
   (startdate = req.body.startdate),
     (enddate = req.body.enddate),
     (starttime = req.body.starttime),
@@ -221,7 +222,7 @@ app.put("/allocate", verifyToken,(req, res) => {
       subject: 'Trainer Allocation Details',
      
       html:`<p>'Dear sir/mam,<br>We have completed your allocation process.Please find the details below:<br>
-      StartDate:${trainers.startdate},Enddate:${trainers.enddate},Coursename:${trainers.courses},CourseID:${trainers.courseid},BatchID:${trainers.batchid},link:${trainers.link}
+      StartDate:${req.bodyzgit.startdate},Enddate:${trainers.enddate},Coursename:${trainers.courses},CourseID:${trainers.courseid},BatchID:${trainers.batchid},link:${trainers.link}
       <br>From,TMS Admin
       </p>`
     };
@@ -338,7 +339,7 @@ app.get("/requests", verifyToken,function (req, res) {
         subject: 'Selected as a Trainer at ICT',
        
         html:`<p>'Thank you for taking the time to apply for the trainer position.We have completed all of our procedures.Congratulations!! you have been selected .Please find the details below:<br>
-        Type of employment:${type},Trainer ID:${trainers.ID}</p>
+        Type of employment:${type},Trainer ID:${trainers.newid}</p>
         <br>
         From TMS Admin`
       };

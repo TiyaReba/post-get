@@ -42,18 +42,14 @@ export class TrainerProfileComponent implements OnInit {
     })
   }
 
-  EditTrainer(trainer:any){
-    localStorage.setItem("editTrainerId",trainer._id.toString());
-  this.router.navigate(['adminupdate'])
-
-  }
-
 allocateTrainer(trainer:any){
   localStorage.setItem("allocateTrainerId",trainer._id.toString());
   this.router.navigate(['admin'])
+  console.log("currenttrainer id is",trainer._id)
   
 }
   ngOnInit(): void {
+   
     this.trainerService.getTrainers().subscribe((data) =>{
       this.trainers = data;
     })

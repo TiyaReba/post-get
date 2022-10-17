@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <h2 style="text-align:center">Fill the requirements</h2>
-    <form (ngSubmit)="onclick()">
+    <form #allocationForm="ngForm" (ngSubmit)="allocationForm.form.valid && onclick(allocationForm)" >
 
         <label>Start Date </label>
         <input type="date" class="form-control"  name="startdate" popupHeight='200px' popupWidth = '250px' [(ngModel)]="adminform.startdate" required #startdate="ngModel">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TrainerService } from '../trainer.service';
 
@@ -10,12 +10,8 @@ import { TrainerService } from '../trainer.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
-  constructor(private af:FormBuilder,private trainerservice:TrainerService,private router:Router) { }
-  courselist:any=['FSD','DSA','RPA']
-  Courseid:any =['01_DSA', '02_FSD', '03_RPA']
-  Batchid:any =[ 'DSA001', 'DSA002', 'FSD001']
-  submit=false
+  
+  
   adminform = {
     trainername:'',
     email:'',
@@ -33,29 +29,39 @@ export class AdminComponent implements OnInit {
     coursesname:'',
     courseid:'',
     batchid:'',
-    link:''
+    link:'',
+    type:'',
+    id:'',
+    approved:''
 
   }
+  courselist:any=['FSD','DSA','RPA']
+  Courseid:any =['01_DSA', '02_FSD', '03_RPA']
+  Batchid:any =[ 'DSA001', 'DSA002', 'FSD001']
 
-  // get f(){
-  //   return this.adminform.controls;
-  // }
+  constructor(private af:FormBuilder,private trainerservice:TrainerService,private router:Router) { }
+ 
   details:any;
   
   ngOnInit(): void {
     this.details=localStorage.getItem('allocateTrainerId');
     this.trainerservice.trainerallotebyId(this.details).subscribe((data)=>{
       this.adminform=JSON.parse(JSON.stringify(data));
+      console.log("ngonit in admin",data)
   })
   }
 
-  onclick(){
-  this.submit = true
-  console.log("clicked")
+  onclick(formValue:NgForm){
+  console.log("clicked in admim allocation submit")
   this.trainerservice.allocateTrainer((this.adminform))
-   console.log(this.adminform);
-    alert("Trainer allocated sucessfully")
-    this.router.navigate(['/home'])
+  .subscribe((data) =>{
+    console.log(data)
+  
+  console.log(this.adminform);
+  alert("Trainer allocated sucessfully")
+  this.router.navigate(['/trainer-profile'])
+  })
+  localStorage.setItem('trainerAlertMsg', `The form submitted successfully`); 
   
     
   }
