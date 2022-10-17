@@ -179,7 +179,7 @@ app.delete("/trainerprofiles/delete/:id", verifyToken, (req, res) => {
 
 app.get("/trainer/:id", function (req, res) {
   const id = req.params.id;
-  FormData.findOne({ id: id }).then(function (trainers) {
+  FormData.findOne({ _id: id }).then(function (trainers) {
     res.send(trainers);
   });
 });
@@ -267,10 +267,10 @@ app.get("/trainerprofile/:email", verifyToken, (req, res) => {
   );
 });
 // for profile loading while profile edit
-app.get("/trainerprofile/:id",verifyToken, (req, res) => {
-  const id = req.params.id;
-  console.log("trainer id for edit in inv profile", id);
-  FormData.findOne({ id: id }).then((trainers) => {
+app.get("/trainerProfile/:email",verifyToken, (req, res) => {
+  const email= req.params.email;
+  console.log("trainer id for edit in  profile", id);
+  FormData.findOne({ email: email}).then((trainers) => {
     res.send(trainers);
   });
 });
@@ -278,31 +278,30 @@ app.get("/trainerprofile/:id",verifyToken, (req, res) => {
 app.put("/trainerProfile/edit",verifyToken, (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
-  console.log("body for allocation:" + req.body);
-  (id = req.body._id), console.log("id in update:", id);
-  (trainername = req.body.trainername),
-    (email = req.body.email),
-    (phone = req.body.phone),
-    (address = req.body.address),
-    (qualification = req.body.qualification),
-    (skills = req.body.skills),
-    (currentcompanyname = req.body.currentcompanyname),
-    (currentdesignation = req.body.currentdesignation),
-    (courses = req.body.courses),
-    (approved = true);
-  FormData.findByIdAndUpdate(
+  console.log("body for edit:" + req.body);
+ const  id = req.body.id,
+ trainername=req.body.trainername,
+ email=req.body.email,
+ phone=req.body.phone,
+ address=req.body. address,
+ qualification=req.body.qualification,
+ skills=req.body.skills,
+ currentcompanyname=req.body.currentcompanyname,
+ currentdesignation=req.body.currentdesignation,
+ courses=req.body. courses;
+  FormData.findOneAndUpdate(
     { _id: id },
     {
       $set: {
-        trainername: trainername,
-        email: email,
-        phone: phone,
-        address: address,
-        qualification: qualification,
-        skills: skills,
-        currentcompanyname: currentcompanyname,
-        currentdesignation: currentdesignation,
-        courses: courses,
+        "trainername": trainername,
+        "email": email,
+        "phone": phone,
+        "address": address,
+        "qualification": qualification,
+        "skills": skills,
+        "currentcompanyname": currentcompanyname,
+        "currentdesignation": currentdesignation,
+        "courses": courses
       },
     }
   ).then(function () {
