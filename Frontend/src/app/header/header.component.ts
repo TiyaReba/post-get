@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   loggedUser : any ='';
   constructor(public auth :AuthserviceService, private router :Router ) { }
-  title:String = "TMS Portal";
+  title:String = "Trainer Management System";
     
 
   ngOnInit(): void {

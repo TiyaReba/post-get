@@ -27,7 +27,9 @@ export class TrainerProfileComponent implements OnInit {
     skills:'',
     currentcompanyname:'',
     currentdesignation:'',
-    courses:''
+    courses:'',
+    ID:'',
+    type:''
 
   }]
   constructor(private trainerService :TrainerService,private router:Router) { }
@@ -38,6 +40,12 @@ export class TrainerProfileComponent implements OnInit {
     .subscribe((res:any)=>{
       this.trainers = this.trainers.filter((p: any) => p!==trainer)
     })
+  }
+
+  EditTrainer(trainer:any){
+    localStorage.setItem("editTrainerId",trainer._id.toString());
+  this.router.navigate(['adminupdate'])
+
   }
 
 allocateTrainer(trainer:any){

@@ -25,7 +25,8 @@ const TrainerForm = new Schema({
     courseid:String,
     batchid:String,
     link:String,
-    id:String
+    ID:String,
+    type:String
 })
 
 // const form = mongoose.model("trainerlist",TrainerForm);

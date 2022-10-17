@@ -11,6 +11,7 @@ export class TrainerPComponent implements OnInit {
   trainer={
     trainername:'',
     email:'',
+    ID:'',
     phone:'',
     address:'',
     qualification:'',
