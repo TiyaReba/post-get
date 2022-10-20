@@ -222,7 +222,7 @@ app.put("/allocate",(req, res) => {
       subject: 'Trainer Allocation Details',
      
       html:`<p>'Dear sir/mam,<br>We have completed your allocation process.Please find the details below:<br>
-      StartDate:${req.bodyzgit.startdate},Enddate:${trainers.enddate},Coursename:${trainers.courses},CourseID:${trainers.courseid},BatchID:${trainers.batchid},link:${trainers.link}
+      StartDate:${req.body.startdate},Enddate:${trainers.enddate},Coursename:${trainers.courses},CourseID:${trainers.courseid},BatchID:${trainers.batchid},link:${trainers.link}
       <br>From,TMS Admin
       </p>`
     };
@@ -239,16 +239,35 @@ app.put("/allocate",(req, res) => {
   })
   });
 
-// to search
-app.get("/find", async function (req, res) {
+// to search name
+app.put("/find", async function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
-  console.log("search string", req.params.name);
-  try {
+  console.log("search string", req.body);
+  console.log("search body",req.body.find.text)
  
+  try {
+    var regex = new RegExp(req.body.find.text,'i');
+    var trainers = await FormData.find({ $and:[{$or: [{trainername:regex}, {skills:regex},{courses:regex},{type:regex}]},{"approved":true}] })
+  
+  } catch (e) {
+    res.status(500).send();
+  }
+  res.send(trainers);
+  console.log(trainers)
+});
+
+// to search courses
+app.get("/find/:courses", async function (req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
+  console.log("search string", req.params.courses);
+  console.log("body ",req.body)
+ 
+  try {
     var trainers = await FormData.find({
       $and:[
-        { trainername: { $regex: req.params.name, $options: "i" }} ,
+        { courses: { $regex: req.params.courses, $options: "i" }} ,
         { approved: true },
       ],
     });
@@ -257,9 +276,9 @@ app.get("/find", async function (req, res) {
   }
   res.send(trainers);
 });
-
 //to load invidual trainer profile
 app.get("/trainerprofile/:email", verifyToken, (req, res) => {
+  
   const email = req.params.email;
   FormData.findOne({ $and: [{ email: email }, { approved: true }] }).then(
     function (trainer) {

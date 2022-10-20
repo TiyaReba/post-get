@@ -29,9 +29,9 @@ export class TrainerService {
   }
 
  
-  findTrainers(name:any){
-    console.log("inside search service file")
-    return this.http.get<any>("http://localhost:3000/find/"+name);
+  findTrainers(find:any){
+    console.log("inside search service file",find)
+    return this.http.put<any>("http://localhost:3000/find",{"find":find});
     
   }
 
