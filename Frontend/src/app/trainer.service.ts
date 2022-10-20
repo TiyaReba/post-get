@@ -50,14 +50,14 @@ trainerallotebyId(id:any){
     console.log("inside service file of loadprofile");
     return this.http.get("http://localhost:3000/trainerProfile/"+email);
   }
-  getTrainerE(id:any){
-    console.log("inside getTrainerE service file")
-    return this.http.get("http://localhost:3000/trainerProfile/"+id)
+  getTrainerE(email:any){
+    console.log("inside getTrainerE service file",+email)
+    return this.http.get("http://localhost:3000/trainerProfile/"+email)
   };
   editProfile(trainer:any){
-    console.log("edittrainer")
+  
      return this.http.put("http://localhost:3000/trainerProfile/edit/",trainer)
-     
+    
     }
   AcceptTrainer(body:any){
     console.log("inside accept service file")

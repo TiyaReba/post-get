@@ -30,6 +30,9 @@ export class AuthserviceService {
    {
      return localStorage.getItem('currentUser')
    }
-   
+   getTrainerId()
+   {
+    return localStorage.getItem('editTrainerId')
+   }
  
 }

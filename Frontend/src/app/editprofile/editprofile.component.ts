@@ -25,7 +25,7 @@ export class EditprofileComponent implements OnInit {
     currentdesignation:'',
     courses:'',
     approved:'',
-    employment:''
+    employment:'', ID:''
   }
   // registrationForm = this.fb.group({
   // trainername:['',Validators.required],
@@ -42,18 +42,19 @@ export class EditprofileComponent implements OnInit {
   //   return this.registrationForm.controls;
   // };
   ngOnInit(): void {
-    let trainerID = localStorage.getItem('editTrainerId');
-    this.trainerService.getTrainerE(trainerID)
+    let trainerEmail= localStorage.getItem('currentUser');
+    this.trainerService.getTrainerE(trainerEmail)
     .subscribe((trainerdata)=>{
       this.trainer =JSON.parse(JSON.stringify(trainerdata))
       console.log(this.trainer);
-      console.log("trainerid in ngonit edit",trainerID)
+      console.log("trainerid in ngonit edit",trainerEmail)
     });
   }
-  editProfile(){
+  editProfile(formValue:NgForm){
    
    console.log("rg in onsubmit editprofile")
-        this.trainerService.editProfile(this.trainer);
+        this.trainerService.editProfile(this.trainer)
+        .subscribe((data)=>{console.log(data)})
         alert('Profile has been updated!');
         this.router.navigate(['trainer-p']);
   }
