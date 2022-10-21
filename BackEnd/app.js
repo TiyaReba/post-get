@@ -66,7 +66,7 @@ user.save().then((result) => {
               message: "Error Creating USer",
             });
           }
-          res.send({message:""});
+          res.send({message:"success"});
         });
       })
       .catch((err) => {
