@@ -144,6 +144,7 @@ app.post("/form", verifyToken, function (req, res) {
   console.log("body :" + req.body);
   console.log("trainer name :" + req.body.trainername);
   var newtrainer = {
+    image:req.body.image,
     trainername: req.body.trainername,
     email: req.body.email,
     phone: req.body.phone,
@@ -298,7 +299,8 @@ app.get("/trainerProfile/:email",verifyToken, (req, res) => {
 app.put("/trainerProfile/edit",verifyToken, (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
-  console.log("body for edit:" + req.body);
+  console.log("body for edit:" + req.body.email);
+  console.log("editprofile=",req.body.trainername)
  const  id = req.body.id,
  trainername=req.body.trainername,
  email=req.body.email,
@@ -310,7 +312,7 @@ app.put("/trainerProfile/edit",verifyToken, (req, res) => {
  currentdesignation=req.body.currentdesignation,
  courses=req.body. courses;
   FormData.findOneAndUpdate(
-    { _id: id },
+    { email: email },
     {
       $set: {
         "trainername": trainername,

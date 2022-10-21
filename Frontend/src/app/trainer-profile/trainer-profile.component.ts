@@ -19,6 +19,7 @@ export class TrainerProfileComponent implements OnInit {
 
   trainers: Trainermodel[] | any;
   trainer=[{
+    image:'',
     trainername:'',
     email:'',
     phone:'',

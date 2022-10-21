@@ -19,6 +19,7 @@ export class RequestComponent implements OnInit {
   alertMsg: any = "";
 
   trainer = {
+    image:Image,
     trainername: String,
     email: String,
     phone: Number,
@@ -33,6 +34,7 @@ export class RequestComponent implements OnInit {
 
   trainers = [
     {
+      image:Image,
       trainername: String,
       email: String,
       phone: Number,

@@ -2,6 +2,9 @@
     <h3 style="text-align:center">To Edit Details</h3>
     <form #editprofile="ngForm" (ngSubmit)="editprofile.form.valid && editProfile(editprofile)">
     <div>
+      <div>
+        
+      </div>
       <label class="form-label">Trainer Name</label>
       <input type="text" class="form-control" name="trainername" [(ngModel)]="trainer.trainername" #trainername="ngModel" required>
       <small class="text-danger" *ngIf="editprofile.submitted&&trainername.errors?.['required']">*Mandatory Fields </small>

@@ -9,6 +9,7 @@ import { TrainerService } from '../trainer.service';
 })
 export class TrainerPComponent implements OnInit {
   trainer={
+    image:'',
     trainername:'',
     email:'',
     ID:'',
@@ -26,6 +27,7 @@ export class TrainerPComponent implements OnInit {
 
   ngOnInit(): void {
     let trainerEmail=localStorage.getItem('currentUser');
+    console.log("traineremail in ng of trainerp",trainerEmail)
     this.trainerService.loadProfile(trainerEmail)
         .subscribe((trainerProfile)=>{
           this.trainer=JSON.parse(JSON.stringify(trainerProfile));
@@ -33,9 +35,9 @@ export class TrainerPComponent implements OnInit {
   }
   editTrainer(trainer:any){
      
-      // localStorage.setItem("edittrainer", this.trainer.toString());
+       localStorage.setItem("edittrainer", this.trainer.toString());
       this.router.navigate(['editprofile']);
-  
+      console.log("edit in trainerp localstorage",this.editTrainer)
     
   }
 }
