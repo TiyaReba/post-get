@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators,NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthserviceService } from '../authservice.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+
+
   Signupsubmitted=false
   hide: boolean = true;
   constructor(private fb:FormBuilder,private authService:AuthserviceService,private router:Router) { }
@@ -35,24 +38,31 @@ User={
   onSubmitSignup(){
     this.Signupsubmitted=true
     if(!this.signupForm.valid){
-      alert("please fill the form")
-    }else{
+      //alert("please fill the form")
+      Swal.fire('Oops', 'Fill in all the details!', 'error');
+    }
+    else{
     var sdata=this.signupForm.value
     console.log(this.signupForm.value)
     this.authService.signup(sdata)
  .subscribe (data=>{
-       if(!data.error){
-        alert('User successfully registered');
-        this.router.navigate(['/login'])
+       if(data.message!=""){
+          
+        this.SignUpError.errorMsg=data.message;
+        this.SignUpError.error=true;
+        console.log(this.SignUpError.errorMsg)
         }
         else 
-        { if(data.error){
-          alert("not registered");
-        }
-        }
+        {  
+          Swal.fire('Thank you...', 'You registered succesfully!', 'success')
       
-    })
-  }}
+           this.router.navigate(['/login'])
+          }
+        }
+          
+ )
+    
 
-  }
   
+  
+      }}}

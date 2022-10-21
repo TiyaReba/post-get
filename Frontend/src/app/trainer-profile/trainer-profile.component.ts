@@ -3,7 +3,7 @@ import { Trainermodel } from '../trainer-profile/trainer.model'
 import { TrainerService } from '../trainer.service';
 import {  NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-trainer-profile',
   templateUrl: './trainer-profile.component.html',
@@ -38,6 +38,11 @@ export class TrainerProfileComponent implements OnInit {
     console.log("trainerid",id);
     this.trainerService.deleteTrainer(trainer._id)
     .subscribe((res:any)=>{
+      Swal.fire(
+        'Deleted!',
+        'Trainer Details has been deleted.',
+        'success'
+      )
       this.trainers = this.trainers.filter((p: any) => p!==trainer)
     })
   }

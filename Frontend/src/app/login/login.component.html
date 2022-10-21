@@ -1,33 +1,13 @@
 
-<!-- Section: Design Block -->
-<section class="text-center text-lg-start">
-    <style>
-      .cascading-right {
-        margin-right: -50px;
-      }
-  
-      @media (max-width: 991.98px) {
-        .cascading-right {
-          margin-right: 0;
-        }
-      }
-    </style>
-  
-    <!-- Jumbotron -->
-    <div class="container py-4">
-      <div class="row g-0 align-items-center">
-        <div class="col-lg-6 mb-5 mb-lg-0">
-          <div class="card cascading-right" style="
-              background: hsla(173, 57%, 67%, 0.55);
-              backdrop-filter: blur(30px);
-              ">
-            <div class="card-body p-5 shadow-5 text-center">
+            
             <mat-tab-group mat-align-tabs="center">
         <mat-tab>
         <mat-card class="logincard">
         <form [formGroup]="loginForm"
             (ngSubmit)="onSubmit()">
             <h2 class="fw-bold mb-5">Please login to your account</h2>
+            <span id="loginAlertMsg" *ngIf="LoginError.error"><div style ='color: #D81B60;'><h5 style=" text-align: left; font-family : cursive;">{{LoginError.errorMsg}}</h5></div></span> 
+            <h2 class="for" style="font-family: Georgia, 'Times New Roman', Times, serif;">Login</h2>
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
             <input matInput placeholder="Email" formControlName='email'>
@@ -60,19 +40,8 @@
 </mat-card>
 </mat-tab>
 </mat-tab-group>
-  </div>
-</div>
-</div>
-<div class="col-lg-6 mb-5 mb-lg-0">
-    <img src="https://th.bing.com/th/id/R.0b0a08069966b202ebe30864aa66145f?rik=nEXA09u8J1SA0w&riu=http%3a%2f%2fwww.elearninglearning.com%2fthumbs%2flarge%2fe%2f0%2f9%2fe0992dc7e930e71f2337278acf54a63d3a13a917.jpg&ehk=iWfrrHRdkfzLx7R8DqUFPMPpJkfdCvAzM8fSv0HUemI%3d&risl=&pid=ImgRaw&r=0" class="w-100 rounded-4 shadow-4"
-      alt="" />
-      alt="" />
-    </div>
-  </div>
-</div>
-<!-- Jumbotron -->
-</section>
-<!-- Section: Design Block -->
+  
+
 
 
 

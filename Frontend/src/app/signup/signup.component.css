@@ -4,11 +4,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: 1rem;
+    top: 1rem; 
 
 }
 .signupcard{
-    background: linear-gradient(135deg, #e7e9ec 10%, #31acbc 100%);
+    background:white;
     border: 1px solid rgb(255, 255, 255);
     border-radius: .7rem;
     height: 400px;
@@ -37,4 +37,10 @@ button{
     background: transparent;
     color: #0804f5;
     border: 2px solid #cec7cb;
+    }
+    .main{
+        background-size:cover; 
+        width:auto;
+        background-position:50% 50%;
+        height: 100%
     }
