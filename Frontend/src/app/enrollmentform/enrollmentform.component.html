@@ -156,7 +156,7 @@
         <div *ngIf="f.courses.errors?.['required']">course is required</div>
       </div>
       <label>Upload Passport Size Photo</label>
-      <input type="link" placeholder=" Paste the image link of google drive" class="form-control">
+      <input type="link" placeholder=" Paste the image link of google drive" class="form-control" formControlName="image" [ngClass]="{'is-invalid':submit&&f.image.errors}">
 
 <br>
       <button type="submit" class="btn btn-success">Submit</button>
