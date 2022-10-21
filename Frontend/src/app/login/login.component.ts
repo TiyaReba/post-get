@@ -15,12 +15,6 @@ export class LoginComponent implements OnInit {
   submitted=false
   logindata: any;
   hide = true;
-  LoginError ={
-    error : false,
-    errorMsg : ''
-  };
-  
-showErrorMessage=false;
 
   constructor(private fb:FormBuilder,private authService:AuthserviceService,private router:Router) { }
   loginForm=this.fb.group({
@@ -36,43 +30,35 @@ showErrorMessage=false;
   onSubmit(){
     this.submitted=true
     if(!this.loginForm.valid){
-     // alert("please fill the form")
       Swal.fire('Oops', 'Fill in all the details!', 'error');
     }
     else{
       var logindata = this.loginForm.value;
       this.authService.loginUser(logindata)
   .subscribe(data=>{
-    if(data){
-      console.log(data.token);
-          if(data.token){
-            localStorage.setItem('token', data.tok)   
-              localStorage.setItem('currentUser',JSON.stringify(data));
-              localStorage.setItem('Approvalstatus', data.approval)         
-              localStorage.setItem('currentUser', data.email);
-              if(data.email=="tmsictak22@gmail.com")
-             {
-                 this.router.navigate(['/trainer-profile'])
-            } 
-           else{
+    localStorage.setItem('token', data.tok)   
+    console.log("login token",data.tok)
+    localStorage.setItem('Approvalstatus', data.approval)         
+    localStorage.setItem('currentUser', data.email);
+    if(data.email=="tmsictak22@gmail.com")
+    {
+     this.router.navigate(['/trainer-profile'])
+    }
+     else{
+    if(data.error){
+      Swal.fire('Oops', 'Fill in all the details!', 'error');
+      
+    }
+    else{
      
-                this.router.navigate(['/enrollmentform'])
-               }
-            }
-          else{
-          console.log(data.error.message);
-          }   
-       }}
-     , (error: any) => {
-    console.log('Login Failed'); // handle login failed here. 
-})
-
-}
- 
+      this.router.navigate(['/enrollmentform'])
+    }
+   
   }
- 
   
-}
+})}
+  
+  }}
 
 
        

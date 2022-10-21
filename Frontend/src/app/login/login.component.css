@@ -4,17 +4,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: .5em;
+    top: 2em;
+    margin-left: 50%;
 
 
 }
 .logincard{
 
-border: 1px solid rgb(4, 69, 135);
+border: 
+.5px solid rgb(4, 69, 135);
 border-radius: .1rem;
 box-shadow: 0px 4px 20px 0px #032257a6;
 height: 450px;
 width: 500px;
+margin-left: 40%;
 
 }
 mat-form-field{

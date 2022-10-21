@@ -5,9 +5,7 @@
         <mat-card class="logincard">
         <form [formGroup]="loginForm"
             (ngSubmit)="onSubmit()">
-            <h2 class="fw-bold mb-5">Please login to your account</h2>
-            <span id="loginAlertMsg" *ngIf="LoginError.error"><div style ='color: #D81B60;'><h5 style=" text-align: left; font-family : cursive;">{{LoginError.errorMsg}}</h5></div></span> 
-            <h2 class="for" style="font-family: Georgia, 'Times New Roman', Times, serif;">Login</h2>
+          <h2 class="for" style="font-family: Georgia, 'Times New Roman', Times, serif;">Login</h2>
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
             <input matInput placeholder="Email" formControlName='email'>
