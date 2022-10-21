@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Trainermodel } from '../trainer-profile/trainer.model'
 import { TrainerService } from '../trainer.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-enrollmentform',
   templateUrl: './enrollmentform.component.html',
@@ -40,11 +41,18 @@ onsubmit(){
   else{
    this.trainerService.addForms((this.registrationForm.value))
    console.log(this.registrationForm.value);
-   alert("Trainer addedd sucessfully")
-   this.router.navigate(['/'])
-   localStorage.setItem('trainerAlertMsg', `The form submitted successfully`);
-   console.log("clicked")
-   console.log('f', this.f)
+
+   
+    Swal.fire(
+      'Enrolled!',
+      'Your enrollment form has been accepted.',
+      'success'
+    )
+    this.router.navigate(['/'])
+  localStorage.setItem('trainerAlertMsg', `The form submitted successfully`);
+  console.log("clicked")
+  console.log('f', this.f)
+
   }
 }
 

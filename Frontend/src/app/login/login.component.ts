@@ -4,6 +4,7 @@ import { AuthserviceService } from '../authservice.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 // import { Token } from '@angular/compiler';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     this.submitted=true
     if(!this.loginForm.valid){
-      alert("please fill the form")
+      Swal.fire('Oops', 'Fill in all the details!', 'error');
     }
     else{
       var logindata = this.loginForm.value;
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
     }
      else{
     if(data.error){
-      alert("login failed");
+      Swal.fire('Oops', 'Fill in all the details!', 'error');
       
     }
     else{

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TrainerService } from '../trainer.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -55,10 +56,15 @@ export class AdminComponent implements OnInit {
   console.log("clicked in admim allocation submit")
   this.trainerservice.allocateTrainer((this.adminform))
   .subscribe((data) =>{
+   
     console.log(data)
   
-  console.log(this.adminform);
-  alert("Trainer allocated sucessfully")
+  console.log(this.adminform); 
+  Swal.fire(
+    'Allocated!',
+    'Trainer has been allocated successfully.',
+    'success'
+  )
   this.router.navigate(['/trainer-profile'])
   })
   localStorage.setItem('trainerAlertMsg', `The form submitted successfully`); 

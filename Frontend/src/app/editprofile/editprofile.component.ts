@@ -3,6 +3,7 @@ import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/fo
 import { TrainerService } from '../trainer.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editprofile',
@@ -57,7 +58,10 @@ export class EditprofileComponent implements OnInit {
         console.log("rg in onsubmit editprofile",this.trainer)
         this.trainerService.editProfile(this.trainer)
         .subscribe((data)=>{console.log(data)})
-        alert('Profile has been updated!');
+        Swal.fire(
+          'UPDATED!',
+          'Your profile has been deleted.',
+          'success')
         this.router.navigate(['trainer-p']);
   }
 }

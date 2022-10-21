@@ -58,24 +58,20 @@ app.post("/signup", (req, res, next) => {
         if (user1) {
           return res.status(401).json({
             message: "User Already Exist",
-          });
+        });
         }
-
-        user.save().then((result) => {
+user.save().then((result) => {
           if (!result) {
-            return res.status(500).json({
+            return res.send({
               message: "Error Creating USer",
             });
           }
-          res.status(201).json({
-            message: "User created!",
-            result: result,
-          });
+          res.send({message:""});
         });
       })
       .catch((err) => {
-        res.status(500).json({
-          error: err,
+        res.send({
+          message: err,
         });
       });
   });
@@ -90,9 +86,11 @@ app.post("/login", (req, res, next) => {
   UserData.findOne({ email: email })
     .then((user) => {
       if (!user) {
-        return res.status(401).json({
-          message: "Auth failed no such user",
+        return res.send({
+          message: " failed ",
+          
         });
+        return;
       }
       fetchedUser = user;
       return bcrypt.compare(req.body.password, user.password);
@@ -119,8 +117,8 @@ app.post("/login", (req, res, next) => {
         }
       }
       if (!result) {
-        return res.status(401).json({
-          message: "Auth failed incorrect password",
+        return res.send({
+          message: " failed ",
         });
       }
     });
