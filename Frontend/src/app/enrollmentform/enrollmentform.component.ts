@@ -25,7 +25,8 @@ export class EnrollmentformComponent implements OnInit {
   skills:['',Validators.required],
   currentcompanyname:[''],
   currentdesignation:[''],
-  courses:['',Validators.required]
+  courses:['',Validators.required],
+  image:['']
 })
 get f(){
   return this.registrationForm.controls;
@@ -37,13 +38,13 @@ onsubmit(){
   }
 
   else{
-    this.trainerService.addForms((this.registrationForm.value))
+   this.trainerService.addForms((this.registrationForm.value))
    console.log(this.registrationForm.value);
-    alert("Trainer addedd sucessfully")
-    this.router.navigate(['/'])
-  localStorage.setItem('trainerAlertMsg', `The form submitted successfully`);
-  console.log("clicked")
-  console.log('f', this.f)
+   alert("Trainer addedd sucessfully")
+   this.router.navigate(['/'])
+   localStorage.setItem('trainerAlertMsg', `The form submitted successfully`);
+   console.log("clicked")
+   console.log('f', this.f)
   }
 }
 

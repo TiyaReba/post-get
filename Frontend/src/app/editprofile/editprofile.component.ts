@@ -26,7 +26,8 @@ export class EditprofileComponent implements OnInit {
     currentdesignation:'',
     courses:'',
     approved:'',
-    employment:'', ID:''
+    employment:'', ID:'',
+    link:''
   }
   // registrationForm = this.fb.group({
   // trainername:['',Validators.required],

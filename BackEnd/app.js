@@ -258,25 +258,7 @@ app.put("/find", async function (req, res) {
   console.log(trainers)
 });
 
-// to search courses
-app.get("/find/:courses", async function (req, res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
-  console.log("search string", req.params.courses);
-  console.log("body ",req.body)
- 
-  try {
-    var trainers = await FormData.find({
-      $and:[
-        { courses: { $regex: req.params.courses, $options: "i" }} ,
-        { approved: true },
-      ],
-    });
-  } catch (e) {
-    res.status(500).send();
-  }
-  res.send(trainers);
-});
+
 //to load invidual trainer profile
 app.get("/trainerprofile/:email", verifyToken, (req, res) => {
   
@@ -299,9 +281,10 @@ app.get("/trainerProfile/:email",verifyToken, (req, res) => {
 app.put("/trainerProfile/edit",verifyToken, (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
-  console.log("body for edit:" + req.body.email);
+  console.log("body for edit:" + req.body.image);
   console.log("editprofile=",req.body.trainername)
  const  id = req.body.id,
+ image=req.body.image,
  trainername=req.body.trainername,
  email=req.body.email,
  phone=req.body.phone,
@@ -323,7 +306,8 @@ app.put("/trainerProfile/edit",verifyToken, (req, res) => {
         "skills": skills,
         "currentcompanyname": currentcompanyname,
         "currentdesignation": currentdesignation,
-        "courses": courses
+        "courses": courses,
+        "image":image
       },
     }
   ).then(function () {
