@@ -15,6 +15,7 @@ export class EditprofileComponent implements OnInit {
   courselist:any=['FSD','DSA','RPA']
   submit=false
   trainer={
+    image:'',
     trainername:'',
     email:'',
     phone:'',
@@ -42,9 +43,9 @@ export class EditprofileComponent implements OnInit {
   //   return this.registrationForm.controls;
   // };
   ngOnInit(): void {
-    let trainerEmail= localStorage.getItem('currentUser');
-    this.trainerService.getTrainerE(trainerEmail)
-    .subscribe((trainerdata)=>{
+      let trainerEmail= localStorage.getItem('currentUser');
+       this.trainerService.getTrainerE(trainerEmail)
+       .subscribe((trainerdata)=>{
       this.trainer =JSON.parse(JSON.stringify(trainerdata))
       console.log(this.trainer);
       console.log("trainerid in ngonit edit",trainerEmail)
@@ -52,7 +53,7 @@ export class EditprofileComponent implements OnInit {
   }
   editProfile(formValue:NgForm){
    
-   console.log("rg in onsubmit editprofile")
+        console.log("rg in onsubmit editprofile",this.trainer)
         this.trainerService.editProfile(this.trainer)
         .subscribe((data)=>{console.log(data)})
         alert('Profile has been updated!');

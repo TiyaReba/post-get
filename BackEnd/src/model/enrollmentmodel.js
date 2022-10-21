@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const TrainerForm = new Schema({
    
-   
+    
     trainername:String,
     email:String,
     phone:Number,

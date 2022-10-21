@@ -19,6 +19,7 @@ export class TrainerProfileComponent implements OnInit {
 
   trainers: Trainermodel[] | any;
   trainer=[{
+    image:'',
     trainername:'',
     email:'',
     phone:'',
@@ -44,7 +45,9 @@ export class TrainerProfileComponent implements OnInit {
         'success'
       )
       this.trainers = this.trainers.filter((p: any) => p!==trainer)
+
     })
+   
   }
 
 allocateTrainer(trainer:any){
@@ -54,23 +57,23 @@ allocateTrainer(trainer:any){
   
 }
   ngOnInit(): void {
-   
+  
     this.trainerService.getTrainers().subscribe((data) =>{
       this.trainers = data;
     })
   }
 
   Search(searchForm:NgForm){
-    console.log("this.search value",this.search.text)
-    this.trainerService.findTrainers(this.search.text)
+    console.log("this.search value",this.search)
+    this.trainerService.findTrainers(this.search)
       .subscribe((trainer)=>{
         this.trainers = trainer
-        console.log("trainervalue is:",this.trainervalue)
+        console.log("trainervalue is:",trainer)
+      
         })
 
  
 
-  
   
   }
 }

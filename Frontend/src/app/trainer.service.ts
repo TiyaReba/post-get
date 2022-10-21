@@ -29,9 +29,9 @@ export class TrainerService {
   }
 
  
-  findTrainers(name:any){
-    console.log("inside search service file")
-    return this.http.get<any>("http://localhost:3000/find/"+name);
+  findTrainers(find:any){
+    console.log("inside search service file",find)
+    return this.http.put<any>("http://localhost:3000/find",{"find":find});
     
   }
 
@@ -47,16 +47,16 @@ trainerallotebyId(id:any){
  
 }
   loadProfile(email:any){
-    console.log("inside service file of loadprofile");
+    console.log("inside service file of loadprofile",email);
     return this.http.get("http://localhost:3000/trainerProfile/"+email);
   }
   getTrainerE(email:any){
-    console.log("inside getTrainerE service file",+email)
+    console.log("inside getTrainerE service file",email)
     return this.http.get("http://localhost:3000/trainerProfile/"+email)
   };
-  editProfile(trainer:any){
-  
-     return this.http.put("http://localhost:3000/trainerProfile/edit/",trainer)
+  editProfile(body:any){
+      console.log("inside service of edit profile",body.email)
+     return this.http.put("http://localhost:3000/trainerProfile/edit/",body)
     
     }
   AcceptTrainer(body:any){
