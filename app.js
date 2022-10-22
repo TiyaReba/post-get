@@ -388,5 +388,6 @@ app.get(api_prefix + "requests", verifyToken,function (req, res) {
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname + './/Frontend//dist//tmsportal//index.html'))});
 
-app.listen(3000);
-console.log("port 3000");
+app.listen(process.env.PORT || 3000, function(){
+      console.log('listening to port 3000');
+  });
