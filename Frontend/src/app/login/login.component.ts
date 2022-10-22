@@ -40,23 +40,26 @@ export class LoginComponent implements OnInit {
     console.log("login token",data.tok)
     localStorage.setItem('Approvalstatus', data.approval)         
     localStorage.setItem('currentUser', data.email);
-    if(data.email=="tmsictak22@gmail.com")
-    {
-     this.router.navigate(['/trainer-profile'])
+    if(data.message=="failed")
+    
+      {Swal.fire('Oops', 'Invalid', 'error');
+   
     }
      else{
-    if(data.message="failed"){
-      Swal.fire('Oops', 'Invalid', 'error');
+    if(data.email="tmsictak22@gmail.com"){
+      this.router.navigate(['/trainer-profile'])
+    
       
     }
     else{
-     
       this.router.navigate(['/enrollmentform'])
+
+       }
     }
+  
    
   }
-  
-})}
+  )}
   
   }}
 
