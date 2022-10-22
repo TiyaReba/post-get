@@ -1,4 +1,29 @@
 .container-fluid{
-    
-    width: 290px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 450px;
+   
 }
+form{
+    background-color: beige;
+    border-radius: 1em;
+    padding: .5cm;
+
+}
+button{
+    padding: 12px 20px;
+    background: #0d215d;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all .3s ease-in;
+   
+    }
+    button:hover{
+    background: transparent;
+    color: #5f83a8;
+    border: 2px solid #cec7cb;
+    }

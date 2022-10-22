@@ -1,6 +1,9 @@
 .main{
-   height: auto;
-    background-image: url("https://cdn.pixabay.com/photo/2018/04/28/22/03/tree-3358468_960_720.jpg"); 
+   
+   background-color: beige;
+   height: 740px;
+    /* background-image: url("https://cdn.pixabay.com/photo/2018/04/28/22/03/tree-3358468_960_720.jpg");  */
+
 }
 
 
@@ -11,7 +14,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: 2rem;
+    top: 4rem;
    
 }
 
@@ -26,7 +29,9 @@ width: 500px;
 padding: auto;
 display: block;
 margin-left: auto;
-margin-right: auto
+margin-right: auto;
+top: 2em;
+
 
 }
 mat-form-field{
@@ -49,9 +54,4 @@ button{
     border: 2px solid #cec7cb;
     }
 
-    .main{
-        background-size:cover; 
-        width:auto;
-        background-position:50% 50%;
-        height: 100%
-    }
+   
