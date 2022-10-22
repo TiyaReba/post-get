@@ -44,9 +44,13 @@ function verifyToken(req, res, next) {
   req.userId = payload.subject;
   next();
 }
+const path = require('path');
+app.use(express.static('../Frontend/dist/tmsportal'));
+
+let api_prefix = "/api/";
 
 // SIGNUP data is taken and store to data base
-app.post("/signup", (req, res, next) => {
+app.post(api_prefix + "signup", (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then((hash) => {
     const user = new UserData({
       email: req.body.email,
@@ -79,7 +83,7 @@ user.save().then((result) => {
 
 // login check the informations
 
-app.post("/login", (req, res, next) => {
+app.post(api_prefix + "login", (req, res, next) => {
   let fetchedUser;
   let email = req.body.email;
   console.log("login check", req.body.email);
@@ -126,7 +130,7 @@ app.post("/login", (req, res, next) => {
 
 //  to get details in trainer list page
 
-app.get("/trainerlist", (req, res) => {
+app.get(api_prefix + "trainerlist", verifyToken, (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
   FormData.find({ approved: true }).then(function (trainers) {
@@ -136,7 +140,7 @@ app.get("/trainerlist", (req, res) => {
 
 // for posting enrollmentform for trainer
 
-app.post("/form",  function (req, res) {
+app.post(api_prefix + "form", verifyToken, function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
   console.log("body :" + req.body);
@@ -166,7 +170,7 @@ app.post("/form",  function (req, res) {
 
 // to delete trainerdata by admin in trainer profile
 
-app.delete("/trainerprofiles/delete/:id", verifyToken, (req, res) => {
+app.delete(api_prefix + "trainerprofiles/delete/:id", verifyToken, (req, res) => {
   const id = req.params.id;
   FormData.findByIdAndDelete({ _id: id }).then(() => {
     console.log("trainer deleted");
@@ -176,7 +180,7 @@ app.delete("/trainerprofiles/delete/:id", verifyToken, (req, res) => {
 
 // to recognize the id in the admin page
 
-app.get("/trainer/:id",verifyToken, function (req, res) {
+app.get(api_prefix + "trainer/:id",verifyToken, function (req, res) {
   const id = req.params.id;
   console.log("trainer id is",id);
   FormData.findOne({ _id: id }).then(function (trainers) {
@@ -186,7 +190,7 @@ app.get("/trainer/:id",verifyToken, function (req, res) {
 
 // to allocate each trainer
 
-app.put("/allocate",(req, res) => {
+app.put(api_prefix + "allocate", verifyToken, (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
   console.log("startdate :" + req.body.startdate);
@@ -239,7 +243,7 @@ app.put("/allocate",(req, res) => {
   });
 
 // to search name
-app.put("/find", async function (req, res) {
+app.put(api_prefix + "find", verifyToken, async function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
   console.log("search string", req.body);
@@ -258,7 +262,7 @@ app.put("/find", async function (req, res) {
 
 
 //to load invidual trainer profile
-app.get("/trainerprofile/:email", verifyToken, (req, res) => {
+app.get(api_prefix + "trainerprofile/:email", verifyToken, (req, res) => {
   
   const email = req.params.email;
   FormData.findOne({ $and: [{ email: email }, { approved: true }] }).then(
@@ -268,7 +272,7 @@ app.get("/trainerprofile/:email", verifyToken, (req, res) => {
   );
 });
 // for profile loading while profile edit
-app.get("/trainerProfile/:email",verifyToken, (req, res) => {
+app.get(api_prefix + "trainerProfile/:email",verifyToken, (req, res) => {
   const email= req.params.email;
   console.log("trainer id for edit in  profile", id);
   FormData.findOne({ email: email}).then((trainers) => {
@@ -276,7 +280,7 @@ app.get("/trainerProfile/:email",verifyToken, (req, res) => {
   });
 });
 //for editing profile
-app.put("/trainerProfile/edit",verifyToken, (req, res) => {
+app.put(api_prefix + "trainerProfile/edit",verifyToken, (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
   console.log("body for edit:" + req.body.image);
@@ -313,7 +317,7 @@ app.put("/trainerProfile/edit",verifyToken, (req, res) => {
   });
 });
 
-app.get("/requests", verifyToken,function (req, res) {
+app.get(api_prefix + "requests", verifyToken,function (req, res) {
   console.log("Request page");
   FormData.find({"approved":false})
   .then(function(trainerss){
@@ -321,7 +325,7 @@ app.get("/requests", verifyToken,function (req, res) {
     })
   })
   //to accept requests
-  app.put("/requests/accept", verifyToken,function (req, res) {
+  app.put(api_prefix + "requests/accept", verifyToken,function (req, res) {
     const id = req.body.id;
     var value = Math.floor(Math.random() * 2000);
     var newid = "TMS" + value.toString();
@@ -359,7 +363,7 @@ app.get("/requests", verifyToken,function (req, res) {
       
     });
        //to delete requests and send mail   
-     app.delete('/requests/delete/:id',verifyToken,function(req,res){
+     app.delete(api_prefix + 'requests/delete/:id',verifyToken,function(req,res){
     const id = req.params.id;
                   FormData.findByIdAndDelete({_id:id}) 
                   .then(function(trainers){
@@ -381,7 +385,8 @@ app.get("/requests", verifyToken,function (req, res) {
                     console.log("deleted successfully");
   })
 
-
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname + '../FrontEnd//dist//tmsportal//index.html'))});
 
 app.listen(3000);
 console.log("port 3000");
