@@ -45,7 +45,8 @@ function verifyToken(req, res, next) {
   next();
 }
 const path = require('path');
-app.use(express.static('Frontend/dist/tmsportal'));
+
+// app.use(express.static('Frontend/dist/tmsportal'));
 
 let api_prefix = "/api/";
 
@@ -386,7 +387,7 @@ app.get(api_prefix + "requests", verifyToken,function (req, res) {
   })
 
 app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname + 'Frontend//dist//tmsportal//index.html'))});
+    res.sendFile(path.join(__dirname + '/Frontend/dist/tmsportal/index.html'))});
 
 app.listen(process.env.PORT || 3000, function(){
       console.log('listening to port 3000');
