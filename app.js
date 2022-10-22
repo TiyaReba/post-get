@@ -46,7 +46,7 @@ function verifyToken(req, res, next) {
 }
 const path = require('path');
 
-// app.use(express.static('Frontend/dist/tmsportal'));
+app.use(express.static('./dist/tmsportal'));
 
 let api_prefix = "/api/";
 
