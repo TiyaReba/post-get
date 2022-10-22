@@ -14,10 +14,10 @@
   </ul>
 <div>
   <ul class="nav navbar-right navbar-nav ms-auto" style="font-family:Verdana, Geneva, Tahoma, sans-serif">
-    <a class="nav-link " *ngIf="auth.loggedIn()" (focusin)='getloguser()' ><b> Welcome : {{loggedUser}}</b></a>
+    <a class="nav-link " *ngIf="auth.loggedIn()" (focusin)='getloguser()' > Logged in :<i class="fa-regular fa-user"></i></a>
     <a class="nav-link " *ngIf="!auth.loggedIn()" routerLink="/login" (focusin)='getloguser()'>Login</a>
     <a class="nav-link " *ngIf="!auth.loggedIn()" routerLink="/signup" (focusin)='getloguser()'><b>Sign Up</b></a></ul>
-    <a class="nav-link " *ngIf="auth.loggedIn()"    (click)="logoutUser()" ><b>Logout</b></a>
+    <a class="nav-link " *ngIf="auth.loggedIn()"    (click)="logoutUser()" ><b><i class="fa-solid fa-arrow-right-from-bracket"></i></b></a>
 </div>
 </div>
 </nav>

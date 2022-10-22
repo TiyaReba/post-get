@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
      this.router.navigate(['/trainer-profile'])
     }
      else{
-    if(data.error){
-      Swal.fire('Oops', 'Fill in all the details!', 'error');
+    if(data.message="failed"){
+      Swal.fire('Oops', 'Invalid', 'error');
       
     }
     else{
