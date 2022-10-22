@@ -1,11 +1,10 @@
-
-            
-            <mat-tab-group mat-align-tabs="center">
+      <mat-tab-group mat-align-tabs="center" class="main">
         <mat-tab>
         <mat-card class="logincard">
         <form [formGroup]="loginForm"
             (ngSubmit)="onSubmit()">
-          <h2 class="for" style="font-family: Georgia, 'Times New Roman', Times, serif;">Login</h2>
+          <h1 class="for"  class="h4 fw-bold mb-0">Login</h1>
+          <br>
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
             <input matInput placeholder="Email" formControlName='email'>

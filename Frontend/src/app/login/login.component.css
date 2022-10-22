@@ -4,20 +4,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: 2em;
-    margin-left: 50%;
-
-
+    top: 2rem;
+   
 }
-.logincard{
 
-border: 
-.5px solid rgb(4, 69, 135);
-border-radius: .1rem;
+.logincard{
+ background:white;
+border-radius: .7rem;
+border: 1px solid rgb(23, 14, 88);
 box-shadow: 0px 4px 20px 0px #032257a6;
-height: 450px;
+height: 400px;
 width: 500px;
-margin-left: 40%;
+/* margin-left: 40%; */
+padding: auto;
+display: block;
+margin-left: auto;
+margin-right: auto
 
 }
 mat-form-field{
@@ -25,19 +27,24 @@ mat-form-field{
 }
 button{
     padding: 12px 20px;
-    background: #718ee4;
+    background: #0d215d;
     border: none;
     color: white;
     border-radius: 30px;
     font-size: 16px;
     text-decoration: none;
-    
-    
     transition: all .3s ease-in;
    
     }
     button:hover{
     background: transparent;
-    color: #0804f5;
+    color: #5f83a8;
     border: 2px solid #cec7cb;
+    }
+
+    .main{
+        background-size:cover; 
+        width:auto;
+        background-position:50% 50%;
+        height: 100%
     }

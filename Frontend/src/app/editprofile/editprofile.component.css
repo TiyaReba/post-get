@@ -9,7 +9,9 @@
 form{
     border-radius: 13px;
     padding: 20px;
-    background-color: rgb(180, 227, 247);
+    background-color: rgb(218, 195, 156);
+    box-shadow: 0px 4px 20px 0px #032257a6;
+    border: 1px solid rgb(23, 14, 88);
 }
 .btn {
     position: relative;
@@ -21,7 +23,7 @@ h3{
 }
 button{
     padding: 12px 20px;
-    background: #718ee4;
+    background: #132763;
     border: none;
     color: white;
     border-radius: 30px;

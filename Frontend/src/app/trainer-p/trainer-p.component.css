@@ -1,13 +1,19 @@
 .container{
-    background-color: rgb(202, 238, 245);
+    background-color: rgb(218, 195, 156);
     width: 640px;
     border-radius: 13px;
     padding: 10px;
     margin-top: 45px;
+    box-shadow: 0px 4px 20px 0px #032257a6;
+    border: 1px solid rgb(23, 14, 88);
+    
+}
+.name{
+    font-weight: 500px;
 }
 button{
     padding: 12px 20px;
-    background: #718ee4;
+    background: #0d215d;
     border: none;
     color: white;
     border-radius: 30px;
