@@ -43,8 +43,6 @@ button{
     border: 2px solid #cec7cb;
     }
     .main{
-        background-size:cover; 
-        width:auto;
-        background-position:50% 50%;
-        height: 100%
+      background-color: beige;
+      height: 740px;
     }
