@@ -71,9 +71,7 @@ allocateTrainer(trainer:any){
         console.log("trainervalue is:",trainer)
       
         })
-
- 
-
-  
+        // window.location.reload();
   }
+
 }

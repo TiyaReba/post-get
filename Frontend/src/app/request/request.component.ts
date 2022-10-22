@@ -19,7 +19,7 @@ export class RequestComponent implements OnInit {
   alertMsg: any = "";
 
   trainer = {
-    image:Image,
+    image:String,
     trainername: String,
     email: String,
     phone: Number,
@@ -34,7 +34,7 @@ export class RequestComponent implements OnInit {
 
   trainers = [
     {
-      image:Image,
+      image:String,
       trainername: String,
       email: String,
       phone: Number,
@@ -113,10 +113,7 @@ export class RequestComponent implements OnInit {
         'Trainer has been deleted.',
         'success'
       )
-      
       this.trainers = this.trainers.filter((b) => b !== trainer);
-      
-      
     });
     window.location.reload();
     localStorage.removeItem("trainerAlertMsg");
