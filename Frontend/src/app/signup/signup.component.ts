@@ -46,17 +46,16 @@ User={
     console.log(this.signupForm.value)
     this.authService.signup(sdata)
  .subscribe (data=>{
-       if(data.message!=""){
-          
-        this.SignUpError.errorMsg=data.message;
-        this.SignUpError.error=true;
-        console.log(this.SignUpError.errorMsg)
+       if(data.message="success"){
+        Swal.fire('Thank you...', 'You registered succesfully!', 'success')
+      
+        this.router.navigate(['/login'])
+      
+      
         }
         else 
         {  
-          Swal.fire('Thank you...', 'You registered succesfully!', 'success')
-      
-           this.router.navigate(['/login'])
+          Swal.fire('Sorry...', 'something went wrong', 'error')
           }
         }
           

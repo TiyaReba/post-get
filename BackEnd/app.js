@@ -66,7 +66,7 @@ user.save().then((result) => {
               message: "Error Creating USer",
             });
           }
-          res.send({message:""});
+          res.send({message:"success"});
         });
       })
       .catch((err) => {
@@ -136,11 +136,11 @@ app.get("/trainerlist", (req, res) => {
 
 // for posting enrollmentform for trainer
 
-app.post("/form", verifyToken, function (req, res) {
+app.post("/form",  function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-method:GET,POST,PUT,DELETE");
   console.log("body :" + req.body);
-  console.log("trainer name :" + req.body.trainername);
+  console.log("trainer name :" + req.body.image);
   var newtrainer = {
     image:req.body.image,
     trainername: req.body.trainername,
